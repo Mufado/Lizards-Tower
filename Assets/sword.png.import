@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bv4lej8774ajt"
-path="res://.godot/imported/viking_armor.png-9fd74e7ee2b5d05664eedcd5c3b9cf10.ctex"
+uid="uid://b2t7sjjkvcaqy"
+path="res://.godot/imported/sword.png-d559b30643454800d5db0aa85cfb3f18.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player/viking_armor.png"
-dest_files=["res://.godot/imported/viking_armor.png-9fd74e7ee2b5d05664eedcd5c3b9cf10.ctex"]
+source_file="res://Assets/sword.png"
+dest_files=["res://.godot/imported/sword.png-d559b30643454800d5db0aa85cfb3f18.ctex"]
 
 [params]
 
