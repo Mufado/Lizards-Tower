@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqvafiotno4x7"
-path="res://.godot/imported/lizard_attack.png-33b715f28f2c22585478487a861ff49f.ctex"
+uid="uid://dia50ju4owgay"
+path="res://.godot/imported/Lizard_run_up-Sheet.png-cf1fb377f1e168ab51cb13898a9f3f9d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Lizards/lizard_attack.png"
-dest_files=["res://.godot/imported/lizard_attack.png-33b715f28f2c22585478487a861ff49f.ctex"]
+source_file="res://Assets/Enemy/Lizard_run_up-Sheet.png"
+dest_files=["res://.godot/imported/Lizard_run_up-Sheet.png-cf1fb377f1e168ab51cb13898a9f3f9d.ctex"]
 
 [params]
 
