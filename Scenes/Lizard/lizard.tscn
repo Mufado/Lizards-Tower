@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://ds8qordwm2ijl"]
+[gd_scene load_steps=20 format=3 uid="uid://ds8qordwm2ijl"]
 
 [ext_resource type="Texture2D" uid="uid://cqvafiotno4x7" path="res://Assets/Lizards/lizard_attack.png" id="1_e066c"]
+[ext_resource type="Texture2D" uid="uid://du8lsi50h7x6m" path="res://Assets/Lizards/lizard_directions.png" id="2_aj5vx"]
 [ext_resource type="Script" path="res://Scenes/HurtBox.gd" id="3_f7p8n"]
 [ext_resource type="Script" path="res://Scenes/HitBox.gd" id="4_na0xi"]
 
@@ -20,6 +21,22 @@ region = Rect2(128, 0, 64, 64)
 atlas = ExtResource("1_e066c")
 region = Rect2(192, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_vc33m"]
+atlas = ExtResource("2_aj5vx")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d43w"]
+atlas = ExtResource("2_aj5vx")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhyce"]
+atlas = ExtResource("2_aj5vx")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v405m"]
+atlas = ExtResource("2_aj5vx")
+region = Rect2(192, 0, 64, 64)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_iobjb"]
 animations = [{
 "frames": [{
@@ -35,8 +52,25 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2t016")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vc33m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d43w")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhyce")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v405m")
+}],
+"loop": true,
+"name": &"walk",
 "speed": 5.0
 }]
 
@@ -168,6 +202,7 @@ sprite_frames = SubResource("SpriteFrames_iobjb")
 animation = &"attack"
 
 [node name="HitBox" type="Area2D" parent="AnimatedSprite2D"]
+visible = false
 position = Vector2(-7.10543e-15, 0)
 collision_layer = 64
 collision_mask = 128
@@ -178,12 +213,8 @@ position = Vector2(0.463516, 3.06622)
 scale = Vector2(0.988905, 1)
 shape = SubResource("SegmentShape2D_oijqg")
 
-[node name="AttackSprites" type="Sprite2D" parent="."]
-visible = false
-texture = ExtResource("1_e066c")
-hframes = 4
-
 [node name="HurtBox" type="Area2D" parent="."]
+visible = false
 position = Vector2(-7.10543e-15, 0)
 collision_layer = 128
 collision_mask = 64
