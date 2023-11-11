@@ -211,6 +211,7 @@ move_speed = 350.0
 [node name="viking" type="Sprite2D" parent="."]
 texture = ExtResource("2_gpsqq")
 hframes = 4
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 11)

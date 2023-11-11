@@ -1,12 +1,13 @@
 extends CharacterBody2D
 
+
 @export var move_speed: float = 100
 
 @onready var animation_tree : AnimationTree = $AnimationTree
 
 var direction: Vector2 = Vector2.ZERO
 
-func _process(delta):
+func _process(_delta):
 	update_animation_parameters()
 	
 func _physics_process(_delta):
@@ -31,3 +32,4 @@ func attack():
 func update_animation_parameters():
 	if direction != Vector2.ZERO:
 		animation_tree["parameters/Idle/blend_position"] = direction
+
