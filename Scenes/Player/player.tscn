@@ -1,12 +1,99 @@
-[gd_scene load_steps=32 format=3 uid="uid://uuu7begpmkg"]
+[gd_scene load_steps=41 format=3 uid="uid://c8ilpte26p04s"]
 
-[ext_resource type="Texture2D" uid="uid://c55u4ck2bqqde" path="res://Assets/Player/viking_armorless.png" id="1_1l31x"]
-[ext_resource type="Script" path="res://Scenes/Player/player.gd" id="1_khoq8"]
-[ext_resource type="Texture2D" uid="uid://bv4lej8774ajt" path="res://Assets/Player/viking_armor.png" id="3_eafxb"]
+[ext_resource type="Script" path="res://Scenes/Player/Scripts/player.gd" id="1_iywsf"]
+[ext_resource type="Texture2D" uid="uid://cdldp6ameqt65" path="res://Assets/Player/viking_complete-Sheet.png" id="2_gpsqq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvr65"]
-radius = 23.0
-height = 60.0
+radius = 7.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_btmlp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("viking:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_t6c0s"]
+resource_name = "down"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("viking:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_sniw3"]
+resource_name = "left"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("viking:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+
+[sub_resource type="Animation" id="Animation_ho2k6"]
+resource_name = "right"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("viking:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+
+[sub_resource type="Animation" id="Animation_bd2nh"]
+resource_name = "up"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("viking:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6y1uo"]
+_data = {
+"RESET": SubResource("Animation_btmlp"),
+"down": SubResource("Animation_t6c0s"),
+"left": SubResource("Animation_sniw3"),
+"right": SubResource("Animation_ho2k6"),
+"up": SubResource("Animation_bd2nh")
+}
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_3vw5l"]
 min_space = Vector2(-1, -1.1)
@@ -24,9 +111,31 @@ max_space = Vector2(1, 1.1)
 min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k430w"]
+animation = &"down"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jbc1l"]
+animation = &"up"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4r7qq"]
+animation = &"right"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vkp3f"]
+animation = &"left"
+
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_2yyd0"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_k430w")
+blend_point_0/pos = Vector2(0, 1.1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_jbc1l")
+blend_point_1/pos = Vector2(0, -1.1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_4r7qq")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_vkp3f")
+blend_point_3/pos = Vector2(-1, 0)
 min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
+snap = Vector2(0.01, 0.01)
+blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_f4cxm"]
 min_space = Vector2(-1, -1.1)
@@ -41,6 +150,7 @@ max_space = Vector2(1, 1.1)
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_thtq3"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3fpk8"]
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fn3q4"]
 
@@ -90,30 +200,35 @@ states/Move/node = SubResource("AnimationNodeBlendSpace2D_f4cxm")
 states/Move/position = Vector2(433, 263)
 states/Start/position = Vector2(75, -15)
 transitions = ["Idle", "Hit", SubResource("AnimationNodeStateMachineTransition_7belt"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_vpjsl"), "Idle", "Dodge", SubResource("AnimationNodeStateMachineTransition_lrkht"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_thtq3"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3fpk8"), "Hit", "Attack", SubResource("AnimationNodeStateMachineTransition_fn3q4"), "Attack", "Dodge", SubResource("AnimationNodeStateMachineTransition_m837s"), "Attack", "Move", SubResource("AnimationNodeStateMachineTransition_kucjv"), "Hit", "Idle", SubResource("AnimationNodeStateMachineTransition_o8y5n"), "Hit", "Move", SubResource("AnimationNodeStateMachineTransition_nssf8"), "Hit", "Dodge", SubResource("AnimationNodeStateMachineTransition_7fujg"), "Move", "Attack", SubResource("AnimationNodeStateMachineTransition_24jma"), "Dodge", "Attack", SubResource("AnimationNodeStateMachineTransition_y3sur"), "Move", "Dodge", SubResource("AnimationNodeStateMachineTransition_i8r1f"), "Dodge", "Move", SubResource("AnimationNodeStateMachineTransition_gs7rc"), "Move", "Hit", SubResource("AnimationNodeStateMachineTransition_i7d5p"), "Dodge", "Hit", SubResource("AnimationNodeStateMachineTransition_4ga7y"), "Attack", "Hit", SubResource("AnimationNodeStateMachineTransition_w85d0"), "Hit", "Death", SubResource("AnimationNodeStateMachineTransition_qqgml"), "Death", "End", SubResource("AnimationNodeStateMachineTransition_lvpc5")]
-graph_offset = Vector2(-119, -57)
+graph_offset = Vector2(-102, -140)
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 63
 motion_mode = 1
-script = ExtResource("1_khoq8")
+script = ExtResource("1_iywsf")
 move_speed = 350.0
 
-[node name="armorless" type="Sprite2D" parent="."]
-texture = ExtResource("1_1l31x")
-
-[node name="armor" type="Sprite2D" parent="."]
-texture = ExtResource("3_eafxb")
+[node name="viking" type="Sprite2D" parent="."]
+texture = ExtResource("2_gpsqq")
+hframes = 4
+frame = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, 31)
+position = Vector2(0, 11)
 shape = SubResource("CapsuleShape2D_uvr65")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6y1uo")
+}
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_tjmni")
+anim_player = NodePath("../AnimationPlayer")
+active = true
 parameters/Attack/blend_position = Vector2(0, 0)
 parameters/Death/blend_position = Vector2(0, 0)
 parameters/Dodge/blend_position = Vector2(0, -0.00597823)
 parameters/Hit/blend_position = Vector2(0, 0)
-parameters/Idle/blend_position = Vector2(-0.00160003, -0.0119566)
+parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Move/blend_position = Vector2(0, -0.00543475)
