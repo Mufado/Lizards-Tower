@@ -1,15 +1,15 @@
 extends CharacterBody2D
 
-
 @export var move_speed: float = 80.0
 
 var direction: Vector2 = Vector2.ZERO
 var attack_cd_time: float = 0.5
-var invicible_cd_time: float = 2.0
+var invicible_cd_time: float = 0.5
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var attack_cd: Timer = $AttackCoolDown
 @onready var invincible_cd: Timer = $InvincibleCoolDown
+@onready var sprite: Sprite2D = $Sprite2D
 
 func _ready():
 	animation_tree.active = true
@@ -33,8 +33,15 @@ func dodge():
 	# This function handles the dodge 
 	pass
 
+func attack(body):
+	attack_cd.start(attack_cd_time)
+	if "hit" in body:
+		body.hit()
+		
 func hit():
-	pass
+	invincible_cd.start(invicible_cd_time)
+	Global.player_health -= 10
+	blink()
 
 func update_animation_parameters():
 	if(velocity == Vector2.ZERO):
@@ -52,3 +59,14 @@ func update_animation_parameters():
 		animation_tree["parameters/Idle/blend_position"] = direction
 		animation_tree["parameters/Attacking/blend_position"] = direction
 		animation_tree["parameters/Move/blend_position"] = direction
+
+func blink():
+	sprite.material.set_shader_parameter("progress", 1)
+
+
+func _on_invincible_cool_down_timeout():
+	sprite.material.set_shader_parameter("progress", 0)
+
+
+func _on_attack_cool_down_timeout():
+	pass # Replace with function body.
