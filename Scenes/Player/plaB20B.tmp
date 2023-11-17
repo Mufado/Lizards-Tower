@@ -795,7 +795,7 @@ height = 62.0
 collision_mask = 63
 motion_mode = 1
 script = ExtResource("1_iywsf")
-move_speed = 250.0
+move_speed = 350.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 11)

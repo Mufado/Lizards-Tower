@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://m71vs3wxi7cr"]
+
+[ext_resource type="Texture2D" uid="uid://d06rxdmqrw1yo" path="res://Assets/Props/Torch_barrel_up.png" id="2_s1qsj"]
+[ext_resource type="Texture2D" uid="uid://pqc336qymljs" path="res://Assets/Props/Torch_barrel_left.png" id="3_per31"]
+[ext_resource type="Texture2D" uid="uid://lb6l4ilb5buw" path="res://Assets/Props/Torch_barrel_right.png" id="4_gfhua"]
+[ext_resource type="Texture2D" uid="uid://dafppfphgmk6x" path="res://Assets/Props/Torch_fire-Sheet.png" id="4_n1s68"]
+
+[sub_resource type="GDScript" id="GDScript_h7ika"]
+script/source = "extends Node2D
+
+@export var orientation: int = 0
+
+@onready var stick_up: Sprite2D = $Stick_up
+@onready var stick_left: Sprite2D = $Stick_left
+@onready var stick_right: Sprite2D = $Stick_right
+
+func _process(_delta):
+	if orientation == 0:
+		stick_up.visible = true
+		stick_left.visible = false
+		stick_right.visible = false
+	if orientation == 1:
+		stick_up.visible = false
+		stick_left.visible = true
+		stick_right.visible = false
+	if orientation == 2:
+		stick_up.visible = false
+		stick_left.visible = false
+		stick_right.visible = true
+"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3d7cy"]
+atlas = ExtResource("4_n1s68")
+region = Rect2(0, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fbt0a"]
+atlas = ExtResource("4_n1s68")
+region = Rect2(36, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfm4g"]
+atlas = ExtResource("4_n1s68")
+region = Rect2(72, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bh7ko"]
+atlas = ExtResource("4_n1s68")
+region = Rect2(108, 0, 36, 36)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jbqjd"]
+atlas = ExtResource("4_n1s68")
+region = Rect2(144, 0, 36, 36)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ncjac"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3d7cy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fbt0a")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yfm4g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bh7ko")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jbqjd")
+}],
+"loop": true,
+"name": &"Fire",
+"speed": 5.0
+}]
+
+[node name="Torch" type="Node2D"]
+script = SubResource("GDScript_h7ika")
+
+[node name="Stick_up" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("2_s1qsj")
+
+[node name="Stick_left" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_per31")
+
+[node name="Stick_right" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(1, 0)
+texture = ExtResource("4_gfhua")
+
+[node name="Flame" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -15)
+sprite_frames = SubResource("SpriteFrames_ncjac")
+animation = &"Fire"
+autoplay = "Fire"
+frame_progress = 0.41631

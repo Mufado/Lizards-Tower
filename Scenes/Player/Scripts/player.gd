@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
-@export var move_speed: float = 80.0
+@export var move_speed: float = 0
 
 var direction: Vector2 = Vector2.ZERO
-var attack_cd_time: float = 0.5
-var invicible_cd_time: float = 0.5
+var attack_cd_time: float = 0.7
+var invicible_cd_time: float = 1.0
+var can_attack: bool = true
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var attack_cd: Timer = $AttackCoolDown
@@ -23,9 +24,9 @@ func _physics_process(_delta):
 func movement():
 	# Get Input Direction
 	direction = Vector2(Input.get_action_strength("Right") - Input.get_action_strength("Left"),
-	Input.get_action_strength("Down") - Input.get_action_strength("Up"))
+	Input.get_action_strength("Down") - Input.get_action_strength("Up")).normalized()
 	# Update Velocity
-	velocity = direction * move_speed
+	velocity = direction * move_speed 
 	# Move and Slide
 	move_and_slide()
 
@@ -34,14 +35,18 @@ func dodge():
 	pass
 
 func attack(body):
-	attack_cd.start(attack_cd_time)
-	if "hit" in body:
-		body.hit()
+	if can_attack:
+		attack_cd.start(attack_cd_time)
+		can_attack = false
+		if "hit" in body:
+			body.hit()
 		
 func hit():
 	invincible_cd.start(invicible_cd_time)
 	Global.player_health -= 10
 	blink()
+	if Global.player_attack >= 0:
+		die()
 
 func update_animation_parameters():
 	if(velocity == Vector2.ZERO):
@@ -69,4 +74,7 @@ func _on_invincible_cool_down_timeout():
 
 
 func _on_attack_cool_down_timeout():
-	pass # Replace with function body.
+	can_attack = true
+
+func die():
+	queue_free()
