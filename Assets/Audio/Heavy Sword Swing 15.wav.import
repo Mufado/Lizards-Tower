@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bhpw0e3w2wgca"
+path="res://.godot/imported/Heavy Sword Swing 15.wav-78063142e57f279c608b276a8e25b9ae.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Heavy Sword Swing 15.wav"
+dest_files=["res://.godot/imported/Heavy Sword Swing 15.wav-78063142e57f279c608b276a8e25b9ae.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

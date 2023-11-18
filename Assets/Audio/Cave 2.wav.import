@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://fylduv3wabdt"
+path="res://.godot/imported/Cave 2.wav-40d6ed1ec7d57342753ccc38f3cc601e.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Cave 2.wav"
+dest_files=["res://.godot/imported/Cave 2.wav-40d6ed1ec7d57342753ccc38f3cc601e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0
