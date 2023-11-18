@@ -145,25 +145,42 @@ script = ExtResource("1_1ikkc")
 tile_set = SubResource("TileSet_ii7ku")
 format = 2
 layer_0/name = "BG"
+layer_0/y_sort_enabled = true
+layer_0/y_sort_origin = -3
 layer_1/name = "Floor"
 layer_1/enabled = true
 layer_1/modulate = Color(1, 1, 1, 1)
-layer_1/y_sort_enabled = false
-layer_1/y_sort_origin = 0
+layer_1/y_sort_enabled = true
+layer_1/y_sort_origin = -2
 layer_1/z_index = 0
 layer_1/tile_data = PackedInt32Array()
 layer_2/name = "Walls"
 layer_2/enabled = true
 layer_2/modulate = Color(1, 1, 1, 1)
-layer_2/y_sort_enabled = false
-layer_2/y_sort_origin = 0
+layer_2/y_sort_enabled = true
+layer_2/y_sort_origin = -1
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Top_Wall"
+layer_3/enabled = true
+layer_3/modulate = Color(1, 1, 1, 1)
+layer_3/y_sort_enabled = true
+layer_3/y_sort_origin = 2
+layer_3/z_index = 2
+layer_3/tile_data = PackedInt32Array()
 
 [node name="Props" type="Node2D" parent="."]
 
 [node name="Torches" type="Node2D" parent="Props"]
 
+[node name="Structures" type="Node2D" parent="Props"]
+
 [node name="Decoration" type="Node2D" parent="Props"]
 
 [node name="Entities" type="Node2D" parent="."]
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+color = Color(0.733333, 0.733333, 0.733333, 1)
+energy = 1.5
+blend_mode = 2
+shadow_enabled = true
