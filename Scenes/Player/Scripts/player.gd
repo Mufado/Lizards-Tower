@@ -1,11 +1,12 @@
 extends CharacterBody2D
 
-@export var move_speed: float = 0
+var move_speed: float = 200
 
 var direction: Vector2 = Vector2.ZERO
-var attack_cd_time: float = 0.7
+var attack_cd_time: float = 1.0
 var invicible_cd_time: float = 1.0
 var can_attack: bool = true
+var can_move: bool = true
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var attack_cd: Timer = $AttackCoolDown
@@ -22,25 +23,27 @@ func _physics_process(_delta):
 	movement()
 
 func movement():
-	# Get Input Direction
-	direction = Vector2(Input.get_action_strength("Right") - Input.get_action_strength("Left"),
-	Input.get_action_strength("Down") - Input.get_action_strength("Up")).normalized()
-	# Update Velocity
-	velocity = direction * move_speed 
-	# Move and Slide
-	move_and_slide()
+	if can_move:
+		# Get Input Direction
+		direction = Vector2(Input.get_action_strength("Right") - Input.get_action_strength("Left"),
+		Input.get_action_strength("Down") - Input.get_action_strength("Up")).normalized()
+		# Update Velocity
+		velocity = direction * move_speed 
+		# Move and Slide
+		move_and_slide()
 
 func dodge():
 	# This function handles the dodge 
 	pass
 
 func attack(body):
+	move_speed = 100
 	if can_attack:
-		attack_cd.start(attack_cd_time)
 		can_attack = false
+		attack_cd.start(attack_cd_time)
 		if "hit" in body:
 			body.hit()
-		
+	
 func hit():
 	invincible_cd.start(invicible_cd_time)
 	Global.player_health -= 10
@@ -57,6 +60,7 @@ func update_animation_parameters():
 		animation_tree["parameters/conditions/is_moving"] = true
 	if Input.is_action_just_pressed("Attack"):
 		animation_tree["parameters/conditions/attack"] = true
+		animation_tree["parameters/conditions/is_moving"] = false
 	else:
 		animation_tree["parameters/conditions/attack"] = false
 		
@@ -71,7 +75,6 @@ func blink():
 
 func _on_invincible_cool_down_timeout():
 	sprite.material.set_shader_parameter("progress", 0)
-
 
 func _on_attack_cool_down_timeout():
 	can_attack = true

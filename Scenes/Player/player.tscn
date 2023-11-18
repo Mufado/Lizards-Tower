@@ -778,7 +778,7 @@ advance_condition = &"attack"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7wmtq"]
 states/Attacking/node = SubResource("AnimationNodeBlendSpace2D_tyfjy")
-states/Attacking/position = Vector2(553, 3)
+states/Attacking/position = Vector2(553, -31)
 states/End/position = Vector2(899, 104)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_ujd0t")
 states/Idle/position = Vector2(355, 104)
@@ -786,7 +786,7 @@ states/Move/node = SubResource("AnimationNodeBlendSpace2D_uw7se")
 states/Move/position = Vector2(742, 104)
 states/Start/position = Vector2(190, 104)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_djtk8"), "Idle", "Attacking", SubResource("AnimationNodeStateMachineTransition_a6sd4"), "Attacking", "Idle", SubResource("AnimationNodeStateMachineTransition_7bt1t"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_cikqw"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_fobc7"), "Attacking", "Move", SubResource("AnimationNodeStateMachineTransition_yoa30"), "Move", "Attacking", SubResource("AnimationNodeStateMachineTransition_o7c04")]
-graph_offset = Vector2(91, -44)
+graph_offset = Vector2(45, -71)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ehuvl"]
 height = 62.0
@@ -795,7 +795,6 @@ height = 62.0
 collision_mask = 63
 motion_mode = 1
 script = ExtResource("1_iywsf")
-move_speed = 250.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 11)

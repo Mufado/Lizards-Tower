@@ -1,5 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpbg1kwjn2eog"]
+[gd_scene load_steps=5 format=3 uid="uid://cpbg1kwjn2eog"]
 
+[ext_resource type="Script" path="res://Scenes/Levels/level_master.gd" id="1_1ikkc"]
 [ext_resource type="Texture2D" uid="uid://bsjnhcqdvtg56" path="res://Assets/Tilemaps/tilemap_level_tower.png" id="1_yetwe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tude0"]
@@ -14,11 +15,11 @@ texture = ExtResource("1_yetwe")
 7:1/0 = 0
 7:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:1/0/physics_layer_0/angular_velocity = 0.0
-7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5.875, 8, -6, 8, 8, -8, 8)
+7:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.25, 8, -6.125, 8, 8, -8, 8)
 8:1/0 = 0
 8:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 8:1/0/physics_layer_0/angular_velocity = 0.0
-8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -5, 8, -4.875, 8, 8, -8, 8)
+8:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -6.125, 8, -6.125, 8, 8, -8, 8)
 9:1/0 = 0
 9:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:1/0/physics_layer_0/angular_velocity = 0.0
@@ -138,6 +139,7 @@ physics_layer_0/collision_mask = 3
 sources/0 = SubResource("TileSetAtlasSource_tude0")
 
 [node name="LevelMaster" type="Node2D"]
+script = ExtResource("1_1ikkc")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_ii7ku")
