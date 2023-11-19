@@ -5,13 +5,13 @@ var direction: Vector2 = Vector2.ZERO
 var attack_cd_time: float = 0.6
 var invicible_cd_time: float = 1.0
 var can_attack: bool = true
-var can_move: bool = true
 var attacking: bool = false
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var attack_cd: Timer = $AttackCoolDown
 @onready var invincible_cd: Timer = $InvincibleCoolDown
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var sound: AudioStreamPlayer = $Sword
 
 func _ready():
 	animation_tree.active = true
@@ -25,18 +25,12 @@ func _physics_process(_delta):
 		attack()
 	
 func movement():
-	if can_move:
-		# Get Input Direction
-		direction = Vector2(Input.get_action_strength("Right") - Input.get_action_strength("Left"),
-		Input.get_action_strength("Down") - Input.get_action_strength("Up")).normalized()
-		# Update Velocity
-		velocity = direction * move_speed 
-		# Move and Slide
-		move_and_slide()
-	
-func dodge():
-	# This function handles the dodge 
-	pass
+	# Get Input Direction
+	direction = Input.get_vector("Left","Right","Up","Down")
+	# Update Velocity
+	velocity = direction * move_speed 
+	# Move and Slide
+	move_and_slide()
 
 func attack():
 	move_speed = 0
@@ -65,7 +59,6 @@ func update_animation_parameters():
 	else:
 		attacking = false
 		animation_tree["parameters/conditions/attack"] = false
-		
 	if(direction != Vector2.ZERO):
 		animation_tree["parameters/Idle/blend_position"] = direction
 		animation_tree["parameters/Attacking/blend_position"] = direction
@@ -73,7 +66,6 @@ func update_animation_parameters():
 
 func blink():
 	sprite.material.set_shader_parameter("progress", 1)
-
 
 func _on_invincible_cool_down_timeout():
 	sprite.material.set_shader_parameter("progress", 0)

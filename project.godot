@@ -17,7 +17,11 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Global="*res://Scenes/Global.gd"
+Global="*res://Global/Global.gd"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [input]
 

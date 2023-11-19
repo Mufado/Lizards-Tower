@@ -1,27 +1,27 @@
 [gd_scene load_steps=56 format=3 uid="uid://c8ilpte26p04s"]
 
-[ext_resource type="Script" path="res://Scenes/Player/Scripts/player.gd" id="1_iywsf"]
-[ext_resource type="Texture2D" uid="uid://cobkst58l0v02" path="res://Assets/Player/viking_sword_atack_down-Sheet.png" id="2_jnrhl"]
-[ext_resource type="Shader" path="res://Scenes/Player/player.gdshader" id="2_p5obt"]
-[ext_resource type="Texture2D" uid="uid://c23c11hdqmbql" path="res://Assets/Player/viking_sword_atack_left-Sheet.png" id="3_de1ek"]
-[ext_resource type="Texture2D" uid="uid://dek7kj11cc4os" path="res://Assets/Player/viking_sword_atack_right-Sheet-Sheet.png" id="4_c7bpw"]
-[ext_resource type="Texture2D" uid="uid://c3h31llksvpyl" path="res://Assets/Player/viking_sword_atack_up-Sheet.png" id="5_8gl21"]
-[ext_resource type="Texture2D" uid="uid://csjy0xfwu8446" path="res://Assets/Player/viking_sword_idle_down-Sheet.png" id="6_d7fv6"]
-[ext_resource type="Texture2D" uid="uid://ddvwvrec1ft7a" path="res://Assets/Player/viking_sword_idle_left-Sheet.png" id="7_k08ud"]
-[ext_resource type="Texture2D" uid="uid://b8q44oqwj76ys" path="res://Assets/Player/viking_sword_idle_right-Sheet.png" id="8_d1i4d"]
-[ext_resource type="Texture2D" uid="uid://omopqx4gckbv" path="res://Assets/Player/viking_sword_idle_up-Sheet.png" id="9_kuu7i"]
-[ext_resource type="Texture2D" uid="uid://b25bp1lvf061u" path="res://Assets/Player/viking_sword_run_down-Sheet.png" id="10_irysi"]
-[ext_resource type="Texture2D" uid="uid://bcbm1henqfylm" path="res://Assets/Player/viking_sword_run_left-Sheet.png" id="11_wi0t2"]
-[ext_resource type="Texture2D" uid="uid://b31blphjh6o6y" path="res://Assets/Player/viking_sword_run_right-Sheet.png" id="12_4ifkc"]
-[ext_resource type="Texture2D" uid="uid://bnfcsqwfe6wve" path="res://Assets/Player/viking_sword_run_up-Sheet.png" id="13_xdve8"]
-[ext_resource type="AudioStream" uid="uid://bhw0vjp7rwatm" path="res://Assets/Audio/Heavy Sword Swing 13.wav" id="15_cidlp"]
+[ext_resource type="Script" path="res://Scenes/Entities/Player/Scripts/player.gd" id="1_rw3g0"]
+[ext_resource type="Shader" path="res://Scenes/Entities/Player/player.gdshader" id="2_kwu8v"]
+[ext_resource type="Texture2D" uid="uid://b8q44oqwj76ys" path="res://Assets/Player/viking_sword_idle_right-Sheet.png" id="3_jffjm"]
+[ext_resource type="Texture2D" uid="uid://cobkst58l0v02" path="res://Assets/Player/viking_sword_atack_down-Sheet.png" id="4_3jvwj"]
+[ext_resource type="Texture2D" uid="uid://c23c11hdqmbql" path="res://Assets/Player/viking_sword_atack_left-Sheet.png" id="5_tbwph"]
+[ext_resource type="Texture2D" uid="uid://dek7kj11cc4os" path="res://Assets/Player/viking_sword_atack_right-Sheet-Sheet.png" id="6_sk3il"]
+[ext_resource type="Texture2D" uid="uid://c3h31llksvpyl" path="res://Assets/Player/viking_sword_atack_up-Sheet.png" id="7_urfyd"]
+[ext_resource type="Texture2D" uid="uid://csjy0xfwu8446" path="res://Assets/Player/viking_sword_idle_down-Sheet.png" id="8_rmvei"]
+[ext_resource type="Texture2D" uid="uid://ddvwvrec1ft7a" path="res://Assets/Player/viking_sword_idle_left-Sheet.png" id="9_whwpb"]
+[ext_resource type="Texture2D" uid="uid://omopqx4gckbv" path="res://Assets/Player/viking_sword_idle_up-Sheet.png" id="10_je6wl"]
+[ext_resource type="Texture2D" uid="uid://b25bp1lvf061u" path="res://Assets/Player/viking_sword_run_down-Sheet.png" id="11_4pluq"]
+[ext_resource type="Texture2D" uid="uid://bcbm1henqfylm" path="res://Assets/Player/viking_sword_run_left-Sheet.png" id="12_im8xa"]
+[ext_resource type="Texture2D" uid="uid://b31blphjh6o6y" path="res://Assets/Player/viking_sword_run_right-Sheet.png" id="13_4n1kw"]
+[ext_resource type="Texture2D" uid="uid://bnfcsqwfe6wve" path="res://Assets/Player/viking_sword_run_up-Sheet.png" id="14_yw1aw"]
+[ext_resource type="AudioStream" uid="uid://bhw0vjp7rwatm" path="res://Assets/Audio/Heavy Sword Swing 13.wav" id="15_1lndq"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvr65"]
 radius = 6.0
 height = 16.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2o4mr"]
-shader = ExtResource("2_p5obt")
+shader = ExtResource("2_kwu8v")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/progress = 0.0
 
@@ -38,7 +38,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("2_jnrhl")]
+"values": [ExtResource("4_3jvwj")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -126,7 +126,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_de1ek")]
+"values": [ExtResource("5_tbwph")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -214,7 +214,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_c7bpw")]
+"values": [ExtResource("6_sk3il")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -302,7 +302,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_8gl21")]
+"values": [ExtResource("7_urfyd")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -391,7 +391,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_d7fv6")]
+"values": [ExtResource("8_rmvei")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -432,7 +432,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_k08ud")]
+"values": [ExtResource("9_whwpb")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -473,7 +473,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_d1i4d")]
+"values": [ExtResource("3_jffjm")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -514,7 +514,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_kuu7i")]
+"values": [ExtResource("10_je6wl")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -555,7 +555,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("10_irysi")]
+"values": [ExtResource("11_4pluq")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -596,7 +596,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("11_wi0t2")]
+"values": [ExtResource("12_im8xa")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -637,7 +637,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("12_4ifkc")]
+"values": [ExtResource("13_4n1kw")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -678,7 +678,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("13_xdve8")]
+"values": [ExtResource("14_yw1aw")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -832,14 +832,14 @@ advance_condition = &"is_moving"
 advance_mode = 2
 advance_condition = &"Idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yoa30"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wcgye"]
+advance_mode = 2
+advance_condition = &"attack"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5n564"]
 switch_mode = 2
 advance_mode = 2
 advance_condition = &"is_moving"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o7c04"]
-advance_mode = 2
-advance_condition = &"attack"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7wmtq"]
 states/Attacking/node = SubResource("AnimationNodeBlendSpace2D_tyfjy")
@@ -850,27 +850,26 @@ states/Idle/position = Vector2(355, 104)
 states/Move/node = SubResource("AnimationNodeBlendSpace2D_uw7se")
 states/Move/position = Vector2(742, 104)
 states/Start/position = Vector2(190, 104)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_djtk8"), "Idle", "Attacking", SubResource("AnimationNodeStateMachineTransition_a6sd4"), "Attacking", "Idle", SubResource("AnimationNodeStateMachineTransition_7bt1t"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_cikqw"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_fobc7"), "Attacking", "Move", SubResource("AnimationNodeStateMachineTransition_yoa30"), "Move", "Attacking", SubResource("AnimationNodeStateMachineTransition_o7c04")]
-graph_offset = Vector2(45, -71)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_djtk8"), "Idle", "Attacking", SubResource("AnimationNodeStateMachineTransition_a6sd4"), "Attacking", "Idle", SubResource("AnimationNodeStateMachineTransition_7bt1t"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_cikqw"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_fobc7"), "Move", "Attacking", SubResource("AnimationNodeStateMachineTransition_wcgye"), "Attacking", "Move", SubResource("AnimationNodeStateMachineTransition_5n564")]
+graph_offset = Vector2(50, -78)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ehuvl"]
 height = 62.0
 
 [node name="Player" type="CharacterBody2D"]
-z_index = 1
 y_sort_enabled = true
 collision_mask = 63
-motion_mode = 1
-script = ExtResource("1_iywsf")
+script = ExtResource("1_rw3g0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 13)
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_uvr65")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2o4mr")
-texture = ExtResource("2_jnrhl")
-hframes = 6
+position = Vector2(0, -21)
+texture = ExtResource("3_jffjm")
+hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -888,15 +887,16 @@ parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Move/blend_position = Vector2(0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(2.5, 2.5)
+position = Vector2(0, -21)
+zoom = Vector2(2.75, 2.75)
 
 [node name="AttackArea" type="Area2D" parent="."]
+position = Vector2(0, -21)
 collision_layer = 32
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(0, 21)
-rotation = 1.5708
+position = Vector2(21, 0)
 shape = SubResource("CapsuleShape2D_ehuvl")
 disabled = true
 
@@ -907,7 +907,7 @@ one_shot = true
 one_shot = true
 
 [node name="Sword" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("15_cidlp")
+stream = ExtResource("15_1lndq")
 volume_db = -10.0
 pitch_scale = 2.0
 

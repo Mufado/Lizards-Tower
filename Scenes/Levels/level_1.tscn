@@ -5,9 +5,9 @@
 [ext_resource type="Texture2D" uid="uid://tb3mkx20wovx" path="res://Assets/Props/Gate.png" id="3_jscgb"]
 [ext_resource type="Texture2D" uid="uid://c5doihluckauv" path="res://Assets/Props/Window.png" id="4_x4vui"]
 [ext_resource type="PackedScene" uid="uid://dejqgduusqkys" path="res://Scenes/Levels/Props/box.tscn" id="5_36ylv"]
-[ext_resource type="PackedScene" uid="uid://c8ilpte26p04s" path="res://Scenes/Player/player.tscn" id="5_x5qcv"]
 [ext_resource type="PackedScene" uid="uid://cboxch8j5suv4" path="res://Scenes/Levels/Props/skull.tscn" id="6_517iv"]
 [ext_resource type="PackedScene" uid="uid://d1v5up8cacdqg" path="res://Scenes/Levels/Props/barrel.tscn" id="7_dof21"]
+[ext_resource type="PackedScene" uid="uid://c8ilpte26p04s" path="res://Scenes/Entities/Player/player.tscn" id="8_3xcqs"]
 
 [node name="Level1" instance=ExtResource("1_n4pdp")]
 
@@ -89,32 +89,33 @@ texture = ExtResource("4_x4vui")
 position = Vector2(776, 280)
 texture = ExtResource("4_x4vui")
 
-[node name="Box" parent="Props/Decoration" index="0" instance=ExtResource("5_36ylv")]
-position = Vector2(808, 320)
+[node name="Barrel" parent="Props/Decoration" index="0" instance=ExtResource("7_dof21")]
+position = Vector2(288, 408)
 
-[node name="Box2" parent="Props/Decoration" index="1" instance=ExtResource("5_36ylv")]
-position = Vector2(600, 496)
+[node name="Barrel2" parent="Props/Decoration" index="1" instance=ExtResource("7_dof21")]
+position = Vector2(484, 497)
 
-[node name="Skull" parent="Props/Decoration" index="2" instance=ExtResource("6_517iv")]
+[node name="Box" parent="Props/Decoration" index="2" instance=ExtResource("5_36ylv")]
+position = Vector2(592, 464)
+
+[node name="Box2" parent="Props/Decoration" index="3" instance=ExtResource("5_36ylv")]
+position = Vector2(637, 347)
+
+[node name="Skull" parent="Props/Decoration" index="4" instance=ExtResource("6_517iv")]
+y_sort_enabled = false
 position = Vector2(536, 512)
 
-[node name="Skull2" parent="Props/Decoration" index="3" instance=ExtResource("6_517iv")]
+[node name="Skull2" parent="Props/Decoration" index="5" instance=ExtResource("6_517iv")]
+y_sort_enabled = false
 position = Vector2(552, 288)
 
-[node name="Skull3" parent="Props/Decoration" index="4" instance=ExtResource("6_517iv")]
+[node name="Skull3" parent="Props/Decoration" index="6" instance=ExtResource("6_517iv")]
+y_sort_enabled = false
 position = Vector2(712, 240)
 
-[node name="Skull4" parent="Props/Decoration" index="5" instance=ExtResource("6_517iv")]
+[node name="Skull4" parent="Props/Decoration" index="7" instance=ExtResource("6_517iv")]
+y_sort_enabled = false
 position = Vector2(712, 432)
 
-[node name="Barrel" parent="Props/Decoration" index="6" instance=ExtResource("7_dof21")]
-position = Vector2(280, 400)
-
-[node name="Barrel2" parent="Props/Decoration" index="7" instance=ExtResource("7_dof21")]
-position = Vector2(656, 384)
-
-[node name="Barrel3" parent="Props/Decoration" index="8" instance=ExtResource("7_dof21")]
-position = Vector2(712, 536)
-
-[node name="Player" parent="Entities" index="0" instance=ExtResource("5_x5qcv")]
-position = Vector2(344, 432)
+[node name="Player" parent="Entities" index="0" instance=ExtResource("8_3xcqs")]
+position = Vector2(312, 459)

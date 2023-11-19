@@ -4,13 +4,17 @@
 [ext_resource type="Texture2D" uid="uid://cmnqj7uhihwyi" path="res://Assets/Props/Barrel.png" id="2_how31"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ij66i"]
-radius = 12.0
-height = 36.0
+height = 22.0
 
 [node name="Barrel" instance=ExtResource("1_7yj2j")]
+z_index = 1
 
 [node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -20)
 texture = ExtResource("2_how31")
 
 [node name="CollisionShape2D" parent="." index="1"]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(-1, -16)
 shape = SubResource("CapsuleShape2D_ij66i")
