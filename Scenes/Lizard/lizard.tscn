@@ -1,6 +1,7 @@
-[gd_scene load_steps=77 format=3 uid="uid://ds8qordwm2ijl"]
+[gd_scene load_steps=86 format=3 uid="uid://ds8qordwm2ijl"]
 
 [ext_resource type="Texture2D" uid="uid://jrxx5k3myc2n" path="res://Assets/Enemy/Lizard_atack_down-Sheet.png" id="1_54dho"]
+[ext_resource type="Script" path="res://Scenes/Lizard/lizard.gd" id="1_qkn7f"]
 [ext_resource type="Texture2D" uid="uid://c24yxqdchssgr" path="res://Assets/Enemy/Lizard_atack_left-Sheet.png" id="2_aw6wm"]
 [ext_resource type="Script" path="res://Scenes/HurtBox.gd" id="3_f7p8n"]
 [ext_resource type="Texture2D" uid="uid://b8hwvs7ma7q0g" path="res://Assets/Enemy/Lizard_atack_right-Sheet.png" id="3_nx1g7"]
@@ -837,10 +838,10 @@ animation = &"Attack Left"
 animation = &"Attack Right"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7fbs6"]
-animation = &"Attack Up"
+animation = &"Attack Down"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pscar"]
-animation = &"Attack Down"
+animation = &"Attack Up"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_pehie"]
 auto_triangles = false
@@ -862,10 +863,10 @@ animation = &"Run Left"
 animation = &"Run Right"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ihk8i"]
-animation = &"Run Down"
+animation = &"Run Up"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8vyen"]
-animation = &"Run Up"
+animation = &"Run Down"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_1g71u"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_2btkj")
@@ -880,18 +881,41 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_s5fu7"]
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pun3x"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gyebn"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5nx4s"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3fh8"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0tbe1"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k3t8f"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2lu6d"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cmtsf"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace2D_pehie")
-states/Attack/position = Vector2(655, 72)
-"states/Chase Player/node" = SubResource("AnimationNodeBlendSpace2D_1g71u")
-"states/Chase Player/position" = Vector2(457, 100)
+states/Attack/position = Vector2(650, 100)
+states/ChasePlayer/node = SubResource("AnimationNodeBlendSpace2D_1g71u")
+states/ChasePlayer/position = Vector2(505, -5)
 states/End/position = Vector2(901, 100)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_s5fu7")
-states/Idle/position = Vector2(512, 153)
-states/Start/position = Vector2(215, 100)
-graph_offset = Vector2(-1, 11)
+states/Idle/position = Vector2(369, 100)
+states/Start/position = Vector2(165, 100)
+transitions = ["ChasePlayer", "Attack", SubResource("AnimationNodeStateMachineTransition_pun3x"), "Attack", "ChasePlayer", SubResource("AnimationNodeStateMachineTransition_gyebn"), "Idle", "ChasePlayer", SubResource("AnimationNodeStateMachineTransition_5nx4s"), "ChasePlayer", "Idle", SubResource("AnimationNodeStateMachineTransition_i3fh8"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_0tbe1"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_k3t8f"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2lu6d")]
+graph_offset = Vector2(17, -92.5236)
 
-[node name="Lizard" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ervg8"]
+radius = 27.4015
+height = 56.1321
+
+[node name="Lizard" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent_target")]
+script = ExtResource("1_qkn7f")
+nav_agent_target = NodePath(".")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1huaq")
@@ -930,8 +954,21 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_cmtsf")
 anim_player = NodePath("../AnimationPlayer")
 active = true
-parameters/Attack/blend_position = Vector2(0.0032258, -0.00436676)
-"parameters/Chase Player/blend_position" = Vector2(0, 0)
+parameters/Attack/blend_position = Vector2(-0.0017361, 0.0131004)
+parameters/ChasePlayer/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(0, 0)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+path_desired_distance = 1.0
+path_postprocessing = 1
+
+[node name="AttackRange" type="Area2D" parent="."]
+visible = false
+collision_layer = 64
+collision_mask = 129
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+shape = SubResource("CapsuleShape2D_ervg8")
+
+[connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
+[connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
