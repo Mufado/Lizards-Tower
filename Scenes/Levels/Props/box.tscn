@@ -1,6 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://dejqgduusqkys"]
+[gd_scene load_steps=4 format=3 uid="uid://bgxatbul8x5os"]
 
-[ext_resource type="PackedScene" uid="uid://bn6ccy7ygyhnq" path="res://Scenes/Levels/Props/object_container.tscn" id="1_85fba"]
+[ext_resource type="PackedScene" path="res://Scenes/Levels/Props/object_container.tscn" id="1_85fba"]
 [ext_resource type="Texture2D" uid="uid://dahr5i0ibw8mb" path="res://Assets/Props/Box.png" id="2_sx4ui"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i7lp0"]
@@ -9,8 +9,6 @@ size = Vector2(22, 20)
 [node name="Box" instance=ExtResource("1_85fba")]
 
 [node name="Sprite2D" parent="." index="0"]
-z_index = 1
-y_sort_enabled = true
 position = Vector2(0, -16.1139)
 scale = Vector2(1, 0.995255)
 texture = ExtResource("2_sx4ui")
