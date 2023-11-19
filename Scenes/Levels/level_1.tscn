@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://dmsbpucvr4qyu"]
+[gd_scene load_steps=7 format=3 uid="uid://dmsbpucvr4qyu"]
 
 [ext_resource type="PackedScene" uid="uid://cpbg1kwjn2eog" path="res://Scenes/Levels/level_master.tscn" id="1_n4pdp"]
 [ext_resource type="PackedScene" uid="uid://m71vs3wxi7cr" path="res://Scenes/Levels/Props/torch.tscn" id="2_ahmt1"]
 [ext_resource type="Texture2D" uid="uid://tb3mkx20wovx" path="res://Assets/Props/Gate.png" id="3_jscgb"]
 [ext_resource type="Texture2D" uid="uid://c5doihluckauv" path="res://Assets/Props/Window.png" id="4_x4vui"]
 [ext_resource type="PackedScene" uid="uid://c8ilpte26p04s" path="res://Scenes/Player/player.tscn" id="5_x5qcv"]
+[ext_resource type="PackedScene" uid="uid://ds8qordwm2ijl" path="res://Scenes/Lizard/lizard.tscn" id="6_0ulhm"]
 
 [node name="Level1" instance=ExtResource("1_n4pdp")]
 
@@ -96,3 +97,7 @@ texture = ExtResource("4_x4vui")
 
 [node name="Player" parent="Entities" index="0" instance=ExtResource("5_x5qcv")]
 position = Vector2(344, 432)
+
+[node name="Lizard" parent="Entities" index="1" node_paths=PackedStringArray("nav_agent_target") instance=ExtResource("6_0ulhm")]
+position = Vector2(776.859, 393.434)
+nav_agent_target = NodePath("../Player")

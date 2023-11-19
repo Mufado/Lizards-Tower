@@ -919,7 +919,7 @@ nav_agent_target = NodePath(".")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1huaq")
-animation = &"Attack"
+animation = &"Run"
 
 [node name="HurtBox" type="Area2D" parent="."]
 visible = false

@@ -14,26 +14,39 @@ var is_in_range_to_attack: bool = false
 
 func _physics_process(_delta):
 	nav_agent.set_target_position(nav_agent_target.global_position)
-	
+
 	direction = (nav_agent.get_next_path_position() - global_position).normalized()
-	
+
 	if is_in_range_to_attack:
 		direction = _get_attack_direction();
-		
-		if abs(direction.x) <= 0.1 || abs(direction.y) <= 0.1:
-			state_machine.travel("Attack")
-			anim_tree.set("parameters/Attack/blend_position", direction)
-			velocity = Vector2.ZERO
+
+		if abs(direction.x) <= 0.15 || abs(direction.y) <= 0.15:
+			_attack()
+		elif state_machine.get_current_node() == "Attack":
+			_repositionate()
+
 	elif state_machine.get_current_node() == "Attack":
 		state_machine.travel("ChasePlayer")
+
 	else:
 		anim_tree.set("parameters/ChasePlayer/blend_position", direction)
 		velocity = direction * SPEED
 
 	move_and_slide()
 
+func _attack():
+	state_machine.travel("Attack")
+	anim_tree.set("parameters/Attack/blend_position", direction)
+	velocity = Vector2.ZERO
+
+func _repositionate():
+	state_machine.travel("ChasePlayer")
+	anim_tree.set("parameters/ChasePlayer/blend_position", direction)
+	velocity = direction * SPEED
+
 func _get_attack_direction():
 	return (nav_agent_target.global_position - global_position).normalized()
+
 
 func _on_attack_range_body_entered(_body):
 	if abs(velocity.x) < abs(velocity.y):
