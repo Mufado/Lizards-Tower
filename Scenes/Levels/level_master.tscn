@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cpbg1kwjn2eog"]
+[gd_scene load_steps=6 format=3 uid="uid://cpbg1kwjn2eog"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/level_master.gd" id="1_1ikkc"]
 [ext_resource type="Texture2D" uid="uid://bsjnhcqdvtg56" path="res://Assets/Tilemaps/tilemap_level_tower.png" id="1_yetwe"]
