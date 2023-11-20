@@ -1,29 +1,28 @@
 [gd_scene load_steps=56 format=3 uid="uid://c8ilpte26p04s"]
 
-[ext_resource type="Script" path="res://Scenes/Entities/Player/Scripts/player.gd" id="1_rw3g0"]
-[ext_resource type="Shader" path="res://Scenes/Entities/Player/player.gdshader" id="2_kwu8v"]
-[ext_resource type="Texture2D" uid="uid://b8q44oqwj76ys" path="res://Assets/Player/viking_sword_idle_right-Sheet.png" id="3_jffjm"]
-[ext_resource type="Texture2D" uid="uid://cobkst58l0v02" path="res://Assets/Player/viking_sword_atack_down-Sheet.png" id="4_3jvwj"]
-[ext_resource type="Texture2D" uid="uid://c23c11hdqmbql" path="res://Assets/Player/viking_sword_atack_left-Sheet.png" id="5_tbwph"]
-[ext_resource type="Texture2D" uid="uid://dek7kj11cc4os" path="res://Assets/Player/viking_sword_atack_right-Sheet-Sheet.png" id="6_sk3il"]
-[ext_resource type="Texture2D" uid="uid://c3h31llksvpyl" path="res://Assets/Player/viking_sword_atack_up-Sheet.png" id="7_urfyd"]
-[ext_resource type="Texture2D" uid="uid://csjy0xfwu8446" path="res://Assets/Player/viking_sword_idle_down-Sheet.png" id="8_rmvei"]
-[ext_resource type="Texture2D" uid="uid://ddvwvrec1ft7a" path="res://Assets/Player/viking_sword_idle_left-Sheet.png" id="9_whwpb"]
-[ext_resource type="Texture2D" uid="uid://omopqx4gckbv" path="res://Assets/Player/viking_sword_idle_up-Sheet.png" id="10_je6wl"]
-[ext_resource type="Texture2D" uid="uid://b25bp1lvf061u" path="res://Assets/Player/viking_sword_run_down-Sheet.png" id="11_4pluq"]
-[ext_resource type="Texture2D" uid="uid://bcbm1henqfylm" path="res://Assets/Player/viking_sword_run_left-Sheet.png" id="12_im8xa"]
-[ext_resource type="Texture2D" uid="uid://b31blphjh6o6y" path="res://Assets/Player/viking_sword_run_right-Sheet.png" id="13_4n1kw"]
-[ext_resource type="Texture2D" uid="uid://bnfcsqwfe6wve" path="res://Assets/Player/viking_sword_run_up-Sheet.png" id="14_yw1aw"]
-[ext_resource type="AudioStream" uid="uid://bhw0vjp7rwatm" path="res://Assets/Audio/Heavy Sword Swing 13.wav" id="15_1lndq"]
+[ext_resource type="Script" path="res://Scenes/Entities/Player/Scripts/player.gd" id="1_phr2d"]
+[ext_resource type="Shader" path="res://Scenes/Entities/Player/player.gdshader" id="2_yscvc"]
+[ext_resource type="Texture2D" uid="uid://b8q44oqwj76ys" path="res://Assets/Player/viking_sword_idle_right-Sheet.png" id="3_2jiuq"]
+[ext_resource type="Texture2D" uid="uid://cobkst58l0v02" path="res://Assets/Player/viking_sword_atack_down-Sheet.png" id="4_0itno"]
+[ext_resource type="Texture2D" uid="uid://c23c11hdqmbql" path="res://Assets/Player/viking_sword_atack_left-Sheet.png" id="5_u85ud"]
+[ext_resource type="Texture2D" uid="uid://dek7kj11cc4os" path="res://Assets/Player/viking_sword_atack_right-Sheet-Sheet.png" id="6_lnf50"]
+[ext_resource type="Texture2D" uid="uid://c3h31llksvpyl" path="res://Assets/Player/viking_sword_atack_up-Sheet.png" id="7_svw8h"]
+[ext_resource type="Texture2D" uid="uid://csjy0xfwu8446" path="res://Assets/Player/viking_sword_idle_down-Sheet.png" id="8_ipnd8"]
+[ext_resource type="Texture2D" uid="uid://ddvwvrec1ft7a" path="res://Assets/Player/viking_sword_idle_left-Sheet.png" id="9_7aotp"]
+[ext_resource type="Texture2D" uid="uid://omopqx4gckbv" path="res://Assets/Player/viking_sword_idle_up-Sheet.png" id="10_msgr0"]
+[ext_resource type="Texture2D" uid="uid://b25bp1lvf061u" path="res://Assets/Player/viking_sword_run_down-Sheet.png" id="11_3m5q2"]
+[ext_resource type="Texture2D" uid="uid://bcbm1henqfylm" path="res://Assets/Player/viking_sword_run_left-Sheet.png" id="12_adnp4"]
+[ext_resource type="Texture2D" uid="uid://b31blphjh6o6y" path="res://Assets/Player/viking_sword_run_right-Sheet.png" id="13_3dvhk"]
+[ext_resource type="Texture2D" uid="uid://bnfcsqwfe6wve" path="res://Assets/Player/viking_sword_run_up-Sheet.png" id="14_daawo"]
+[ext_resource type="AudioStream" uid="uid://bhw0vjp7rwatm" path="res://Assets/Audio/Heavy Sword Swing 13.wav" id="15_bs4kg"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvr65"]
 radius = 6.0
 height = 16.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2o4mr"]
-shader = ExtResource("2_kwu8v")
-shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/progress = 0.0
+render_priority = 0
+shader = ExtResource("2_yscvc")
 
 [sub_resource type="Animation" id="Animation_dhans"]
 resource_name = "Attack_Down"
@@ -38,7 +37,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_3jvwj")]
+"values": [ExtResource("4_0itno")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -126,7 +125,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("5_tbwph")]
+"values": [ExtResource("5_u85ud")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -214,7 +213,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("6_sk3il")]
+"values": [ExtResource("6_lnf50")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -302,7 +301,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("7_urfyd")]
+"values": [ExtResource("7_svw8h")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -391,7 +390,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8_rmvei")]
+"values": [ExtResource("8_ipnd8")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -432,7 +431,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("9_whwpb")]
+"values": [ExtResource("9_7aotp")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -473,7 +472,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_jffjm")]
+"values": [ExtResource("3_2jiuq")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -514,7 +513,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("10_je6wl")]
+"values": [ExtResource("10_msgr0")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -555,7 +554,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("11_4pluq")]
+"values": [ExtResource("11_3m5q2")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -596,7 +595,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("12_im8xa")]
+"values": [ExtResource("12_adnp4")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -637,7 +636,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("13_4n1kw")]
+"values": [ExtResource("13_3dvhk")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -678,7 +677,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("14_yw1aw")]
+"values": [ExtResource("14_daawo")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -859,7 +858,7 @@ height = 62.0
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_mask = 63
-script = ExtResource("1_rw3g0")
+script = ExtResource("1_phr2d")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -8)
@@ -868,7 +867,7 @@ shape = SubResource("CapsuleShape2D_uvr65")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2o4mr")
 position = Vector2(0, -21)
-texture = ExtResource("3_jffjm")
+texture = ExtResource("3_2jiuq")
 hframes = 8
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -907,7 +906,7 @@ one_shot = true
 one_shot = true
 
 [node name="Sword" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("15_1lndq")
+stream = ExtResource("15_bs4kg")
 volume_db = -10.0
 pitch_scale = 2.0
 
