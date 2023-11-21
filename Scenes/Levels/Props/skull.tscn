@@ -1,12 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://cboxch8j5suv4"]
+[gd_scene load_steps=4 format=3 uid="uid://r8oatxtwet8s"]
 
-[ext_resource type="PackedScene" uid="uid://bn6ccy7ygyhnq" path="res://Scenes/Levels/Props/object_container.tscn" id="1_571md"]
+[ext_resource type="PackedScene" path="res://Scenes/Levels/Props/object_container.tscn" id="1_571md"]
 [ext_resource type="Texture2D" uid="uid://dwfj11c4m71ta" path="res://Assets/Props/Skull2.png" id="2_ngxy7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_o7noh"]
 height = 26.0
 
 [node name="Skull" instance=ExtResource("1_571md")]
+z_index = 0
 
 [node name="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_ngxy7")

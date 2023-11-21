@@ -1,13 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://d1v5up8cacdqg"]
+[gd_scene load_steps=4 format=3 uid="uid://b1afffk113l20"]
 
-[ext_resource type="PackedScene" uid="uid://bn6ccy7ygyhnq" path="res://Scenes/Levels/Props/object_container.tscn" id="1_7yj2j"]
+[ext_resource type="PackedScene" path="res://Scenes/Levels/Props/object_container.tscn" id="1_7yj2j"]
 [ext_resource type="Texture2D" uid="uid://cmnqj7uhihwyi" path="res://Assets/Props/Barrel.png" id="2_how31"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ij66i"]
 height = 22.0
 
 [node name="Barrel" instance=ExtResource("1_7yj2j")]
-z_index = 1
+z_index = 0
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -20)

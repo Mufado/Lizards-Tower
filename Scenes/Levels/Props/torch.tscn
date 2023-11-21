@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://pqc336qymljs" path="res://Assets/Props/Torch_barrel_left.png" id="3_per31"]
 [ext_resource type="Texture2D" uid="uid://lb6l4ilb5buw" path="res://Assets/Props/Torch_barrel_right.png" id="4_gfhua"]
 [ext_resource type="Texture2D" uid="uid://dafppfphgmk6x" path="res://Assets/Props/Torch_fire-Sheet.png" id="4_n1s68"]
-[ext_resource type="Texture2D" uid="uid://b5fygswxga1qx" path="res://Assets/Props/Torch_fire_light.png" id="5_u4nul"]
+[ext_resource type="Texture2D" uid="uid://dagcs3ioava0i" path="res://Assets/Props/Torch_fire_light.png" id="5_u4nul"]
 
 [sub_resource type="GDScript" id="GDScript_h7ika"]
 script/source = "extends Node2D
@@ -114,32 +114,36 @@ _data = {
 polygon = PackedVector2Array(-2, 3, -2, -3, -3, -3, -3, -6, 3, -6, 3, -3, 2, -3, 2, 3, 1, 3, 1, 4, -1, 4, -1, 3)
 
 [node name="Torch" type="Node2D"]
-z_index = 2
-z_as_relative = false
 y_sort_enabled = true
 script = SubResource("GDScript_h7ika")
 
 [node name="Stick_up" type="Sprite2D" parent="."]
+position = Vector2(0, 13)
 texture = ExtResource("2_s1qsj")
+offset = Vector2(0, -13)
 
 [node name="Stick_left" type="Sprite2D" parent="."]
 visible = false
+position = Vector2(0, 38)
 texture = ExtResource("3_per31")
+offset = Vector2(0, -38)
 
 [node name="Stick_right" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(1, 0)
+position = Vector2(1, 38)
 texture = ExtResource("4_gfhua")
+offset = Vector2(0, -38)
 
 [node name="Flame" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, -15)
+position = Vector2(0, 13)
 sprite_frames = SubResource("SpriteFrames_ncjac")
 animation = &"Fire"
 autoplay = "Fire"
 frame_progress = 0.41631
+offset = Vector2(0, -28)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(0, -8)
+position = Vector2(0, -13)
 color = Color(0.996078, 0.713726, 0.415686, 1)
 energy = 2.0
 shadow_enabled = true

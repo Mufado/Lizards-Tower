@@ -159,6 +159,9 @@ texture = ExtResource("1_yetwe")
 7:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:5/0/physics_layer_0/angular_velocity = 0.0
 7:5/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dbo1k")
+4:1/0 = 0
+4:1/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+4:1/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_ii7ku"]
 physics_layer_0/collision_layer = 4
