@@ -1,4 +1,5 @@
 extends CharacterBody2D
+class_name Player
 
 var move_speed: float = 175
 var direction: Vector2 = Vector2.ZERO
