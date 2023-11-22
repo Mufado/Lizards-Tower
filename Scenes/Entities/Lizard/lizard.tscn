@@ -76,21 +76,21 @@ region = Rect2(128, 0, 64, 64)
 atlas = ExtResource("4_0me3i")
 region = Rect2(192, 0, 64, 64)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_68uet"]
-atlas = ExtResource("5_tdw3l")
+[sub_resource type="AtlasTexture" id="AtlasTexture_doem6"]
+atlas = ExtResource("8_b8bos")
 region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xh285"]
 atlas = ExtResource("6_8fiif")
 region = Rect2(320, 0, 64, 64)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_68uet"]
+atlas = ExtResource("5_tdw3l")
+region = Rect2(0, 0, 64, 64)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_huiqs"]
 atlas = ExtResource("7_agmyw")
 region = Rect2(320, 0, 64, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_doem6"]
-atlas = ExtResource("8_b8bos")
-region = Rect2(0, 0, 64, 64)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mnn1m"]
 atlas = ExtResource("5_tdw3l")
@@ -229,16 +229,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_68uet")
+"texture": SubResource("AtlasTexture_doem6")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xh285")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_huiqs")
+"texture": SubResource("AtlasTexture_68uet")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_doem6")
+"texture": SubResource("AtlasTexture_huiqs")
 }],
 "loop": true,
 "name": &"Idle",
@@ -886,7 +886,6 @@ blend_mode = 1
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gyebn"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5nx4s"]
-advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3fh8"]
 
@@ -913,16 +912,14 @@ graph_offset = Vector2(17, -92.5236)
 radius = 27.4015
 height = 56.1321
 
-[node name="Lizard" type="CharacterBody2D" node_paths=PackedStringArray("nav_agent_target")]
+[node name="Lizard" type="CharacterBody2D"]
 script = ExtResource("1_qkn7f")
-nav_agent_target = NodePath(".")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1huaq")
-animation = &"Run"
+animation = &"Idle"
 
 [node name="HurtBox" type="Area2D" parent="."]
-visible = false
 position = Vector2(-7.10543e-15, 0)
 collision_layer = 128
 collision_mask = 64
@@ -963,12 +960,15 @@ path_desired_distance = 1.0
 path_postprocessing = 1
 
 [node name="AttackRange" type="Area2D" parent="."]
-visible = false
 collision_layer = 64
 collision_mask = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CapsuleShape2D_ervg8")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+target_position = Vector2(100, -100)
+collision_mask = 5
 
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
