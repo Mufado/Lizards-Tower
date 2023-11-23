@@ -279,4 +279,4 @@ position = Vector2(-5, 36)
 position = Vector2(283, -201)
 
 [node name="Player" parent="Entities" index="0" instance=ExtResource("2_gsjd7")]
-position = Vector2(395, -100)
+position = Vector2(584, 581)

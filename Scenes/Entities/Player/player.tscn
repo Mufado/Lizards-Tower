@@ -21,8 +21,9 @@ radius = 6.0
 height = 16.0
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2o4mr"]
-render_priority = 0
 shader = ExtResource("2_yscvc")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/progress = 0.0
 
 [sub_resource type="Animation" id="Animation_dhans"]
 resource_name = "Attack_Down"
