@@ -2,9 +2,9 @@ extends CharacterBody2D
 class_name Lizard
 
 const ANGLE_BETWEEN_RAYS = deg_to_rad(20.0)
-const SPEED = 100.0
+const SPEED = 50.0
 const VIEW_ANGLE = deg_to_rad(120.0)
-const VIEW_DISTANCE = 100.0
+const VIEW_DISTANCE = 200.0
 const RAYCAST_UPDATE_QUANTITY = int(VIEW_ANGLE / ANGLE_BETWEEN_RAYS) + 1
 
 var direction: Vector2 = Vector2.ZERO
@@ -29,10 +29,23 @@ func _physics_process(_delta):
 
 
 func _update_pathfind():
-	_nav_agent.set_target_position(_nav_agent_target.global_position)
-	direction = (_nav_agent.get_next_path_position() - global_position).normalized()
+	if _is_viewing_player():
+		_nav_agent.set_target_position(_nav_agent_target.global_position)
+		direction = (_nav_agent.get_next_path_position() - global_position).normalized()
+	else:
+		velocity = Vector2.ZERO
+
+func _is_viewing_player():
+	_raycast.set_target_position(to_local(_nav_agent_target.get_global_position()))
+	_raycast.force_raycast_update()
+	
+	if(!_raycast.is_colliding() || !_raycast.get_collider() is Player):
+		return false
+
+	return true
 
 func _manage_attack():
+	
 	if is_in_range_to_attack:
 		direction = _get_attack_direction();
 

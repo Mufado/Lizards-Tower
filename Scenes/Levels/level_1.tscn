@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dmsbpucvr4qyu"]
+[gd_scene load_steps=10 format=3 uid="uid://dmsbpucvr4qyu"]
 
 [ext_resource type="PackedScene" uid="uid://cpbg1kwjn2eog" path="res://Scenes/Levels/level_master.tscn" id="1_n4pdp"]
 [ext_resource type="PackedScene" uid="uid://m71vs3wxi7cr" path="res://Scenes/Levels/Props/torch.tscn" id="2_ahmt1"]
@@ -8,9 +8,12 @@
 [ext_resource type="Texture2D" uid="uid://c5doihluckauv" path="res://Assets/Props/Window.png" id="4_x4vui"]
 [ext_resource type="PackedScene" uid="uid://dnkxqctusmhgt" path="res://Scenes/Levels/Props/box.tscn" id="5_36ylv"]
 [ext_resource type="PackedScene" uid="uid://r8oatxtwet8s" path="res://Scenes/Levels/Props/skull.tscn" id="6_2hisl"]
+[ext_resource type="PackedScene" uid="uid://ds8qordwm2ijl" path="res://Scenes/Entities/Lizard/lizard.tscn" id="8_56v0r"]
 
 [node name="Level1" instance=ExtResource("1_n4pdp")]
 y_sort_enabled = true
+metadata/_edit_vertical_guides_ = []
+metadata/_edit_horizontal_guides_ = []
 
 [node name="TileMap" parent="." index="0"]
 layer_0/y_sort_enabled = false
@@ -278,5 +281,9 @@ position = Vector2(-5, 36)
 [node name="Skull6" parent="Props/Decoration/Skull" index="5" instance=ExtResource("6_2hisl")]
 position = Vector2(283, -201)
 
-[node name="Player" parent="Entities" index="0" instance=ExtResource("2_gsjd7")]
+[node name="Lizard" parent="Entities" index="0" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+position = Vector2(592.894, 234.935)
+_nav_agent_target = NodePath("../Player")
+
+[node name="Player" parent="Entities" index="1" instance=ExtResource("2_gsjd7")]
 position = Vector2(584, 581)
