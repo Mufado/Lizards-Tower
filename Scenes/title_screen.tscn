@@ -66,17 +66,17 @@ grow_vertical = 2
 shortcut = SubResource("Shortcut_s6rvr")
 text = "Start"
 
-[node name="Start" type="Button" parent="Start"]
+[node name="Credits" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.685
 anchor_right = 0.5
 anchor_bottom = 0.685
-offset_left = -50.0
-offset_top = 22.08
-offset_right = 50.0
-offset_bottom = 54.08
+offset_left = -42.0
+offset_top = 12.12
+offset_right = 58.0
+offset_bottom = 44.12
 grow_horizontal = 2
 grow_vertical = 2
 shortcut = SubResource("Shortcut_s6rvr")
@@ -99,5 +99,5 @@ shortcut = SubResource("Shortcut_3jw8t")
 text = "Exit"
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Start/Start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
