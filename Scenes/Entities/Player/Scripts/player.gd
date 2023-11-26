@@ -3,7 +3,7 @@ class_name Player
 
 var move_speed: float = 155
 var direction: Vector2 = Vector2.ZERO
-var invicible_cd_time: float = 1.0
+var invincible_cd_time: float = 1.0
 var attacking: bool = false
 var _is_invincible: bool = false
 
@@ -17,10 +17,11 @@ func _ready():
 
 func _physics_process(_delta):
 	if !attacking:
-		velocity = direction * move_speed 
+		velocity = direction * move_speed
 		
 	else:
 		velocity = Vector2.ZERO
+		
 	move_and_slide()
 	
 func _process(_delta):

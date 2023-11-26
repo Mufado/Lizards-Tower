@@ -1,4 +1,4 @@
-[gd_scene load_steps=85 format=3 uid="uid://ds8qordwm2ijl"]
+[gd_scene load_steps=86 format=3 uid="uid://ds8qordwm2ijl"]
 
 [ext_resource type="Texture2D" uid="uid://jrxx5k3myc2n" path="res://Assets/Enemy/Lizard_atack_down-Sheet.png" id="1_54dho"]
 [ext_resource type="Script" path="res://Scenes/Entities/Lizard/lizard.gd" id="1_qkn7f"]
@@ -974,8 +974,6 @@ visible = false
 target_position = Vector2(100, -100)
 collision_mask = 5
 
-[connection signal="body_entered" from="HitBox" to="HitBox" method="_on_body_entered"]
-
 [node name="NoticeArea" type="Area2D" parent="."]
 visible = false
 
@@ -983,6 +981,7 @@ visible = false
 shape = SubResource("CircleShape2D_8h3ii")
 debug_color = Color(0.541176, 0.556863, 0.282353, 0.419608)
 
+[connection signal="body_entered" from="HitBox" to="HitBox" method="_on_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
 [connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
