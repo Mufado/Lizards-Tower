@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dmsbpucvr4qyu"]
+[gd_scene load_steps=11 format=3 uid="uid://dmsbpucvr4qyu"]
 
 [ext_resource type="PackedScene" uid="uid://cpbg1kwjn2eog" path="res://Scenes/Levels/level_master.tscn" id="1_n4pdp"]
 [ext_resource type="PackedScene" uid="uid://m71vs3wxi7cr" path="res://Scenes/Levels/Props/torch.tscn" id="2_ahmt1"]
@@ -9,6 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://dnkxqctusmhgt" path="res://Scenes/Levels/Props/box.tscn" id="5_36ylv"]
 [ext_resource type="PackedScene" uid="uid://r8oatxtwet8s" path="res://Scenes/Levels/Props/skull.tscn" id="6_2hisl"]
 [ext_resource type="PackedScene" uid="uid://ds8qordwm2ijl" path="res://Scenes/Entities/Lizard/lizard.tscn" id="8_56v0r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_datdb"]
+size = Vector2(80, 48)
 
 [node name="Level1" instance=ExtResource("1_n4pdp")]
 y_sort_enabled = true
@@ -281,9 +284,16 @@ position = Vector2(-5, 36)
 [node name="Skull6" parent="Props/Decoration/Skull" index="5" instance=ExtResource("6_2hisl")]
 position = Vector2(283, -201)
 
-[node name="Lizard" parent="Entities" index="0" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+[node name="Player" parent="Entities" index="0" instance=ExtResource("2_gsjd7")]
+position = Vector2(576, 568)
+
+[node name="Lizard" parent="Entities" index="1" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
 position = Vector2(592.894, 234.935)
 _nav_agent_target = NodePath("../Player")
 
-[node name="Player" parent="Entities" index="1" instance=ExtResource("2_gsjd7")]
-position = Vector2(584, 581)
+[node name="Gate" parent="." index="5"]
+position = Vector2(576, -384)
+dest_scene = "res://Scenes/Levels/level_2.tscn"
+
+[node name="CollisionShape2D" parent="Gate" index="0"]
+shape = SubResource("RectangleShape2D_datdb")

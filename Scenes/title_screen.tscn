@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://7ulsuav87te5"]
+[gd_scene load_steps=8 format=3 uid="uid://7ulsuav87te5"]
 
 [ext_resource type="Script" path="res://TitleScreen.gd" id="1_w00j5"]
 [ext_resource type="Texture2D" uid="uid://xjrop7so4g4t" path="res://Assets/UI/Menu.png" id="2_84uj1"]
+[ext_resource type="AudioStream" uid="uid://yost36aolync" path="res://Assets/Audio/tower_seashore.wav" id="3_avwvi"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_1n2jx"]
 device = -1
@@ -97,6 +98,10 @@ grow_horizontal = 2
 grow_vertical = 0
 shortcut = SubResource("Shortcut_3jw8t")
 text = "Exit"
+
+[node name="TitleSong" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_avwvi")
+volume_db = -10.0
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="Credits" to="." method="_on_start_pressed"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=56 format=3 uid="uid://c8ilpte26p04s"]
+[gd_scene load_steps=60 format=3 uid="uid://c8ilpte26p04s"]
 
 [ext_resource type="Script" path="res://Scenes/Entities/Player/Scripts/player.gd" id="1_phr2d"]
+[ext_resource type="Texture2D" uid="uid://dagcs3ioava0i" path="res://Assets/Props/Torch_fire_light.png" id="2_5fv3c"]
 [ext_resource type="Shader" path="res://Scenes/Entities/Player/player.gdshader" id="2_yscvc"]
 [ext_resource type="Texture2D" uid="uid://b8q44oqwj76ys" path="res://Assets/Player/viking_sword_idle_right-Sheet.png" id="3_2jiuq"]
 [ext_resource type="Texture2D" uid="uid://cobkst58l0v02" path="res://Assets/Player/viking_sword_atack_down-Sheet.png" id="4_0itno"]
@@ -14,11 +15,29 @@
 [ext_resource type="Texture2D" uid="uid://bcbm1henqfylm" path="res://Assets/Player/viking_sword_run_left-Sheet.png" id="12_adnp4"]
 [ext_resource type="Texture2D" uid="uid://b31blphjh6o6y" path="res://Assets/Player/viking_sword_run_right-Sheet.png" id="13_3dvhk"]
 [ext_resource type="Texture2D" uid="uid://bnfcsqwfe6wve" path="res://Assets/Player/viking_sword_run_up-Sheet.png" id="14_daawo"]
-[ext_resource type="AudioStream" uid="uid://bhw0vjp7rwatm" path="res://Assets/Audio/Heavy Sword Swing 13.wav" id="15_bs4kg"]
+[ext_resource type="AudioStream" uid="uid://d1iynws557jho" path="res://Assets/Audio/Heavy Sword Swing 3.wav" id="16_44bo7"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvr65"]
 radius = 6.0
 height = 16.0
+
+[sub_resource type="Curve" id="Curve_gsjoo"]
+max_value = 100.0
+_data = [Vector2(0, 30.5263), 0.0, 0.0, 0, 0, Vector2(0.478022, 72.6316), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_n1qpc"]
+min_value = -360.0
+max_value = 360.0
+_data = [Vector2(0.03125, 117.474), 0.0, 0.0, 0, 0, Vector2(0.46875, 185.684), 0.0, 0.0, 0, 0, Vector2(1, 41.6842), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_1hq03"]
+_data = [Vector2(0.00549451, 0), 0.0, -0.0598683, 0, 0, Vector2(0.516484, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Gradient" id="Gradient_dctps"]
+colors = PackedColorArray(0.47451, 0.337255, 0.156863, 0.901961, 0.968627, 0.709804, 0.462745, 0.901961)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_2o4mr"]
 shader = ExtResource("2_yscvc")
@@ -100,17 +119,43 @@ tracks/5/keys = {
 "update": 0,
 "values": [1.5708]
 }
-tracks/6/type = "value"
+tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sword:playing")
+tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_attack"
+}]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sword:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Moving_Particles:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_33uxs"]
@@ -188,17 +233,43 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(-21, 0)]
 }
-tracks/6/type = "value"
+tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sword:playing")
+tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_attack"
+}]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sword:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Moving_Particles:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_bi23p"]
@@ -276,17 +347,43 @@ tracks/5/keys = {
 "update": 0,
 "values": [0.0]
 }
-tracks/6/type = "value"
+tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sword:playing")
+tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_attack"
+}]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sword:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Moving_Particles:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_3m5fa"]
@@ -364,17 +461,43 @@ tracks/5/keys = {
 "update": 0,
 "values": [Vector2(0, -21)]
 }
-tracks/6/type = "value"
+tracks/6/type = "method"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sword:playing")
+tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0),
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [false],
+"method": &"set_attack"
+}]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Sword:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Moving_Particles:emitting")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_x2yet"]
@@ -417,6 +540,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Moving_Particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_lrxsr"]
 resource_name = "Idle_Left"
@@ -457,6 +592,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Moving_Particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_yyuos"]
@@ -499,6 +646,18 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Moving_Particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_3ilji"]
 resource_name = "Idle_Up"
@@ -539,6 +698,18 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Moving_Particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
 }
 
 [sub_resource type="Animation" id="Animation_j6y3o"]
@@ -581,6 +752,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Moving_Particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Moving_Particles:direction")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -1)]
+}
 
 [sub_resource type="Animation" id="Animation_j7ma6"]
 resource_name = "Move_Left"
@@ -621,6 +816,30 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Moving_Particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Moving_Particles:direction")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_01mcw"]
@@ -663,6 +882,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Moving_Particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Moving_Particles:direction")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-1, 0)]
+}
 
 [sub_resource type="Animation" id="Animation_sbkm6"]
 resource_name = "Move_Up"
@@ -704,6 +947,30 @@ tracks/2/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Moving_Particles:emitting")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Moving_Particles:direction")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_nmn08"]
 length = 0.001
@@ -737,124 +1004,116 @@ _data = {
 "RESET": SubResource("Animation_nmn08")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4o6uh"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fydwl"]
 animation = &"Attack_Down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rnojf"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_53kfx"]
 animation = &"Attack_Up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qy4m6"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dlct7"]
 animation = &"Attack_Right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y8rq2"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rxw5b"]
 animation = &"Attack_Left"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_tyfjy"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_4o6uh")
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_o4im3"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_fydwl")
 blend_point_0/pos = Vector2(0, 1.1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_rnojf")
+blend_point_1/node = SubResource("AnimationNodeAnimation_53kfx")
 blend_point_1/pos = Vector2(0, -1.1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_qy4m6")
+blend_point_2/node = SubResource("AnimationNodeAnimation_dlct7")
 blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_y8rq2")
+blend_point_3/node = SubResource("AnimationNodeAnimation_rxw5b")
 blend_point_3/pos = Vector2(-1, 0)
 min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3bvx7"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hyeqw"]
 animation = &"Idle_Down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_b6iwa"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4n17c"]
 animation = &"Idle_Up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8a1mw"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lnexv"]
 animation = &"Idle_Right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g72m4"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fjguq"]
 animation = &"Idle_Left"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ujd0t"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_3bvx7")
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_cygiq"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_hyeqw")
 blend_point_0/pos = Vector2(0, 1.1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_b6iwa")
+blend_point_1/node = SubResource("AnimationNodeAnimation_4n17c")
 blend_point_1/pos = Vector2(0, -1.1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_8a1mw")
+blend_point_2/node = SubResource("AnimationNodeAnimation_lnexv")
 blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_g72m4")
+blend_point_3/node = SubResource("AnimationNodeAnimation_fjguq")
 blend_point_3/pos = Vector2(-1, 0)
 min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5i77w"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_07txk"]
 animation = &"Move_Down"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_tmy36"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_npujs"]
 animation = &"Move_Up"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i7pxr"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_blxr2"]
 animation = &"Move_Right"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4nv37"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2it1j"]
 animation = &"Move_Left"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_uw7se"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_5i77w")
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_uvuhd"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_07txk")
 blend_point_0/pos = Vector2(0, 1.1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_tmy36")
+blend_point_1/node = SubResource("AnimationNodeAnimation_npujs")
 blend_point_1/pos = Vector2(0, -1.1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_i7pxr")
+blend_point_2/node = SubResource("AnimationNodeAnimation_blxr2")
 blend_point_2/pos = Vector2(1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_4nv37")
+blend_point_3/node = SubResource("AnimationNodeAnimation_2it1j")
 blend_point_3/pos = Vector2(-1, 0)
 min_space = Vector2(-1, -1.1)
 max_space = Vector2(1, 1.1)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_djtk8"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3teq4"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a6sd4"]
-advance_mode = 2
-advance_condition = &"attack"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7bt1t"]
-switch_mode = 2
-advance_mode = 2
-advance_condition = &"Idle"
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cikqw"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_swktn"]
 advance_mode = 2
 advance_condition = &"is_moving"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fobc7"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t7uxo"]
 advance_mode = 2
-advance_condition = &"Idle"
+advance_condition = &"idle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wcgye"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e8wlx"]
 advance_mode = 2
-advance_condition = &"attack"
+advance_condition = &"attacking"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5n564"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bptg6"]
 switch_mode = 2
 advance_mode = 2
-advance_condition = &"is_moving"
+advance_condition = &"idle"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7wmtq"]
-states/Attacking/node = SubResource("AnimationNodeBlendSpace2D_tyfjy")
-states/Attacking/position = Vector2(553, -31)
-states/End/position = Vector2(899, 104)
-states/Idle/node = SubResource("AnimationNodeBlendSpace2D_ujd0t")
-states/Idle/position = Vector2(355, 104)
-states/Move/node = SubResource("AnimationNodeBlendSpace2D_uw7se")
-states/Move/position = Vector2(742, 104)
-states/Start/position = Vector2(190, 104)
-transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_djtk8"), "Idle", "Attacking", SubResource("AnimationNodeStateMachineTransition_a6sd4"), "Attacking", "Idle", SubResource("AnimationNodeStateMachineTransition_7bt1t"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_cikqw"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_fobc7"), "Move", "Attacking", SubResource("AnimationNodeStateMachineTransition_wcgye"), "Attacking", "Move", SubResource("AnimationNodeStateMachineTransition_5n564")]
-graph_offset = Vector2(50, -78)
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_34nq0"]
+states/Attack/node = SubResource("AnimationNodeBlendSpace2D_o4im3")
+states/Attack/position = Vector2(581, 100)
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_cygiq")
+states/Idle/position = Vector2(381, 100)
+states/Move/node = SubResource("AnimationNodeBlendSpace2D_uvuhd")
+states/Move/position = Vector2(381, 29)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3teq4"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_swktn"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_t7uxo"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_e8wlx"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_bptg6")]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ehuvl"]
 height = 62.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q21kb"]
+radius = 8.0
+height = 42.0
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
@@ -862,15 +1121,45 @@ collision_layer = 129
 collision_mask = 61
 script = ExtResource("1_phr2d")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(0, -21)
+zoom = Vector2(3, 3)
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -17)
+visible = false
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_uvr65")
+
+[node name="Moving_Particles" type="CPUParticles2D" parent="."]
+y_sort_enabled = true
+position = Vector2(0, -7)
+emitting = false
+lifetime = 0.2
+speed_scale = 0.4
+randomness = 1.0
+lifetime_randomness = 1.0
+texture = ExtResource("2_5fv3c")
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector2(0, -1)
+spread = 80.0
+gravity = Vector2(0, -979)
+initial_velocity_min = 6.0
+initial_velocity_max = 12.0
+damping_curve = SubResource("Curve_gsjoo")
+angle_curve = SubResource("Curve_n1qpc")
+scale_amount_min = 0.15
+scale_amount_max = 0.3
+scale_amount_curve = SubResource("Curve_1hq03")
+color_ramp = SubResource("Gradient_dctps")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2o4mr")
-position = Vector2(0, -21)
-texture = ExtResource("3_2jiuq")
-hframes = 8
+position = Vector2(0, -24)
+texture = ExtResource("11_3m5q2")
+hframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
@@ -878,39 +1167,42 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-tree_root = SubResource("AnimationNodeStateMachine_7wmtq")
+tree_root = SubResource("AnimationNodeStateMachine_34nq0")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/Idle = false
-parameters/conditions/attack = false
+parameters/conditions/attacking = false
+parameters/conditions/idle = false
 parameters/conditions/is_moving = false
-parameters/Attacking/blend_position = Vector2(0, 0)
-parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Attack/blend_position = Vector2(0, 0)
+parameters/Idle/blend_position = null
 parameters/Move/blend_position = Vector2(0, 0)
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -21)
-zoom = Vector2(2.75, 2.75)
+[node name="InvincibleCoolDown" type="Timer" parent="."]
+one_shot = true
 
 [node name="AttackArea" type="Area2D" parent="."]
+visible = false
 position = Vector2(0, -21)
 collision_layer = 32
 collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
-position = Vector2(21, 0)
+position = Vector2(0, 21)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ehuvl")
 disabled = true
 
-[node name="AttackCoolDown" type="Timer" parent="."]
-one_shot = true
+[node name="HurtBox" type="Area2D" parent="."]
+visible = false
+collision_layer = 128
+collision_mask = 64
 
-[node name="InvincibleCoolDown" type="Timer" parent="."]
-one_shot = true
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, -24)
+shape = SubResource("CapsuleShape2D_q21kb")
+debug_color = Color(0.811765, 0.4, 0.258824, 0.419608)
 
-[node name="Sword" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("15_bs4kg")
-volume_db = -10.0
-pitch_scale = 2.0
+[node name="Sword" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("16_44bo7")
 
-[connection signal="timeout" from="AttackCoolDown" to="." method="_on_attack_cool_down_timeout"]
 [connection signal="timeout" from="InvincibleCoolDown" to="." method="_on_invincible_cool_down_timeout"]
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

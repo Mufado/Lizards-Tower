@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Lizard
 
 const ANGLE_BETWEEN_RAYS = deg_to_rad(20.0)
-const SPEED = 50.0
+const SPEED = 135.0
 const VIEW_ANGLE = deg_to_rad(120.0)
 const VIEW_DISTANCE = 200.0
 const RAYCAST_UPDATE_QUANTITY = int(VIEW_ANGLE / ANGLE_BETWEEN_RAYS) + 1
@@ -110,3 +110,7 @@ func _on_attack_range_body_entered(_body):
 
 func _on_attack_range_body_exited(_body):
 	is_in_range_to_attack = false
+
+
+func _on_notice_area_body_entered(_body):
+	pass

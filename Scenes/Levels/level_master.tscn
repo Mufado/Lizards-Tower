@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://cpbg1kwjn2eog"]
+[gd_scene load_steps=8 format=3 uid="uid://cpbg1kwjn2eog"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/level_master.gd" id="1_1ikkc"]
 [ext_resource type="Texture2D" uid="uid://bsjnhcqdvtg56" path="res://Assets/Tilemaps/tilemap_level_tower.png" id="1_yetwe"]
+[ext_resource type="AudioStream" uid="uid://ksskwh6e4ckc" path="res://Assets/Audio/first_steps_in_the_tower.wav" id="3_ad8od"]
+[ext_resource type="Script" path="res://Scenes/Levels/Gate.gd" id="4_u5ied"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dbo1k"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -215,8 +217,18 @@ y_sort_enabled = true
 [node name="Entities" type="Node2D" parent="."]
 y_sort_enabled = true
 
-[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+[node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.733333, 0.733333, 0.733333, 1)
-energy = 1.5
-blend_mode = 2
-shadow_enabled = true
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_ad8od")
+volume_db = -10.0
+autoplay = true
+
+[node name="Gate" type="Area2D" parent="."]
+script = ExtResource("4_u5ied")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate"]
+
+[connection signal="body_entered" from="Gate" to="Gate" method="_on_body_entered"]
+[connection signal="body_exited" from="Gate" to="Gate" method="_on_body_exited"]
