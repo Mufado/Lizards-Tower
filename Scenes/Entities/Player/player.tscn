@@ -1192,7 +1192,8 @@ disabled = true
 
 [node name="HurtBox" type="Area2D" parent="."]
 visible = false
-collision_mask = 0
+collision_layer = 128
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, -24)

@@ -47,6 +47,7 @@ func update_blend_position():
 	anim_tree["parameters/Attack/blend_position"] = direction
 	
 func hit():
+	print("being hit!")
 	invincible_cd.start(invicible_cd_time)
 	Global.player_health -= 10
 	blink()
@@ -62,5 +63,5 @@ func _on_invincible_cool_down_timeout():
 func die():
 	queue_free()
 
-func _on_hurt_box_body_entered(body):
+func _on_hurt_box_body_entered(_body):
 	hit()

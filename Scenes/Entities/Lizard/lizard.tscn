@@ -924,14 +924,16 @@ metadata/_edit_vertical_guides_ = []
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1huaq")
-animation = &"Idle"
+animation = &"Attack"
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0.630081, 7.40878)
 scale = Vector2(0.655338, 0.575336)
 shape = SubResource("CapsuleShape2D_06ps0")
 
 [node name="HurtBox" type="Area2D" parent="."]
+visible = false
 position = Vector2(-7.10543e-15, 0)
 collision_layer = 128
 collision_mask = 64
@@ -973,6 +975,7 @@ path_postprocessing = 1
 debug_enabled = true
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 64
 collision_mask = 129
 
@@ -980,10 +983,12 @@ collision_mask = 129
 shape = SubResource("CapsuleShape2D_ervg8")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
 target_position = Vector2(100, -100)
 collision_mask = 5
 
 [node name="NoticeArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea"]
 shape = SubResource("CircleShape2D_8h3ii")
