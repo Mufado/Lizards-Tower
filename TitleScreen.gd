@@ -1,5 +1,9 @@
 extends Control
 
+@onready var title_song = $TitleSong
+
+func _ready():
+	title_song.playing = true
 
 func _on_exit_pressed():
 	get_tree().quit()

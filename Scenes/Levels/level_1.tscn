@@ -281,9 +281,9 @@ position = Vector2(-5, 36)
 [node name="Skull6" parent="Props/Decoration/Skull" index="5" instance=ExtResource("6_2hisl")]
 position = Vector2(283, -201)
 
-[node name="Lizard" parent="Entities" index="0" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+[node name="Player" parent="Entities" index="0" instance=ExtResource("2_gsjd7")]
+position = Vector2(576, 568)
+
+[node name="Lizard" parent="Entities" index="1" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
 position = Vector2(592.894, 234.935)
 _nav_agent_target = NodePath("../Player")
-
-[node name="Player" parent="Entities" index="1" instance=ExtResource("2_gsjd7")]
-position = Vector2(584, 581)

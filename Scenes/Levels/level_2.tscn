@@ -3,3 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://cpbg1kwjn2eog" path="res://Scenes/Levels/level_master.tscn" id="1_n77jk"]
 
 [node name="Level2" instance=ExtResource("1_n77jk")]
+
+[node name="TileMap" parent="." index="0"]
+layer_0/tile_data = PackedInt32Array(2359316, 262144, 1, 2359348, 262144, 1)

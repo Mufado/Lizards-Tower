@@ -1,69 +1,57 @@
 extends CharacterBody2D
 class_name Player
 
-var move_speed: float = 175
+var move_speed: float = 155
 var direction: Vector2 = Vector2.ZERO
-var attack_cd_time: float = 0.6
 var invicible_cd_time: float = 1.0
-var can_attack: bool = true
 var attacking: bool = false
 
-@onready var animation_tree: AnimationTree = $AnimationTree
-@onready var attack_cd: Timer = $AttackCoolDown
 @onready var invincible_cd: Timer = $InvincibleCoolDown
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var sound: AudioStreamPlayer = $Sword
+@onready var sound: AudioStreamPlayer2D = $Sword
+@onready var anim_tree: AnimationTree = $AnimationTree
 
 func _ready():
-	animation_tree.active = true
+	anim_tree.active = true
+
+func _physics_process(_delta):
+	if !attacking:
+		velocity = direction * move_speed 
+		
+	else:
+		velocity = Vector2.ZERO
+	move_and_slide()
 	
 func _process(_delta):
-	update_animation_parameters()
-	
-func _physics_process(_delta):
-	movement()
-	if attacking:
-		attack()
-	
-func movement():
-	# Get Input Direction
 	direction = Input.get_vector("Left","Right","Up","Down")
-	# Update Velocity
-	velocity = direction * move_speed 
-	# Move and Slide
-	move_and_slide()
-
-func attack():
-	move_speed = 0
-	can_attack = false
-	attack_cd.start(attack_cd_time)
-	print("attacking")
+	
+	if direction != Vector2.ZERO and not attacking:
+		set_movement(true)
+		update_blend_position()
+	else:
+		set_movement(false)
+	if Input.is_action_just_pressed("Attack"):
+		set_attack(true)
+		
+func set_attack(value = false):
+	attacking = value
+	anim_tree["parameters/conditions/attacking"] = value
+	
+func set_movement(value):
+	anim_tree["parameters/conditions/is_moving"] = value
+	anim_tree["parameters/conditions/idle"] = not value
+	
+func update_blend_position():
+	anim_tree["parameters/Idle/blend_position"] = direction
+	anim_tree["parameters/Move/blend_position"] = direction
+	anim_tree["parameters/Attack/blend_position"] = direction
 	
 func hit():
 	invincible_cd.start(invicible_cd_time)
 	Global.player_health -= 10
 	blink()
-	if Global.player_attack >= 0:
+	if Global.player_health >= 0:
 		die()
-
-func update_animation_parameters():
-	if(velocity == Vector2.ZERO):
-		animation_tree["parameters/conditions/Idle"] = true
-		animation_tree["parameters/conditions/is_moving"] = false
-	else:
-		animation_tree["parameters/conditions/Idle"] = false
-		animation_tree["parameters/conditions/is_moving"] = true
-	if Input.is_action_just_pressed("Attack"):
-		attacking = true
-		animation_tree["parameters/conditions/attack"] = true
-		animation_tree["parameters/conditions/is_moving"] = false
-	else:
-		attacking = false
-		animation_tree["parameters/conditions/attack"] = false
-	if(direction != Vector2.ZERO):
-		animation_tree["parameters/Idle/blend_position"] = direction
-		animation_tree["parameters/Attacking/blend_position"] = direction
-		animation_tree["parameters/Move/blend_position"] = direction
 
 func blink():
 	sprite.material.set_shader_parameter("progress", 1)
@@ -71,9 +59,8 @@ func blink():
 func _on_invincible_cool_down_timeout():
 	sprite.material.set_shader_parameter("progress", 0)
 
-func _on_attack_cool_down_timeout():
-	can_attack = true
-	move_speed = 175
-
 func die():
 	queue_free()
+
+func _on_hurt_box_body_entered(body):
+	hit()
