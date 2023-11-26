@@ -4,9 +4,10 @@ class_name Player
 var move_speed: float = 175
 var direction: Vector2 = Vector2.ZERO
 var attack_cd_time: float = 0.6
-var invicible_cd_time: float = 1.0
+var invincible_cd_time: float = 1.0
 var can_attack: bool = true
 var attacking: bool = false
+var _is_invincible: bool = false
 
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var attack_cd: Timer = $AttackCoolDown
@@ -40,11 +41,18 @@ func attack():
 	print("attacking")
 	
 func hit():
-	invincible_cd.start(invicible_cd_time)
+	if _is_invincible:
+		return
+		
 	Global.player_health -= 10
-	blink()
-	if Global.player_attack >= 0:
+	print(Global.player_health)
+	
+	if Global.player_health <= 0:
 		die()
+	else:
+		blink()
+		_is_invincible = true
+		invincible_cd.start(invincible_cd_time)
 
 func update_animation_parameters():
 	if(velocity == Vector2.ZERO):
@@ -69,6 +77,7 @@ func blink():
 	sprite.material.set_shader_parameter("progress", 1)
 
 func _on_invincible_cool_down_timeout():
+	_is_invincible = false
 	sprite.material.set_shader_parameter("progress", 0)
 
 func _on_attack_cool_down_timeout():

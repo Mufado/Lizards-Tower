@@ -1,9 +1,8 @@
-[gd_scene load_steps=86 format=3 uid="uid://ds8qordwm2ijl"]
+[gd_scene load_steps=85 format=3 uid="uid://ds8qordwm2ijl"]
 
 [ext_resource type="Texture2D" uid="uid://jrxx5k3myc2n" path="res://Assets/Enemy/Lizard_atack_down-Sheet.png" id="1_54dho"]
 [ext_resource type="Script" path="res://Scenes/Entities/Lizard/lizard.gd" id="1_qkn7f"]
 [ext_resource type="Texture2D" uid="uid://c24yxqdchssgr" path="res://Assets/Enemy/Lizard_atack_left-Sheet.png" id="2_aw6wm"]
-[ext_resource type="Script" path="res://Scenes/HurtBox.gd" id="3_f7p8n"]
 [ext_resource type="Texture2D" uid="uid://b8hwvs7ma7q0g" path="res://Assets/Enemy/Lizard_atack_right-Sheet.png" id="3_nx1g7"]
 [ext_resource type="Texture2D" uid="uid://cmiwpx26otf8n" path="res://Assets/Enemy/Lizard_atack_up-Sheet.png" id="4_0me3i"]
 [ext_resource type="Script" path="res://Scenes/HitBox.gd" id="4_na0xi"]
@@ -323,8 +322,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_06ps0"]
-radius = 12.2074
-height = 38.2385
+radius = 10.7375
+height = 25.3769
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_sllxg"]
 
@@ -363,10 +362,10 @@ tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -439,10 +438,10 @@ tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -516,10 +515,10 @@ tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -593,10 +592,10 @@ tracks/2/path = NodePath("HitBox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
+"times": PackedFloat32Array(0.1, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [true, false]
+"values": [false, true]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -913,22 +912,19 @@ radius = 27.4015
 height = 56.1321
 
 [node name="Lizard" type="CharacterBody2D"]
+position = Vector2(0, -19.0703)
+collision_layer = 130
+collision_mask = 6
 script = ExtResource("1_qkn7f")
 metadata/_edit_horizontal_guides_ = []
 metadata/_edit_vertical_guides_ = []
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_1huaq")
-animation = &"Idle"
+animation = &"Attack"
 
-[node name="HurtBox" type="Area2D" parent="."]
-position = Vector2(-7.10543e-15, 0)
-collision_layer = 128
-collision_mask = 64
-script = ExtResource("3_f7p8n")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0.630081, 7.40878)
+[node name="HurtBox" type="CollisionShape2D" parent="."]
+position = Vector2(0.630081, 4.40878)
 scale = Vector2(0.655338, 0.575336)
 shape = SubResource("CapsuleShape2D_06ps0")
 
@@ -963,6 +959,7 @@ path_postprocessing = 1
 debug_enabled = true
 
 [node name="AttackRange" type="Area2D" parent="."]
+visible = false
 collision_layer = 64
 collision_mask = 129
 
@@ -970,8 +967,10 @@ collision_mask = 129
 shape = SubResource("CapsuleShape2D_ervg8")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
 target_position = Vector2(100, -100)
 collision_mask = 5
 
+[connection signal="body_entered" from="HitBox" to="HitBox" method="_on_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]

@@ -12,10 +12,12 @@ var is_in_range_to_attack: bool = false
 var is_chasing: bool = false
 
 @export var _nav_agent_target: Node2D
+
 @onready var _nav_agent := $NavigationAgent2D
 @onready var _anim_tree := $AnimationTree
 @onready var _raycast := $RayCast2D
 @onready var _state_machine: AnimationNodeStateMachinePlayback = _anim_tree.get("parameters/playback")
+@onready var _player_hurt_box = _nav_agent_target.get_node("CollisionShape2D")
 
 
 func _physics_process(_delta):
@@ -36,7 +38,8 @@ func _update_pathfind():
 		velocity = Vector2.ZERO
 
 func _is_viewing_player():
-	_raycast.set_target_position(to_local(_nav_agent_target.get_global_position()))
+	if _player_hurt_box != null:
+		_raycast.set_target_position(to_local(_player_hurt_box.global_position))
 	_raycast.force_raycast_update()
 	
 	if(!_raycast.is_colliding() || !_raycast.get_collider() is Player):
@@ -47,11 +50,12 @@ func _is_viewing_player():
 func _manage_attack():
 	
 	if is_in_range_to_attack:
-		direction = _get_attack_direction();
+		var attack_direction = _get_attack_direction();
 
-		if abs(direction.x) <= 0.15 || abs(direction.y) <= 0.15:
-			_attack()
+		if abs(attack_direction.x) <= 3.0 || abs(attack_direction.y) <= 4.0:
+			_attack(attack_direction)
 		elif _state_machine.get_current_node() == "Attack":
+			direction = Vector2(attack_direction.x, 0.0) if abs(attack_direction.x) < abs(attack_direction.y) else Vector2(0.0, attack_direction.y)
 			_repositionate()
 			
 	elif _state_machine.get_current_node() == "Attack":
@@ -82,9 +86,9 @@ func _sweep_raycast():
 			break
 
 
-func _attack():
+func _attack(attack_direction: Vector2):
 	_state_machine.travel("Attack")
-	_anim_tree.set("parameters/Attack/blend_position", direction)
+	_anim_tree.set("parameters/Attack/blend_position", attack_direction)
 	velocity = Vector2.ZERO
 
 func _repositionate():
@@ -93,7 +97,7 @@ func _repositionate():
 	velocity = direction * SPEED
 
 func _get_attack_direction():
-	return (_nav_agent_target.global_position - global_position).normalized()
+	return _player_hurt_box.global_position - global_position
 
 
 func _on_attack_range_body_entered(_body):
