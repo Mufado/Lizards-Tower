@@ -1,8 +1,9 @@
-[gd_scene load_steps=86 format=3 uid="uid://ds8qordwm2ijl"]
+[gd_scene load_steps=88 format=3 uid="uid://ds8qordwm2ijl"]
 
 [ext_resource type="Texture2D" uid="uid://jrxx5k3myc2n" path="res://Assets/Enemy/Lizard_atack_down-Sheet.png" id="1_54dho"]
 [ext_resource type="Script" path="res://Scenes/Entities/Lizard/lizard.gd" id="1_qkn7f"]
 [ext_resource type="Texture2D" uid="uid://c24yxqdchssgr" path="res://Assets/Enemy/Lizard_atack_left-Sheet.png" id="2_aw6wm"]
+[ext_resource type="Shader" path="res://Scenes/Entities/Lizard/lizard.gdshader" id="2_iyas5"]
 [ext_resource type="Texture2D" uid="uid://b8hwvs7ma7q0g" path="res://Assets/Enemy/Lizard_atack_right-Sheet.png" id="3_nx1g7"]
 [ext_resource type="Texture2D" uid="uid://cmiwpx26otf8n" path="res://Assets/Enemy/Lizard_atack_up-Sheet.png" id="4_0me3i"]
 [ext_resource type="Script" path="res://Scenes/HitBox.gd" id="4_na0xi"]
@@ -10,6 +11,11 @@
 [ext_resource type="Texture2D" uid="uid://dhnoeiov2lsu5" path="res://Assets/Enemy/Lizard_run_left-Sheet.png" id="6_8fiif"]
 [ext_resource type="Texture2D" uid="uid://cmkj01hmo3fvs" path="res://Assets/Enemy/Lizard_run_right-Sheet.png" id="7_agmyw"]
 [ext_resource type="Texture2D" uid="uid://dia50ju4owgay" path="res://Assets/Enemy/Lizard_run_up-Sheet.png" id="8_b8bos"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qcltc"]
+shader = ExtResource("2_iyas5")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/progress = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ulo1"]
 atlas = ExtResource("1_54dho")
@@ -322,8 +328,12 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_06ps0"]
-radius = 10.7375
-height = 25.3769
+radius = 15.2593
+height = 30.5186
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_2ke6l"]
+radius = 11.0
+height = 38.0
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_sllxg"]
 
@@ -911,25 +921,32 @@ graph_offset = Vector2(17, -92.5236)
 radius = 27.4015
 height = 56.1321
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8h3ii"]
-radius = 130.004
-
 [node name="Lizard" type="CharacterBody2D"]
 position = Vector2(0, -19.0703)
-collision_layer = 130
-collision_mask = 6
+collision_layer = 2
+collision_mask = 15
 script = ExtResource("1_qkn7f")
 metadata/_edit_horizontal_guides_ = []
 metadata/_edit_vertical_guides_ = []
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+material = SubResource("ShaderMaterial_qcltc")
 sprite_frames = SubResource("SpriteFrames_1huaq")
 animation = &"Attack"
 
-[node name="HurtBox" type="CollisionShape2D" parent="."]
-position = Vector2(0.630081, 4.40878)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 11.0703)
 scale = Vector2(0.655338, 0.575336)
 shape = SubResource("CapsuleShape2D_06ps0")
+
+[node name="HurtBox" type="Area2D" parent="."]
+collision_layer = 128
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+position = Vector2(0, 2.0703)
+shape = SubResource("CapsuleShape2D_2ke6l")
+debug_color = Color(0.87451, 0.321569, 0.309804, 0.419608)
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 64
@@ -963,25 +980,19 @@ debug_enabled = true
 
 [node name="AttackRange" type="Area2D" parent="."]
 visible = false
-collision_layer = 64
+collision_layer = 32
 collision_mask = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
 shape = SubResource("CapsuleShape2D_ervg8")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
-target_position = Vector2(100, -100)
-collision_mask = 5
+target_position = Vector2(0, 100)
 
-[node name="NoticeArea" type="Area2D" parent="."]
-visible = false
+[node name="InvincibleCD" type="Timer" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea"]
-shape = SubResource("CircleShape2D_8h3ii")
-debug_color = Color(0.541176, 0.556863, 0.282353, 0.419608)
-
+[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_entered" from="HitBox" to="HitBox" method="_on_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
-[connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
+[connection signal="timeout" from="InvincibleCD" to="." method="_on_invincible_cd_timeout"]

@@ -1117,9 +1117,12 @@ height = 42.0
 
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
-collision_layer = 129
+collision_layer = 161
 collision_mask = 61
 script = ExtResource("1_phr2d")
+
+[node name="Target" type="Marker2D" parent="."]
+position = Vector2(0, -22)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(0, -21)
@@ -1128,8 +1131,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
-position = Vector2(0, -8)
+position = Vector2(0, -9)
 shape = SubResource("CapsuleShape2D_uvr65")
 
 [node name="Moving_Particles" type="CPUParticles2D" parent="."]
@@ -1180,10 +1182,9 @@ parameters/Move/blend_position = Vector2(0, 0)
 one_shot = true
 
 [node name="AttackArea" type="Area2D" parent="."]
-visible = false
 position = Vector2(0, -21)
-collision_layer = 32
-collision_mask = 64
+collision_layer = 64
+collision_mask = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(0, 21)
@@ -1192,7 +1193,6 @@ shape = SubResource("CapsuleShape2D_ehuvl")
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="."]
-visible = false
 collision_layer = 128
 collision_mask = 64
 
@@ -1205,4 +1205,5 @@ debug_color = Color(0.811765, 0.4, 0.258824, 0.419608)
 stream = ExtResource("16_44bo7")
 
 [connection signal="timeout" from="InvincibleCoolDown" to="." method="_on_invincible_cool_down_timeout"]
+[connection signal="body_entered" from="AttackArea" to="." method="_on_attack_area_body_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

@@ -10,9 +10,12 @@ const RAYCAST_UPDATE_QUANTITY = int(VIEW_ANGLE / ANGLE_BETWEEN_RAYS) + 1
 var direction: Vector2 = Vector2.ZERO
 var is_in_range_to_attack: bool = false
 var is_chasing: bool = false
+var health: int = 50
+var is_invincible: bool = false
 
 @export var _nav_agent_target: Node2D
 
+@onready var sprite = $AnimatedSprite2D
 @onready var _nav_agent := $NavigationAgent2D
 @onready var _anim_tree := $AnimationTree
 @onready var _raycast := $RayCast2D
@@ -32,7 +35,7 @@ func _physics_process(_delta):
 
 func _update_pathfind():
 	if _is_viewing_player():
-		_nav_agent.set_target_position(_nav_agent_target.global_position)
+		_nav_agent.set_target_position(_nav_agent_target.get_node("Target").global_position)
 		direction = (_nav_agent.get_next_path_position() - global_position).normalized()
 	else:
 		velocity = Vector2.ZERO
@@ -70,7 +73,7 @@ func _sweep_raycast():
 	for index in RAYCAST_UPDATE_QUANTITY:
 		var cast_vector := (
 			VIEW_DISTANCE *
-			Vector2.UP.rotated (
+			Vector2.DOWN.rotated (
 				ANGLE_BETWEEN_RAYS *
 				(index - RAYCAST_UPDATE_QUANTITY / 2.0)
 			)
@@ -111,6 +114,27 @@ func _on_attack_range_body_entered(_body):
 func _on_attack_range_body_exited(_body):
 	is_in_range_to_attack = false
 
+func _get_damaged():
+	is_invincible = true
+	blink()
+	print("being hit")
+	if health > 0:
+		health -= randi_range(10,15)
+	else:
+		die()
+		
+func die():
+	queue_free()
 
-func _on_notice_area_body_entered(_body):
-	pass
+
+func blink():
+	sprite.material.set_shader_parameter("progress", 1)
+	
+func _on_hurt_box_body_entered(_body):
+	print("attacked")
+	_get_damaged()
+
+
+func _on_invincible_cd_timeout():
+	sprite.material.set_shader_parameter("progress", 0)
+	is_invincible = false

@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Scenes/Levels/level_master.gd" id="1_1ikkc"]
 [ext_resource type="Texture2D" uid="uid://bsjnhcqdvtg56" path="res://Assets/Tilemaps/tilemap_level_tower.png" id="1_yetwe"]
 [ext_resource type="AudioStream" uid="uid://ksskwh6e4ckc" path="res://Assets/Audio/first_steps_in_the_tower.wav" id="3_ad8od"]
-[ext_resource type="Script" path="res://Scenes/Levels/Gate.gd" id="4_u5ied"]
+[ext_resource type="PackedScene" uid="uid://c4fngqm5ux3v8" path="res://Scenes/Levels/Props/gate.tscn" id="4_b0h67"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dbo1k"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -211,6 +211,9 @@ y_sort_enabled = true
 [node name="Structures" type="Node2D" parent="Props"]
 y_sort_enabled = true
 
+[node name="Gate" parent="Props/Structures" instance=ExtResource("4_b0h67")]
+dest_scene = "<null>"
+
 [node name="Decoration" type="Node2D" parent="Props"]
 y_sort_enabled = true
 
@@ -222,13 +225,5 @@ color = Color(0.733333, 0.733333, 0.733333, 1)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ad8od")
-volume_db = -10.0
+volume_db = -12.0
 autoplay = true
-
-[node name="Gate" type="Area2D" parent="."]
-script = ExtResource("4_u5ied")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Gate"]
-
-[connection signal="body_entered" from="Gate" to="Gate" method="_on_body_entered"]
-[connection signal="body_exited" from="Gate" to="Gate" method="_on_body_exited"]
