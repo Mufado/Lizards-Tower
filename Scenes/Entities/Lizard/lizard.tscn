@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=3 uid="uid://ds8qordwm2ijl"]
+[gd_scene load_steps=86 format=3 uid="uid://ds8qordwm2ijl"]
 
 [ext_resource type="Texture2D" uid="uid://jrxx5k3myc2n" path="res://Assets/Enemy/Lizard_atack_down-Sheet.png" id="1_54dho"]
 [ext_resource type="Script" path="res://Scenes/Entities/Lizard/lizard.gd" id="1_qkn7f"]
@@ -890,31 +890,28 @@ blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_s5fu7"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pun3x"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gyebn"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5nx4s"]
-
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i3fh8"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0tbe1"]
+switch_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k3t8f"]
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2lu6d"]
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_5nx4s"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cmtsf"]
 states/Attack/node = SubResource("AnimationNodeBlendSpace2D_pehie")
 states/Attack/position = Vector2(650, 100)
 states/ChasePlayer/node = SubResource("AnimationNodeBlendSpace2D_1g71u")
-states/ChasePlayer/position = Vector2(505, -5)
+states/ChasePlayer/position = Vector2(369, -14)
 states/End/position = Vector2(901, 100)
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_s5fu7")
 states/Idle/position = Vector2(369, 100)
 states/Start/position = Vector2(165, 100)
-transitions = ["ChasePlayer", "Attack", SubResource("AnimationNodeStateMachineTransition_pun3x"), "Attack", "ChasePlayer", SubResource("AnimationNodeStateMachineTransition_gyebn"), "Idle", "ChasePlayer", SubResource("AnimationNodeStateMachineTransition_5nx4s"), "ChasePlayer", "Idle", SubResource("AnimationNodeStateMachineTransition_i3fh8"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_0tbe1"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_k3t8f"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2lu6d")]
+transitions = ["ChasePlayer", "Idle", SubResource("AnimationNodeStateMachineTransition_i3fh8"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_0tbe1"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_k3t8f"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2lu6d"), "Idle", "ChasePlayer", SubResource("AnimationNodeStateMachineTransition_5nx4s")]
 graph_offset = Vector2(17, -92.5236)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ervg8"]

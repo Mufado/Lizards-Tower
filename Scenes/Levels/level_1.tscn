@@ -185,99 +185,129 @@ y_sort_enabled = true
 
 [node name="Barrel" parent="Props/Decoration/Barrel" index="0" instance=ExtResource("3_bonjj")]
 position = Vector2(155, 129)
+script = null
 
 [node name="Barrel2" parent="Props/Decoration/Barrel" index="1" instance=ExtResource("3_bonjj")]
 position = Vector2(174, 116)
+script = null
 
 [node name="Barrel3" parent="Props/Decoration/Barrel" index="2" instance=ExtResource("3_bonjj")]
 position = Vector2(183, 144)
+script = null
 
 [node name="Barrel4" parent="Props/Decoration/Barrel" index="3" instance=ExtResource("3_bonjj")]
 position = Vector2(348, 273)
+script = null
 
 [node name="Barrel5" parent="Props/Decoration/Barrel" index="4" instance=ExtResource("3_bonjj")]
 position = Vector2(433, 523)
+script = null
 
 [node name="Barrel6" parent="Props/Decoration/Barrel" index="5" instance=ExtResource("3_bonjj")]
 position = Vector2(401, 492)
+script = null
 
 [node name="Barrel7" parent="Props/Decoration/Barrel" index="6" instance=ExtResource("3_bonjj")]
 position = Vector2(1046, 170)
+script = null
 
 [node name="Barrel8" parent="Props/Decoration/Barrel" index="7" instance=ExtResource("3_bonjj")]
 position = Vector2(399, -267)
+script = null
 
 [node name="Barrel9" parent="Props/Decoration/Barrel" index="8" instance=ExtResource("3_bonjj")]
 position = Vector2(159, -106)
+script = null
 
 [node name="Barrel10" parent="Props/Decoration/Barrel" index="9" instance=ExtResource("3_bonjj")]
 position = Vector2(185, -106)
+script = null
 
 [node name="Barrel11" parent="Props/Decoration/Barrel" index="10" instance=ExtResource("3_bonjj")]
 position = Vector2(81, 289)
+script = null
 
 [node name="Barrel12" parent="Props/Decoration/Barrel" index="11" instance=ExtResource("3_bonjj")]
 position = Vector2(78, 259)
+script = null
 
 [node name="Barrel13" parent="Props/Decoration/Barrel" index="12" instance=ExtResource("3_bonjj")]
 position = Vector2(107, 290)
+script = null
 
 [node name="Box" type="Node2D" parent="Props/Decoration" index="1"]
 y_sort_enabled = true
 
 [node name="Box" parent="Props/Decoration/Box" index="0" instance=ExtResource("5_36ylv")]
 position = Vector2(494, -134)
+script = null
 
 [node name="Box2" parent="Props/Decoration/Box" index="1" instance=ExtResource("5_36ylv")]
 position = Vector2(659, -132)
+script = null
 
 [node name="Box3" parent="Props/Decoration/Box" index="2" instance=ExtResource("5_36ylv")]
 position = Vector2(1092, -30)
+script = null
 
 [node name="Box4" parent="Props/Decoration/Box" index="3" instance=ExtResource("5_36ylv")]
 position = Vector2(1066, -35)
+script = null
 
 [node name="Box6" parent="Props/Decoration/Box" index="4" instance=ExtResource("5_36ylv")]
 position = Vector2(1042, -30)
+script = null
 
 [node name="Box5" parent="Props/Decoration/Box" index="5" instance=ExtResource("5_36ylv")]
 position = Vector2(1069, -13)
+script = null
 
 [node name="Box7" parent="Props/Decoration/Box" index="6" instance=ExtResource("5_36ylv")]
 position = Vector2(1017, 132)
+script = null
 
 [node name="Box11" parent="Props/Decoration/Box" index="7" instance=ExtResource("5_36ylv")]
 position = Vector2(401, 522)
+script = null
 
 [node name="Box8" parent="Props/Decoration/Box" index="8" instance=ExtResource("5_36ylv")]
 position = Vector2(1043, 142)
+script = null
 
 [node name="Box10" parent="Props/Decoration/Box" index="9" instance=ExtResource("5_36ylv")]
 position = Vector2(995, 152)
+script = null
 
 [node name="Box9" parent="Props/Decoration/Box" index="10" instance=ExtResource("5_36ylv")]
 position = Vector2(1019, 159)
+script = null
 
 [node name="Skull" type="Node2D" parent="Props/Decoration" index="2"]
 y_sort_enabled = true
 
 [node name="Skull" parent="Props/Decoration/Skull" index="0" instance=ExtResource("6_2hisl")]
 position = Vector2(937, -132)
+script = null
 
 [node name="Skull2" parent="Props/Decoration/Skull" index="1" instance=ExtResource("6_2hisl")]
 position = Vector2(799, 43)
+script = null
 
 [node name="Skull3" parent="Props/Decoration/Skull" index="2" instance=ExtResource("6_2hisl")]
 position = Vector2(375, 257)
+script = null
 
 [node name="Skull4" parent="Props/Decoration/Skull" index="3" instance=ExtResource("6_2hisl")]
 position = Vector2(757, 509)
+script = null
 
 [node name="Skull5" parent="Props/Decoration/Skull" index="4" instance=ExtResource("6_2hisl")]
 position = Vector2(-5, 36)
+script = null
 
 [node name="Skull6" parent="Props/Decoration/Skull" index="5" instance=ExtResource("6_2hisl")]
 position = Vector2(283, -201)
+script = null
 
 [node name="Player" parent="Entities" index="0" instance=ExtResource("2_gsjd7")]
 position = Vector2(576, 568)

@@ -6,11 +6,12 @@ var direction: Vector2 = Vector2.ZERO
 var invincible_cd_time: float = 1.0
 var attacking: bool = false
 var _is_invincible: bool = false
+var knockback_modifier: float = 2.0
 
 @onready var invincible_cd: Timer = $InvincibleCoolDown
 @onready var sprite: Sprite2D = $Sprite2D
-@onready var sound: AudioStreamPlayer2D = $Sword
 @onready var anim_tree: AnimationTree = $AnimationTree
+@onready var collision_shape = $CollisionShape2D
 
 func _ready():
 	anim_tree.active = true
@@ -54,20 +55,24 @@ func hit():
 		
 	Global.player_health -= 10
 	print(Global.player_health)
+	blink()
+	knockback()
 	
 	if Global.player_health <= 0:
 		die()
 	else:
-		blink()
 		_is_invincible = true
 		invincible_cd.start(invincible_cd_time)
-
+		
+func knockback():
+	pass
+	
 func blink():
-	sprite.material.set_shader_parameter("progress", 1)
-
+	pass
+	
 func _on_invincible_cool_down_timeout():
 	_is_invincible = false
-	sprite.material.set_shader_parameter("progress", 0)
+	
 
 func die():
 	queue_free()
