@@ -1,16 +1,17 @@
-[gd_scene load_steps=88 format=3 uid="uid://ds8qordwm2ijl"]
+[gd_scene load_steps=89 format=3 uid="uid://ds8qordwm2ijl"]
 
 [ext_resource type="Texture2D" uid="uid://jrxx5k3myc2n" path="res://Assets/Enemy/Lizard_atack_down-Sheet.png" id="1_54dho"]
-[ext_resource type="Script" path="res://Scenes/Entities/Lizard/lizard.gd" id="1_qkn7f"]
+[ext_resource type="Script" path="res://Scenes/Entities/Lizard/Scripts/lizard.gd" id="1_gl8w2"]
 [ext_resource type="Texture2D" uid="uid://c24yxqdchssgr" path="res://Assets/Enemy/Lizard_atack_left-Sheet.png" id="2_aw6wm"]
 [ext_resource type="Shader" path="res://Scenes/Entities/Lizard/lizard.gdshader" id="2_iyas5"]
 [ext_resource type="Texture2D" uid="uid://b8hwvs7ma7q0g" path="res://Assets/Enemy/Lizard_atack_right-Sheet.png" id="3_nx1g7"]
 [ext_resource type="Texture2D" uid="uid://cmiwpx26otf8n" path="res://Assets/Enemy/Lizard_atack_up-Sheet.png" id="4_0me3i"]
-[ext_resource type="Script" path="res://Scenes/HitBox.gd" id="4_na0xi"]
 [ext_resource type="Texture2D" uid="uid://cxt0xkv11j51" path="res://Assets/Enemy/Lizard_run_down-Sheet.png" id="5_tdw3l"]
 [ext_resource type="Texture2D" uid="uid://dhnoeiov2lsu5" path="res://Assets/Enemy/Lizard_run_left-Sheet.png" id="6_8fiif"]
 [ext_resource type="Texture2D" uid="uid://cmkj01hmo3fvs" path="res://Assets/Enemy/Lizard_run_right-Sheet.png" id="7_agmyw"]
 [ext_resource type="Texture2D" uid="uid://dia50ju4owgay" path="res://Assets/Enemy/Lizard_run_up-Sheet.png" id="8_b8bos"]
+[ext_resource type="Script" path="res://Scenes/Entities/Lizard/Scripts/HurtBox.gd" id="11_3ysds"]
+[ext_resource type="Script" path="res://Scenes/Entities/Lizard/Scripts/HitBox.gd" id="12_3jv1x"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qcltc"]
 shader = ExtResource("2_iyas5")
@@ -925,7 +926,7 @@ height = 56.1321
 position = Vector2(0, -19.0703)
 collision_layer = 2
 collision_mask = 15
-script = ExtResource("1_qkn7f")
+script = ExtResource("1_gl8w2")
 metadata/_edit_horizontal_guides_ = []
 metadata/_edit_vertical_guides_ = []
 
@@ -941,7 +942,8 @@ shape = SubResource("CapsuleShape2D_06ps0")
 
 [node name="HurtBox" type="Area2D" parent="."]
 collision_layer = 128
-collision_mask = 64
+collision_mask = 0
+script = ExtResource("11_3ysds")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
 position = Vector2(0, 2.0703)
@@ -951,7 +953,7 @@ debug_color = Color(0.87451, 0.321569, 0.309804, 0.419608)
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 64
 collision_mask = 128
-script = ExtResource("4_na0xi")
+script = ExtResource("12_3jv1x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 position = Vector2(-13.9732, -5.36587)
