@@ -105,7 +105,7 @@ func _sweep_raycast():
 
 
 func _blink():
-	sprite.material.set_shader_parameter("progress", 1)
+	hit_flash.play("flash")
 	
 
 func _attack(attack_direction: Vector2):
@@ -130,5 +130,4 @@ func _on_attack_range_body_exited(_body):
 
 
 func _on_invincible_cd_timeout():
-	sprite.material.set_shader_parameter("progress", 0)
 	is_invincible = false
