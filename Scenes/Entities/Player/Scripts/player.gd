@@ -48,12 +48,11 @@ func update_blend_position():
 	anim_tree["parameters/Move/blend_position"] = direction
 	anim_tree["parameters/Attack/blend_position"] = direction
 	
-func hit():
+func take_damage(damage: int):
 	if _is_invincible:
 		return
-		
-	Global.player_health -= 10
-	print(Global.player_health)
+
+	Global.player_health -= damage
 	
 	if Global.player_health <= 0:
 		die()
@@ -71,6 +70,3 @@ func _on_invincible_cool_down_timeout():
 
 func die():
 	queue_free()
-
-func _on_hurt_box_body_entered(_body):
-	hit()
