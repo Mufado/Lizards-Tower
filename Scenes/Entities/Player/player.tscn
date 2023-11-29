@@ -1120,6 +1120,8 @@ y_sort_enabled = true
 collision_layer = 161
 collision_mask = 61
 script = ExtResource("1_phr2d")
+metadata/_edit_vertical_guides_ = [-192.0, -192.0]
+metadata/_edit_horizontal_guides_ = [-128.0, -128.0]
 
 [node name="Target" type="Marker2D" parent="."]
 position = Vector2(0, -22)
@@ -1137,6 +1139,7 @@ shape = SubResource("CapsuleShape2D_uvr65")
 [node name="Moving_Particles" type="CPUParticles2D" parent="."]
 y_sort_enabled = true
 position = Vector2(0, -7)
+emitting = false
 lifetime = 0.2
 speed_scale = 0.4
 randomness = 1.0
@@ -1159,7 +1162,7 @@ color_ramp = SubResource("Gradient_dctps")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2o4mr")
 position = Vector2(0, -24)
-texture = ExtResource("11_3m5q2")
+texture = ExtResource("4_0itno")
 hframes = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -1182,7 +1185,8 @@ one_shot = true
 
 [node name="AttackArea" type="Area2D" parent="."]
 position = Vector2(0, -21)
-collision_mask = 8
+collision_layer = 65
+collision_mask = 136
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackArea"]
 position = Vector2(0, 21)

@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cpbg1kwjn2eog"]
+[gd_scene load_steps=9 format=3 uid="uid://cpbg1kwjn2eog"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/level_master.gd" id="1_1ikkc"]
 [ext_resource type="Texture2D" uid="uid://bsjnhcqdvtg56" path="res://Assets/Tilemaps/tilemap_level_tower.png" id="1_yetwe"]
 [ext_resource type="AudioStream" uid="uid://ksskwh6e4ckc" path="res://Assets/Audio/first_steps_in_the_tower.wav" id="3_ad8od"]
 [ext_resource type="PackedScene" uid="uid://c4fngqm5ux3v8" path="res://Scenes/Levels/Props/gate.tscn" id="4_b0h67"]
+[ext_resource type="PackedScene" uid="uid://dr7xijju4bwbs" path="res://Scenes/UI/UI.tscn" id="5_wsowf"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dbo1k"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -227,3 +228,5 @@ color = Color(0.733333, 0.733333, 0.733333, 1)
 stream = ExtResource("3_ad8od")
 volume_db = -12.0
 autoplay = true
+
+[node name="UI" parent="." instance=ExtResource("5_wsowf")]

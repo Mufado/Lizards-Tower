@@ -4,9 +4,7 @@ var hit_counter: int = 3
 
 @onready var animation = $AnimationPlayer
 
-
-
-func hit():
+func take_damage():
 	if hit_counter > 0:
 		hit_counter -= 1
 		animation.play("Hit")
@@ -15,4 +13,4 @@ func explode():
 
 func _on_hurt_box_body_entered(_body):
 	print("being hit")
-	hit()
+	take_damage()
