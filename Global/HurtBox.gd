@@ -9,8 +9,8 @@ func _ready():
 	connect("area_entered", _on_area_entered)
 
 func _on_area_entered(hitbox: HitBox) -> void:
-	if hitbox == null:
+	if hitbox == null || hitbox.owner == owner:
 		return
-	
+
 	if owner.has_method("take_damage"):
 		owner.take_damage(hitbox.damage)
