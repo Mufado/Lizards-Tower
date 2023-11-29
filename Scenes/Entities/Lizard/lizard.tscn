@@ -993,7 +993,6 @@ target_position = Vector2(0, 100)
 
 [node name="InvincibleCD" type="Timer" parent="."]
 
-[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
 [connection signal="body_entered" from="HitBox" to="HitBox" method="_on_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
