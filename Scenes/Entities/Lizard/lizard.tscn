@@ -1,4 +1,4 @@
-[gd_scene load_steps=86 format=3 uid="uid://ds8qordwm2ijl"]
+[gd_scene load_steps=89 format=3 uid="uid://ds8qordwm2ijl"]
 
 [ext_resource type="Texture2D" uid="uid://jrxx5k3myc2n" path="res://Assets/Enemy/Lizard_atack_down-Sheet.png" id="1_54dho"]
 [ext_resource type="Script" path="res://Scenes/Entities/Lizard/lizard.gd" id="1_qkn7f"]
@@ -15,7 +15,7 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qcltc"]
 shader = ExtResource("2_iyas5")
 shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/progress = 0.0
+shader_parameter/progress = 1.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ulo1"]
 atlas = ExtResource("1_54dho")
@@ -336,6 +336,43 @@ radius = 11.0
 height = 38.0
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_sllxg"]
+
+[sub_resource type="Animation" id="Animation_t6ody"]
+resource_name = "flash"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_ul17o"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:material:shader_parameter/progress")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vcaj1"]
+_data = {
+"RESET": SubResource("Animation_ul17o"),
+"flash": SubResource("Animation_t6ody")
+}
 
 [sub_resource type="Animation" id="Animation_nkwno"]
 resource_name = "down attack"
@@ -956,6 +993,11 @@ rotation = 3.14159
 scale = Vector2(2.08133, 0.811315)
 shape = SubResource("SegmentShape2D_sllxg")
 disabled = true
+
+[node name="HitFlash" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_vcaj1")
+}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

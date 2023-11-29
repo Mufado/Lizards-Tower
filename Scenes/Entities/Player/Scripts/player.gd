@@ -12,6 +12,9 @@ var knockback_modifier: float = 2.0
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var collision_shape = $CollisionShape2D
+@onready var hit_flash = $HitFlash
+
+
 
 func _ready():
 	anim_tree.active = true
@@ -55,12 +58,14 @@ func hit():
 		
 	Global.player_health -= 10
 	print(Global.player_health)
-	blink()
-	knockback()
+	
+
 	
 	if Global.player_health <= 0:
 		die()
 	else:
+		blink()
+		knockback()
 		_is_invincible = true
 		invincible_cd.start(invincible_cd_time)
 		
@@ -68,7 +73,7 @@ func knockback():
 	pass
 	
 func blink():
-	pass
+	hit_flash.play("flash")
 	
 func _on_invincible_cool_down_timeout():
 	_is_invincible = false
@@ -79,7 +84,6 @@ func die():
 
 func _on_hurt_box_body_entered(_body):
 	hit()
-
 
 func _on_attack_area_body_entered(body):
 	if body.has_method("_get_damaged"):

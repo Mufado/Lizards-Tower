@@ -21,6 +21,7 @@ var is_invincible: bool = false
 @onready var _raycast := $RayCast2D
 @onready var _state_machine: AnimationNodeStateMachinePlayback = _anim_tree.get("parameters/playback")
 @onready var _player_hurt_box = _nav_agent_target.get_node("CollisionShape2D")
+@onready var hit_flash = $HitFlash
 
 
 func _physics_process(_delta):
@@ -128,7 +129,7 @@ func die():
 
 
 func blink():
-	sprite.material.set_shader_parameter("progress", 1)
+	hit_flash.play("flash")
 	
 func _on_hurt_box_body_entered(_body):
 	print("attacked")
