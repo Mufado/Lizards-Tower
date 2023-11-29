@@ -1,4 +1,4 @@
-[gd_scene load_steps=65 format=3 uid="uid://c8ilpte26p04s"]
+[gd_scene load_steps=62 format=3 uid="uid://c8ilpte26p04s"]
 
 [ext_resource type="Script" path="res://Scenes/Entities/Player/Scripts/player.gd" id="1_phr2d"]
 [ext_resource type="Texture2D" uid="uid://dagcs3ioava0i" path="res://Assets/Props/Torch_fire_light.png" id="2_5fv3c"]
@@ -45,43 +45,6 @@ colors = PackedColorArray(0.47451, 0.337255, 0.156863, 0.901961, 0.968627, 0.709
 shader = ExtResource("2_yscvc")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/progress = 0.0
-
-[sub_resource type="Animation" id="Animation_xg5l2"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/progress")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [0.0]
-}
-
-[sub_resource type="Animation" id="Animation_iyumb"]
-resource_name = "flash"
-length = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:material:shader_parameter/progress")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [1.0, 0.0]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cg7se"]
-_data = {
-"RESET": SubResource("Animation_xg5l2"),
-"flash": SubResource("Animation_iyumb")
-}
 
 [sub_resource type="Animation" id="Animation_dhans"]
 resource_name = "Attack_Down"
@@ -1159,8 +1122,6 @@ y_sort_enabled = true
 collision_layer = 161
 collision_mask = 61
 script = ExtResource("1_phr2d")
-metadata/_edit_vertical_guides_ = [-192.0, -192.0]
-metadata/_edit_horizontal_guides_ = [-128.0, -128.0]
 
 [node name="Target" type="Marker2D" parent="."]
 position = Vector2(0, -22)
@@ -1201,14 +1162,8 @@ color_ramp = SubResource("Gradient_dctps")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2o4mr")
 position = Vector2(0, -24)
-scale = Vector2(1.00217, 0.972973)
-texture = ExtResource("4_0itno")
+texture = ExtResource("11_3m5q2")
 hframes = 6
-
-[node name="HitFlash" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_cg7se")
-}
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
