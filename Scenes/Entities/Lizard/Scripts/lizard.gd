@@ -24,6 +24,20 @@ var is_invincible: bool = false
 @onready var hit_flash = $HitFlash
 
 
+func take_damage(damage: int):
+	is_invincible = true
+	_blink()
+	print("being hit")
+	if health > 0:
+		health -= damage
+	else:
+		_die()
+
+
+func _die():
+	queue_free()
+
+
 func _physics_process(_delta):
 	if is_chasing:
 		_update_pathfind()
@@ -44,6 +58,7 @@ func _update_pathfind():
 func _is_viewing_player():
 	if _player_hurt_box != null:
 		_raycast.set_target_position(to_local(_player_hurt_box.global_position))
+
 	_raycast.force_raycast_update()
 	
 	if(!_raycast.is_colliding() || !_raycast.get_collider() is Player):
@@ -52,7 +67,6 @@ func _is_viewing_player():
 	return true
 
 func _manage_attack():
-	
 	if is_in_range_to_attack:
 		var attack_direction = _get_attack_direction();
 
@@ -61,7 +75,7 @@ func _manage_attack():
 		elif _state_machine.get_current_node() == "Attack":
 			direction = Vector2(attack_direction.x, 0.0) if abs(attack_direction.x) < abs(attack_direction.y) else Vector2(0.0, attack_direction.y)
 			_repositionate()
-			
+
 	elif _state_machine.get_current_node() == "Attack":
 		_state_machine.travel("ChasePlayer")
 
@@ -79,7 +93,7 @@ func _sweep_raycast():
 				(index - RAYCAST_UPDATE_QUANTITY / 2.0)
 			)
 		)
-		
+
 		_raycast.set_target_position(cast_vector)
 		_raycast.force_raycast_update()
 
@@ -89,6 +103,10 @@ func _sweep_raycast():
 			is_chasing = true
 			break
 
+
+func _blink():
+	sprite.material.set_shader_parameter("progress", 1)
+	
 
 func _attack(attack_direction: Vector2):
 	_state_machine.travel("Attack")
@@ -105,35 +123,10 @@ func _get_attack_direction():
 
 
 func _on_attack_range_body_entered(_body):
-	if abs(velocity.x) < abs(velocity.y):
-		velocity.x = 0
-	else:
-		velocity.y = 0
-
 	is_in_range_to_attack = true
 
 func _on_attack_range_body_exited(_body):
 	is_in_range_to_attack = false
-
-func _get_damaged():
-	is_invincible = true
-	blink()
-	print("being hit")
-	if health > 0:
-		health -= randi_range(10,15)
-	else:
-		die()
-		
-func die():
-	queue_free()
-
-
-func blink():
-	hit_flash.play("flash")
-	
-func _on_hurt_box_body_entered(_body):
-	print("attacked")
-	_get_damaged()
 
 
 func _on_invincible_cd_timeout():

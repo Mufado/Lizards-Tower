@@ -84,7 +84,3 @@ func die():
 
 func _on_hurt_box_body_entered(_body):
 	hit()
-
-func _on_attack_area_body_entered(body):
-	if body.has_method("_get_damaged"):
-		body._get_damaged()

@@ -6,8 +6,3 @@ extends Area2D
 func _init():
 	collision_layer = 64
 	collision_mask = 128
-
-
-func _on_body_entered(body):
-	if(body is Player and body.has_method("hit")):
-		body.hit()
