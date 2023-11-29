@@ -53,6 +53,7 @@ func update_blend_position():
 	anim_tree["parameters/Attack/blend_position"] = direction
 	
 func hit():
+	blink()
 	if _is_invincible:
 		return
 		
@@ -64,7 +65,6 @@ func hit():
 	if Global.player_health <= 0:
 		die()
 	else:
-		blink()
 		knockback()
 		_is_invincible = true
 		invincible_cd.start(invincible_cd_time)
