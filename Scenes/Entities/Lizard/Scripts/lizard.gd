@@ -21,6 +21,7 @@ var is_invincible: bool = false
 @onready var _raycast := $RayCast2D
 @onready var _state_machine: AnimationNodeStateMachinePlayback = _anim_tree.get("parameters/playback")
 @onready var _player_hurt_box = _nav_agent_target.get_node("CollisionShape2D")
+@onready var hit_flash = $HitFlash
 
 
 func take_damage(damage: int):
