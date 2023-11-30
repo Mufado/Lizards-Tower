@@ -13,6 +13,8 @@ var _is_invincible: bool = false
 @onready var anim_tree: AnimationTree = $AnimationTree
 @onready var hit_flash: AnimationPlayer = $HitFlash
 @onready var _attack_delay: Timer = $AttackDelay
+@onready var hurtsound = $Hurtsound
+
 
 func _ready():
 	anim_tree.active = true
@@ -59,6 +61,7 @@ func take_damage(damage: int):
 	if Global.player_health <= 0:
 		queue_free()
 	else:
+		hurtsound.play()
 		blink()
 		_is_invincible = true
 		invincible_cd.start(invincible_cd_time)

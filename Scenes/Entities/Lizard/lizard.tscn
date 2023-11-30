@@ -1,4 +1,4 @@
-[gd_scene load_steps=92 format=3 uid="uid://ds8qordwm2ijl"]
+[gd_scene load_steps=93 format=3 uid="uid://ds8qordwm2ijl"]
 
 [ext_resource type="Texture2D" uid="uid://jrxx5k3myc2n" path="res://Assets/Enemy/Lizard_atack_down-Sheet.png" id="1_54dho"]
 [ext_resource type="Script" path="res://Scenes/Entities/Lizard/Scripts/lizard.gd" id="1_gl8w2"]
@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://Scenes/Entities/Lizard/Scripts/HitBox.gd" id="12_3jv1x"]
 [ext_resource type="Texture2D" uid="uid://p5t04m6gp4j" path="res://Assets/HUD/LifeBarCharacter_Back.png" id="13_4o1y6"]
 [ext_resource type="Texture2D" uid="uid://bx0xvm5isx8fn" path="res://Assets/HUD/LifeBarCharacter_Energy.png" id="14_hr7jn"]
+[ext_resource type="AudioStream" uid="uid://blnjdqbayvn74" path="res://Assets/Audio/hurt_player.wav" id="15_wm47t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qcltc"]
 shader = ExtResource("2_iyas5")
@@ -1059,6 +1060,9 @@ value = 60.0
 texture_under = ExtResource("13_4o1y6")
 texture_progress = ExtResource("14_hr7jn")
 texture_progress_offset = Vector2(1, 1)
+
+[node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("15_wm47t")
 
 [connection signal="body_entered" from="HitBox" to="HitBox" method="_on_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]

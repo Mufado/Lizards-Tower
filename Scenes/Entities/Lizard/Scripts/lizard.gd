@@ -25,10 +25,12 @@ var is_invincible: bool = false
 @onready var life_bar = $LifeBar/LifeBar
 @onready var invincible_cd = $InvincibleCD
 @onready var invincible_cd_time: float = 0.8
+@onready var hurt_sound = $HurtSound
+
 
 func take_damage(damage: int):
 	health -= damage
-	
+	hurt_sound.play()
 	if health <= 0:
 		queue_free()
 		return
