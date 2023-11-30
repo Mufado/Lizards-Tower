@@ -165,12 +165,9 @@ tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"set_attack"
-}]
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -279,12 +276,9 @@ tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"set_attack"
-}]
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -393,12 +387,9 @@ tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"set_attack"
-}]
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -507,12 +498,9 @@ tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(0.6),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [false],
-"method": &"set_attack"
-}]
+"times": PackedFloat32Array(),
+"transitions": PackedFloat32Array(),
+"values": []
 }
 tracks/7/type = "value"
 tracks/7/imported = false
@@ -1130,8 +1118,6 @@ advance_mode = 2
 advance_condition = &"idle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e8wlx"]
-advance_mode = 2
-advance_condition = &"attacking"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bptg6"]
 switch_mode = 2
@@ -1146,6 +1132,7 @@ states/Idle/position = Vector2(381, 100)
 states/Move/node = SubResource("AnimationNodeBlendSpace2D_uvuhd")
 states/Move/position = Vector2(381, 29)
 transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_3teq4"), "Idle", "Move", SubResource("AnimationNodeStateMachineTransition_swktn"), "Move", "Idle", SubResource("AnimationNodeStateMachineTransition_t7uxo"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_e8wlx"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_bptg6")]
+graph_offset = Vector2(-151, -7)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ehuvl"]
 height = 62.0
@@ -1199,7 +1186,7 @@ color_ramp = SubResource("Gradient_dctps")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2o4mr")
 position = Vector2(0, -24)
-texture = ExtResource("4_0itno")
+texture = ExtResource("6_lnf50")
 hframes = 6
 
 [node name="HitFlash" type="AnimationPlayer" parent="."]
@@ -1215,12 +1202,15 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_34nq0")
 anim_player = NodePath("../AnimationPlayer")
-parameters/conditions/attacking = false
 parameters/conditions/idle = false
 parameters/conditions/is_moving = false
 parameters/Attack/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = null
-parameters/Move/blend_position = Vector2(0, 0)
+parameters/Move/blend_position = Vector2(-0.00173914, 0.332558)
+
+[node name="AttackDelay" type="Timer" parent="."]
+wait_time = 0.64
+one_shot = true
 
 [node name="InvincibleCoolDown" type="Timer" parent="."]
 one_shot = true
@@ -1232,8 +1222,7 @@ collision_mask = 128
 script = ExtResource("16_o8aa1")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(0, 21)
-rotation = 1.5708
+position = Vector2(21, 0)
 shape = SubResource("CapsuleShape2D_ehuvl")
 disabled = true
 
@@ -1250,4 +1239,5 @@ debug_color = Color(0.811765, 0.4, 0.258824, 0.419608)
 [node name="Sword" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_44bo7")
 
+[connection signal="timeout" from="AttackDelay" to="." method="_on_attack_delay_timeout"]
 [connection signal="timeout" from="InvincibleCoolDown" to="." method="_on_invincible_cool_down_timeout"]

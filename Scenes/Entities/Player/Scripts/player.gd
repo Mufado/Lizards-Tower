@@ -4,20 +4,21 @@ class_name Player
 var move_speed: float = 155
 var direction: Vector2 = Vector2.ZERO
 var invincible_cd_time: float = 1.0
-var attacking: bool = false
+var _is_attacking: bool = false
 var _is_invincible: bool = false
 
 @onready var invincible_cd: Timer = $InvincibleCoolDown
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var sound: AudioStreamPlayer2D = $Sword
 @onready var anim_tree: AnimationTree = $AnimationTree
-@onready var hit_flash = $HitFlash
+@onready var hit_flash: AnimationPlayer = $HitFlash
+@onready var _attack_delay: Timer = $AttackDelay
 
 func _ready():
 	anim_tree.active = true
 
 func _physics_process(_delta):
-	if !attacking:
+	if !_is_attacking:
 		velocity = direction * move_speed
 		
 	else:
@@ -28,18 +29,18 @@ func _physics_process(_delta):
 func _process(_delta):
 	direction = Input.get_vector("Left","Right","Up","Down")
 	
-	if direction != Vector2.ZERO and not attacking:
+	if Input.is_action_just_pressed("Attack") && !_is_attacking:
+		anim_tree.get("parameters/playback").travel("Attack")
+		_is_attacking = true
+		_attack_delay.start()
+	
+	if direction != Vector2.ZERO and not _is_attacking:
 		set_movement(true)
 		update_blend_position()
 	else:
 		set_movement(false)
-	if Input.is_action_just_pressed("Attack"):
-		set_attack(true)
-		
-func set_attack(value = false):
-	attacking = value
-	anim_tree["parameters/conditions/attacking"] = value
-	
+
+
 func set_movement(value):
 	anim_tree["parameters/conditions/is_moving"] = value
 	anim_tree["parameters/conditions/idle"] = not value
@@ -65,6 +66,9 @@ func take_damage(damage: int):
 func blink():
 	hit_flash.play("flash")
 
+
 func _on_invincible_cool_down_timeout():
 	_is_invincible = false
 
+func _on_attack_delay_timeout():
+	_is_attacking = false
