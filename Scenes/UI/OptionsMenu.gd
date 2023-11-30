@@ -1,4 +1,4 @@
-extends Control
+extends CanvasLayer
 
 enum OptionsMenuTypes{
 	PAUSE,
@@ -6,8 +6,9 @@ enum OptionsMenuTypes{
 	LOSE	
 }
 
-@onready var label_title = $LabelTitle
-@onready var principal_action = $Panel/MarginContainer/VBoxContainer/PrincipalAction
+@onready var label_title = $Control/LabelTitle
+@onready var principal_action = $Control/Panel/MarginContainer/VBoxContainer/PrincipalAction
+
 
 var OptionsTypeSelected = OptionsMenuTypes.PAUSE
 
@@ -42,9 +43,6 @@ func _unhandled_input(event):
 		_show_options(OptionsMenuTypes.PAUSE)
 
 
-func _on_exit_pressed():
-	get_tree().quit()
-
 func _on_main_menu_pressed():
 	get_tree().change_scene_to_file("res://Scenes/title_screen.tscn")
 
@@ -55,3 +53,6 @@ func _on_principal_action_pressed():
 			
 	if OptionsTypeSelected == OptionsMenuTypes.WIN || OptionsTypeSelected == OptionsMenuTypes.LOSE:
 		get_tree().change_scene_to_file("res://Scenes/Levels/level_1.tscn")
+
+func _on_quit_pressed():
+	get_tree().quit()
