@@ -1,0 +1,114 @@
+[gd_scene load_steps=6 format=3 uid="uid://cr8et2a2k4cd8"]
+
+[ext_resource type="Script" path="res://Scenes/UI/OptionsMenu.gd" id="1_d80ma"]
+[ext_resource type="Theme" uid="uid://qlxfj67v1cjh" path="res://Assets/UI/Default.tres" id="2_hbnts"]
+[ext_resource type="FontFile" uid="uid://ccvf4a7kt70jt" path="res://Assets/UI/Fonts/PIXEAB__(8).TTF" id="3_5teh1"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_4yfdf"]
+action = &"ui_cancel"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_aomtv"]
+events = [SubResource("InputEventAction_4yfdf")]
+
+[node name="OptionsMenu" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_d80ma")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.109804, 0.12549, 0.172549, 0.698039)
+
+[node name="LabelTitle" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = -1.87593
+anchor_right = 0.5
+anchor_bottom = -1.87593
+offset_left = -98.0
+offset_top = -60.5
+offset_right = 98.0
+offset_bottom = -13.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_hbnts")
+theme_override_colors/font_color = Color(0.972549, 0.772549, 0.227451, 1)
+theme_override_fonts/font = ExtResource("3_5teh1")
+theme_override_font_sizes/font_size = 32
+text = "TITLE"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="Control"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -127.0
+offset_top = -92.5
+offset_right = 127.0
+offset_bottom = 158.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_hbnts")
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/Panel"]
+custom_minimum_size = Vector2(130, 0)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -49.0
+offset_right = 55.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="PrincipalAction" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_hbnts")
+shortcut = SubResource("Shortcut_aomtv")
+text = "Principal"
+
+[node name="MainMenu" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_hbnts")
+text = "Main Menu
+"
+
+[node name="Quit" type="Button" parent="Control/Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("2_hbnts")
+text = "Quit"
+
+[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/PrincipalAction" to="." method="_on_principal_action_pressed"]
+[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="Control/Panel/MarginContainer/VBoxContainer/Quit" to="." method="_on_quit_pressed"]

@@ -1,0 +1,218 @@
+[gd_scene load_steps=6 format=3 uid="uid://b11q8poe4htsw"]
+
+[ext_resource type="Script" path="res://Scenes/UI/CreditsScreen.gd" id="1_ny0r8"]
+[ext_resource type="FontFile" uid="uid://ccvf4a7kt70jt" path="res://Assets/UI/Fonts/PIXEAB__(8).TTF" id="1_pdgpa"]
+[ext_resource type="Theme" uid="uid://qlxfj67v1cjh" path="res://Assets/UI/Default.tres" id="3_3bp6c"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_gwclq"]
+action = &"ui_cancel"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_ex3hp"]
+events = [SubResource("InputEventAction_gwclq")]
+
+[node name="credits_screen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ny0r8")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.109804, 0.12549, 0.172549, 0.698039)
+
+[node name="LabelCredits" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.132716
+anchor_right = 0.5
+anchor_bottom = 0.132716
+offset_left = -98.0
+offset_top = -23.5
+offset_right = 98.0
+offset_bottom = 23.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_3bp6c")
+theme_override_colors/font_color = Color(0.972549, 0.772549, 0.227451, 1)
+theme_override_fonts/font = ExtResource("1_pdgpa")
+theme_override_font_sizes/font_size = 32
+text = "CREDITS"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -493.0
+offset_top = -190.0
+offset_right = 493.0
+offset_bottom = 280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_3bp6c")
+
+[node name="LabelDevelopment" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -191.5
+offset_right = 124.0
+offset_bottom = -144.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_3bp6c")
+theme_override_colors/font_color = Color(0.972549, 0.772549, 0.227451, 1)
+theme_override_font_sizes/font_size = 32
+text = "Development"
+horizontal_alignment = 1
+
+[node name="LabelGustavo" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -136.5
+offset_right = 70.0
+offset_bottom = -111.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_3bp6c")
+theme_override_colors/font_color = Color(1, 0.878431, 0.717647, 1)
+theme_override_font_sizes/font_size = 16
+text = "Gustavo Girão"
+horizontal_alignment = 1
+
+[node name="LabelLuisDev" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -104.5
+offset_right = 68.0
+offset_bottom = -79.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_3bp6c")
+theme_override_colors/font_color = Color(1, 0.878431, 0.717647, 1)
+theme_override_font_sizes/font_size = 16
+text = "Luis H. Kruger"
+horizontal_alignment = 1
+
+[node name="LabelArts" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -465.0
+offset_top = -51.5
+offset_right = 465.0
+offset_bottom = -4.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_3bp6c")
+theme_override_colors/font_color = Color(0.972549, 0.772549, 0.227451, 1)
+theme_override_font_sizes/font_size = 32
+text = "Arts"
+horizontal_alignment = 1
+
+[node name="LabelCarlos" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -0.5
+offset_right = 151.0
+offset_bottom = 24.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_3bp6c")
+theme_override_colors/font_color = Color(1, 0.878431, 0.717647, 1)
+theme_override_font_sizes/font_size = 16
+text = "Carlos Eduardo Garibaldi Junior"
+horizontal_alignment = 1
+
+[node name="LabelSoundtrack" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -465.0
+offset_top = 52.5
+offset_right = 465.0
+offset_bottom = 99.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_3bp6c")
+theme_override_colors/font_color = Color(0.972549, 0.772549, 0.227451, 1)
+theme_override_font_sizes/font_size = 32
+text = "Soundtrack"
+horizontal_alignment = 1
+
+[node name="LabelLuisSound" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = 103.5
+offset_right = 68.0
+offset_bottom = 128.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_3bp6c")
+theme_override_colors/font_color = Color(1, 0.878431, 0.717647, 1)
+theme_override_font_sizes/font_size = 16
+text = "Luis H. Kruger"
+horizontal_alignment = 1
+
+[node name="Close" type="Button" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = 153.0
+offset_right = 50.0
+offset_bottom = 185.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_3bp6c")
+shortcut = SubResource("Shortcut_ex3hp")
+text = "Close"
+
+[connection signal="pressed" from="Panel/Close" to="." method="_on_close_pressed"]
