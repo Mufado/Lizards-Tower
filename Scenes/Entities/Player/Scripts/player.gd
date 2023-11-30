@@ -11,6 +11,7 @@ var _is_invincible: bool = false
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var sound: AudioStreamPlayer2D = $Sword
 @onready var anim_tree: AnimationTree = $AnimationTree
+@onready var hit_flash = $HitFlash
 
 func _ready():
 	anim_tree.active = true
@@ -55,18 +56,15 @@ func take_damage(damage: int):
 	Global.player_health -= damage
 	
 	if Global.player_health <= 0:
-		die()
+		queue_free()
 	else:
 		blink()
 		_is_invincible = true
 		invincible_cd.start(invincible_cd_time)
 
 func blink():
-	sprite.material.set_shader_parameter("progress", 1)
+	hit_flash.play("flash")
 
 func _on_invincible_cool_down_timeout():
 	_is_invincible = false
-	sprite.material.set_shader_parameter("progress", 0)
 
-func die():
-	queue_free()

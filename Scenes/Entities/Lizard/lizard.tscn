@@ -1,4 +1,4 @@
-[gd_scene load_steps=90 format=3 uid="uid://ds8qordwm2ijl"]
+[gd_scene load_steps=92 format=3 uid="uid://ds8qordwm2ijl"]
 
 [ext_resource type="Texture2D" uid="uid://jrxx5k3myc2n" path="res://Assets/Enemy/Lizard_atack_down-Sheet.png" id="1_54dho"]
 [ext_resource type="Script" path="res://Scenes/Entities/Lizard/Scripts/lizard.gd" id="1_gl8w2"]
@@ -12,11 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://dia50ju4owgay" path="res://Assets/Enemy/Lizard_run_up-Sheet.png" id="8_b8bos"]
 [ext_resource type="Script" path="res://Scenes/Entities/Lizard/Scripts/HurtBox.gd" id="11_3ysds"]
 [ext_resource type="Script" path="res://Scenes/Entities/Lizard/Scripts/HitBox.gd" id="12_3jv1x"]
+[ext_resource type="Texture2D" uid="uid://p5t04m6gp4j" path="res://Assets/HUD/LifeBarCharacter_Back.png" id="13_4o1y6"]
+[ext_resource type="Texture2D" uid="uid://bx0xvm5isx8fn" path="res://Assets/HUD/LifeBarCharacter_Energy.png" id="14_hr7jn"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qcltc"]
 shader = ExtResource("2_iyas5")
 shader_parameter/color = Color(1, 1, 1, 1)
-shader_parameter/progress = 1.0
+shader_parameter/progress = 0.0
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2ulo1"]
 atlas = ExtResource("1_54dho")
@@ -350,7 +352,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [1.0]
+"values": [0.0]
 }
 
 [sub_resource type="Animation" id="Animation_t6ody"]
@@ -967,9 +969,10 @@ metadata/_edit_vertical_guides_ = []
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_qcltc")
 sprite_frames = SubResource("SpriteFrames_1huaq")
-animation = &"Attack"
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 position = Vector2(0, 11.0703)
 scale = Vector2(0.655338, 0.575336)
 shape = SubResource("CapsuleShape2D_06ps0")
@@ -980,6 +983,7 @@ collision_mask = 0
 script = ExtResource("11_3ysds")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
+visible = false
 position = Vector2(0, 2.0703)
 shape = SubResource("CapsuleShape2D_2ke6l")
 debug_color = Color(0.87451, 0.321569, 0.309804, 0.419608)
@@ -988,8 +992,10 @@ debug_color = Color(0.87451, 0.321569, 0.309804, 0.419608)
 collision_layer = 64
 collision_mask = 128
 script = ExtResource("12_3jv1x")
+damage = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
+visible = false
 position = Vector2(-13.9732, -5.36587)
 rotation = 3.14159
 scale = Vector2(2.08133, 0.811315)
@@ -1031,6 +1037,28 @@ shape = SubResource("CapsuleShape2D_ervg8")
 target_position = Vector2(0, 100)
 
 [node name="InvincibleCD" type="Timer" parent="."]
+
+[node name="LifeBar" type="Control" parent="."]
+layout_mode = 3
+anchor_top = -0.071
+anchor_right = 0.034
+anchor_bottom = -0.071
+offset_left = -39.0
+offset_top = -32.0
+offset_right = -39.0
+offset_bottom = -32.0
+
+[node name="LifeBar" type="TextureProgressBar" parent="LifeBar"]
+visible = false
+layout_mode = 0
+offset_left = 9.0
+offset_right = 71.0
+offset_bottom = 5.0
+max_value = 60.0
+value = 60.0
+texture_under = ExtResource("13_4o1y6")
+texture_progress = ExtResource("14_hr7jn")
+texture_progress_offset = Vector2(1, 1)
 
 [connection signal="body_entered" from="HitBox" to="HitBox" method="_on_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
