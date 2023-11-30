@@ -18,8 +18,5 @@ position = Vector2(448, -312)
 [node name="Player" parent="Entities" index="0" instance=ExtResource("2_f14uw")]
 position = Vector2(448, 448)
 
-[node name="CanvasModulate" parent="." index="3"]
-color = Color(0.733333, 0.733333, 0.733333, 1)
-
 [node name="UI" parent="." index="5"]
 visible = false

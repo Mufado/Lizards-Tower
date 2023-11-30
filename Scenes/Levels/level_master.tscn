@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://ksskwh6e4ckc" path="res://Assets/Audio/first_steps_in_the_tower.wav" id="3_ad8od"]
 [ext_resource type="PackedScene" uid="uid://c4fngqm5ux3v8" path="res://Scenes/Levels/Props/gate.tscn" id="4_b0h67"]
 [ext_resource type="PackedScene" uid="uid://dr7xijju4bwbs" path="res://Scenes/UI/UI.tscn" id="5_wsowf"]
-[ext_resource type="PackedScene" uid="uid://cr8et2a2k4cd8" path="res://Scenes/UI/OptionsMenu.tscn" id="6_irqii"]
+[ext_resource type="PackedScene" uid="uid://bvrutpkp757ku" path="res://Scenes/UI/OptionsMenu.tscn" id="6_h48ox"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dbo1k"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -232,4 +232,4 @@ autoplay = true
 
 [node name="UI" parent="." instance=ExtResource("5_wsowf")]
 
-[node name="OptionsMenu" parent="." instance=ExtResource("6_irqii")]
+[node name="OptionsMenu" parent="." instance=ExtResource("6_h48ox")]

@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://b11q8poe4htsw"]
+[gd_scene load_steps=6 format=3 uid="uid://b60hrom7en4kc"]
 
 [ext_resource type="Script" path="res://Scenes/UI/CreditsScreen.gd" id="1_ny0r8"]
 [ext_resource type="FontFile" uid="uid://ccvf4a7kt70jt" path="res://Assets/UI/Fonts/PIXEAB__(8).TTF" id="1_pdgpa"]
-[ext_resource type="Theme" uid="uid://qlxfj67v1cjh" path="res://Assets/UI/Default.tres" id="3_3bp6c"]
+[ext_resource type="Theme" uid="uid://b8d4p31l2x3qq" path="res://Assets/UI/Default.tres" id="3_3bp6c"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_gwclq"]
 action = &"ui_cancel"
@@ -119,7 +119,7 @@ grow_vertical = 2
 theme = ExtResource("3_3bp6c")
 theme_override_colors/font_color = Color(1, 0.878431, 0.717647, 1)
 theme_override_font_sizes/font_size = 16
-text = "Luis H. Kruger"
+text = "Luís H. Krüger"
 horizontal_alignment = 1
 
 [node name="LabelArts" type="Label" parent="Panel"]
@@ -195,7 +195,7 @@ grow_vertical = 2
 theme = ExtResource("3_3bp6c")
 theme_override_colors/font_color = Color(1, 0.878431, 0.717647, 1)
 theme_override_font_sizes/font_size = 16
-text = "Luis H. Kruger"
+text = "Luís H. Krüger"
 horizontal_alignment = 1
 
 [node name="Close" type="Button" parent="Panel"]

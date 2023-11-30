@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cr8et2a2k4cd8"]
+[gd_scene load_steps=6 format=3 uid="uid://bvrutpkp757ku"]
 
 [ext_resource type="Script" path="res://Scenes/UI/OptionsMenu.gd" id="1_d80ma"]
-[ext_resource type="Theme" uid="uid://qlxfj67v1cjh" path="res://Assets/UI/Default.tres" id="2_hbnts"]
+[ext_resource type="Theme" uid="uid://b8d4p31l2x3qq" path="res://Assets/UI/Default.tres" id="2_hbnts"]
 [ext_resource type="FontFile" uid="uid://ccvf4a7kt70jt" path="res://Assets/UI/Fonts/PIXEAB__(8).TTF" id="3_5teh1"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_4yfdf"]

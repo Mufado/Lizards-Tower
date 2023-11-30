@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://dmsbpucvr4qyu"]
+[gd_scene load_steps=13 format=3 uid="uid://dmsbpucvr4qyu"]
 
 [ext_resource type="PackedScene" uid="uid://cpbg1kwjn2eog" path="res://Scenes/Levels/level_master.tscn" id="1_n4pdp"]
 [ext_resource type="PackedScene" uid="uid://m71vs3wxi7cr" path="res://Scenes/Levels/Props/torch.tscn" id="2_ahmt1"]
 [ext_resource type="PackedScene" uid="uid://c8ilpte26p04s" path="res://Scenes/Entities/Player/player.tscn" id="2_gsjd7"]
 [ext_resource type="PackedScene" uid="uid://b1afffk113l20" path="res://Scenes/Levels/Props/barrel/barrel.tscn" id="3_bonjj"]
+[ext_resource type="Texture2D" uid="uid://tb3mkx20wovx" path="res://Assets/Props/Gate.png" id="4_uxdf4"]
 [ext_resource type="Texture2D" uid="uid://c5doihluckauv" path="res://Assets/Props/Window.png" id="4_x4vui"]
 [ext_resource type="PackedScene" uid="uid://dnkxqctusmhgt" path="res://Scenes/Levels/Props/box.tscn" id="5_36ylv"]
 [ext_resource type="PackedScene" uid="uid://r8oatxtwet8s" path="res://Scenes/Levels/Props/skull.tscn" id="6_2hisl"]
@@ -141,30 +142,31 @@ z_index = 5
 position = Vector2(718, 556)
 texture = ExtResource("4_x4vui")
 
-[node name="Window7" type="Sprite2D" parent="Props/Structures" index="6"]
-z_index = 5
-position = Vector2(584, 639)
-texture = ExtResource("4_x4vui")
-
-[node name="Window8" type="Sprite2D" parent="Props/Structures" index="7"]
+[node name="Window8" type="Sprite2D" parent="Props/Structures" index="6"]
 z_index = 5
 position = Vector2(843, 478)
 texture = ExtResource("4_x4vui")
 
-[node name="Window9" type="Sprite2D" parent="Props/Structures" index="8"]
+[node name="Window9" type="Sprite2D" parent="Props/Structures" index="7"]
 z_index = 5
 position = Vector2(307, 476)
 texture = ExtResource("4_x4vui")
 
-[node name="Window10" type="Sprite2D" parent="Props/Structures" index="9"]
+[node name="Window10" type="Sprite2D" parent="Props/Structures" index="8"]
 z_index = 5
 position = Vector2(187, 395)
 texture = ExtResource("4_x4vui")
 
-[node name="Window11" type="Sprite2D" parent="Props/Structures" index="10"]
+[node name="Window11" type="Sprite2D" parent="Props/Structures" index="9"]
 z_index = 5
 position = Vector2(972, 395)
 texture = ExtResource("4_x4vui")
+
+[node name="Gate2" type="Sprite2D" parent="Props/Structures" index="10"]
+z_index = 2
+y_sort_enabled = true
+position = Vector2(584, 632)
+texture = ExtResource("4_uxdf4")
 
 [node name="Gate" parent="Props/Structures" index="11"]
 position = Vector2(576, -408)

@@ -39,7 +39,7 @@ func _show_options(type):
 
 	
 func _unhandled_input(event):
-	if event.is_action_pressed("ui_cancel"):
+	if event.is_action_pressed("pause"):
 		_show_options(OptionsMenuTypes.PAUSE)
 
 
