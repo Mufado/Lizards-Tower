@@ -9,8 +9,9 @@
 [ext_resource type="PackedScene" uid="uid://r8oatxtwet8s" path="res://Scenes/Levels/Props/skull.tscn" id="6_2hisl"]
 [ext_resource type="PackedScene" uid="uid://ds8qordwm2ijl" path="res://Scenes/Entities/Lizard/lizard.tscn" id="8_56v0r"]
 
-[node name="Level1" instance=ExtResource("1_n4pdp")]
+[node name="Level1" node_paths=PackedStringArray("_Enemys") instance=ExtResource("1_n4pdp")]
 y_sort_enabled = true
+_Enemys = [NodePath("Entities/Lizard"), NodePath("Entities/Lizard2"), NodePath("Entities/Lizard3"), NodePath("Entities/Lizard4")]
 metadata/_edit_vertical_guides_ = []
 metadata/_edit_horizontal_guides_ = []
 

@@ -1,8 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://7ulsuav87te5"]
+[gd_scene load_steps=13 format=3 uid="uid://7ulsuav87te5"]
 
 [ext_resource type="Script" path="res://TitleScreen.gd" id="1_w00j5"]
-[ext_resource type="Texture2D" uid="uid://xjrop7so4g4t" path="res://Assets/UI/Menu.png" id="2_84uj1"]
 [ext_resource type="AudioStream" uid="uid://yost36aolync" path="res://Assets/Audio/tower_seashore.wav" id="3_avwvi"]
+[ext_resource type="Theme" uid="uid://qlxfj67v1cjh" path="res://Assets/UI/Default.tres" id="3_ixwce"]
+[ext_resource type="PackedScene" uid="uid://b11q8poe4htsw" path="res://Scenes/UI/CreditsScreen.tscn" id="4_n52p0"]
+[ext_resource type="Texture2D" uid="uid://b7u46qapq8hx7" path="res://Assets/UI/Menu2-Sheet.png" id="6_s1pdt"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_1n2jx"]
 device = -1
@@ -18,6 +20,44 @@ keycode = 4194305
 
 [sub_resource type="Shortcut" id="Shortcut_3jw8t"]
 events = [SubResource("InputEventKey_pdebm")]
+
+[sub_resource type="Animation" id="Animation_y6vi3"]
+resource_name = "AninTitleScreen"
+length = 0.9
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(0, 0), Vector2i(1, 0), Vector2i(2, 0), Vector2i(3, 0), Vector2i(4, 0), Vector2i(5, 0), Vector2i(6, 0), Vector2i(7, 0), Vector2i(8, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_tkph5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect/Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8r3r0"]
+_data = {
+"AninTitleScreen": SubResource("Animation_y6vi3"),
+"RESET": SubResource("Animation_tkph5")
+}
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -48,61 +88,80 @@ offset_right = -576.0
 offset_bottom = -324.0
 grow_horizontal = 2
 scale = Vector2(2, 2)
-texture = ExtResource("2_84uj1")
 expand_mode = 1
 
-[node name="Start" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.685
-anchor_right = 0.5
-anchor_bottom = 0.685
-offset_left = -42.0
-offset_top = -31.88
-offset_right = 58.0
-offset_bottom = 0.119995
-grow_horizontal = 2
-grow_vertical = 2
-shortcut = SubResource("Shortcut_s6rvr")
-text = "Start"
-
-[node name="Credits" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.685
-anchor_right = 0.5
-anchor_bottom = 0.685
-offset_left = -42.0
-offset_top = 12.12
-offset_right = 58.0
-offset_bottom = 44.12
-grow_horizontal = 2
-grow_vertical = 2
-shortcut = SubResource("Shortcut_s6rvr")
-text = "Credits"
-
-[node name="Exit" type="Button" parent="."]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.773
-anchor_right = 0.5
-anchor_bottom = 0.779
-offset_left = -42.0
-offset_top = -2.90399
-offset_right = 58.0
-offset_bottom = 25.208
-grow_horizontal = 2
-grow_vertical = 0
-shortcut = SubResource("Shortcut_3jw8t")
-text = "Exit"
+[node name="Sprite2D" type="Sprite2D" parent="TextureRect"]
+position = Vector2(288, 162)
+texture = ExtResource("6_s1pdt")
+hframes = 9
+frame = 1
 
 [node name="TitleSong" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_avwvi")
 volume_db = -12.0
 
-[connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Credits" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -121.5
+offset_top = -4.0
+offset_right = 121.5
+offset_bottom = 240.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("3_ixwce")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -55.0
+offset_top = -49.0
+offset_right = 55.0
+offset_bottom = 49.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+custom_minimum_size = Vector2(120, 0)
+layout_mode = 2
+
+[node name="Play" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_ixwce")
+action_mode = 0
+shortcut = SubResource("Shortcut_s6rvr")
+text = "Play"
+
+[node name="Credits" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_ixwce")
+shortcut = SubResource("Shortcut_s6rvr")
+text = "Credits"
+
+[node name="Quit" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("3_ixwce")
+shortcut = SubResource("Shortcut_3jw8t")
+text = "Quit"
+
+[node name="CreditsScreen" parent="." instance=ExtResource("4_n52p0")]
+visible = false
+layout_mode = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+speed_scale = 0.5
+libraries = {
+"": SubResource("AnimationLibrary_8r3r0")
+}
+
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Play" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Credits" to="." method="_on_credit_pressed"]
+[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Quit" to="." method="_on_exit_pressed"]
