@@ -10,7 +10,7 @@ const RAYCAST_UPDATE_QUANTITY = int(VIEW_ANGLE / ANGLE_BETWEEN_RAYS) + 1
 var direction: Vector2 = Vector2.ZERO
 var is_in_range_to_attack: bool = false
 var is_chasing: bool = false
-var health: int = 50
+var health: int = 60
 var is_invincible: bool = false
 
 @export var _nav_agent_target: Node2D
@@ -22,29 +22,26 @@ var is_invincible: bool = false
 @onready var _state_machine: AnimationNodeStateMachinePlayback = _anim_tree.get("parameters/playback")
 @onready var _player_hurt_box = _nav_agent_target.get_node("CollisionShape2D")
 @onready var hit_flash = $HitFlash
-
+@onready var life_bar = $LifeBar/LifeBar
+@onready var invincible_cd = $InvincibleCD
+@onready var invincible_cd_time: float = 0.8
 
 func take_damage(damage: int):
 	is_invincible = true
+	invincible_cd.start(invincible_cd_time)
 	_blink()
-	print("being hit")
-	if health > 0:
-		health -= damage
-	else:
-		_die()
-
-
-func _die():
-	queue_free()
-
+	if life_bar.value <= 0:
+		queue_free()
+	health -= damage
+	print(health)
 
 func _physics_process(_delta):
+	_update_life_bar()
 	if is_chasing:
 		_update_pathfind()
 		_manage_attack()
 	else:
 		_sweep_raycast()
-
 	move_and_slide()
 
 
@@ -107,7 +104,6 @@ func _sweep_raycast():
 func _blink():
 	hit_flash.play("flash")
 	
-
 func _attack(attack_direction: Vector2):
 	_state_machine.travel("Attack")
 	_anim_tree.set("parameters/Attack/blend_position", attack_direction)
@@ -131,3 +127,10 @@ func _on_attack_range_body_exited(_body):
 
 func _on_invincible_cd_timeout():
 	is_invincible = false
+
+func _update_life_bar():
+	life_bar.value = health
+	if health == life_bar.max_value:
+		life_bar.visible = false
+	else:
+		life_bar.visible = true

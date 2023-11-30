@@ -1,7 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://b1afffk113l20"]
+[gd_scene load_steps=12 format=3 uid="uid://b1afffk113l20"]
 
 [ext_resource type="PackedScene" uid="uid://bn6ccy7ygyhnq" path="res://Scenes/Levels/Props/object_container.tscn" id="1_7yj2j"]
 [ext_resource type="Texture2D" uid="uid://cmnqj7uhihwyi" path="res://Assets/Props/Barrel.png" id="2_how31"]
+[ext_resource type="Script" path="res://Scenes/Levels/Props/barrel/Scripts/HurtBox.gd" id="3_1mvun"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ij66i"]
 height = 22.0
@@ -127,7 +128,6 @@ height = 36.0
 z_index = 0
 
 [node name="Sprite2D" parent="." index="0"]
-modulate = Color(1, 1, 1, 0)
 position = Vector2(0, -20)
 texture = ExtResource("2_how31")
 
@@ -153,6 +153,7 @@ libraries = {
 [node name="HurtBox" parent="." index="4"]
 collision_layer = 128
 collision_mask = 64
+script = ExtResource("3_1mvun")
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(-1, -20)
