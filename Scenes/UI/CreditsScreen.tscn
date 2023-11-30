@@ -100,7 +100,7 @@ grow_vertical = 2
 theme = ExtResource("3_3bp6c")
 theme_override_colors/font_color = Color(1, 0.878431, 0.717647, 1)
 theme_override_font_sizes/font_size = 16
-text = "Gustavo Girão"
+text = "Mufado"
 horizontal_alignment = 1
 
 [node name="LabelLuisDev" type="Label" parent="Panel"]
