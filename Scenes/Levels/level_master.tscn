@@ -222,7 +222,7 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.733333, 0.733333, 0.733333, 1)
+color = Color(0.501961, 0.501961, 0.501961, 1)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ad8od")
