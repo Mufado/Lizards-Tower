@@ -1208,11 +1208,11 @@ parameters/Attack/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = null
 parameters/Move/blend_position = Vector2(-0.00173914, 0.332558)
 
-[node name="AttackDelay" type="Timer" parent="."]
-wait_time = 0.64
+[node name="InvincibleCoolDown" type="Timer" parent="."]
 one_shot = true
 
-[node name="InvincibleCoolDown" type="Timer" parent="."]
+[node name="AttackDelay" type="Timer" parent="."]
+wait_time = 0.64
 one_shot = true
 
 [node name="HitBox" type="Area2D" parent="."]
@@ -1239,5 +1239,5 @@ debug_color = Color(0.811765, 0.4, 0.258824, 0.419608)
 [node name="Sword" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_44bo7")
 
-[connection signal="timeout" from="AttackDelay" to="." method="_on_attack_delay_timeout"]
 [connection signal="timeout" from="InvincibleCoolDown" to="." method="_on_invincible_cool_down_timeout"]
+[connection signal="timeout" from="AttackDelay" to="." method="_on_attack_delay_timeout"]
