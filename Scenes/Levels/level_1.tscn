@@ -393,8 +393,5 @@ _nav_agent_target = NodePath("../Player")
 [node name="AnimatedSprite2D" parent="Entities/Lizard" index="0"]
 material = SubResource("ShaderMaterial_alhmc")
 
-[node name="UI" parent="." index="5"]
-visible = false
-
 [editable path="Entities/Player"]
 [editable path="Entities/Lizard"]
