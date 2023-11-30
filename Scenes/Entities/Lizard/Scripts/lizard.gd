@@ -27,13 +27,16 @@ var is_invincible: bool = false
 @onready var invincible_cd_time: float = 0.8
 
 func take_damage(damage: int):
+	health -= damage
+	
+	if health <= 0:
+		queue_free()
+		return
+
 	is_invincible = true
 	invincible_cd.start(invincible_cd_time)
 	_blink()
-	if life_bar.value <= 0:
-		queue_free()
-	health -= damage
-	print(health)
+
 
 func _physics_process(_delta):
 	_update_life_bar()
