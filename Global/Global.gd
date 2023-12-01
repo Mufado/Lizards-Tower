@@ -6,7 +6,7 @@ enum PlataformToExport
 	HTML
 }
 
-var PlataformToExportSelected = PlataformToExport.HTML
+var PlataformToExportSelected = PlataformToExport.WINDOWS
 var is_start_game = true
 
 # Player Stats
