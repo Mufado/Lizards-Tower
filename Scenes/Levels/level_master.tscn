@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cpbg1kwjn2eog"]
+[gd_scene load_steps=17 format=3 uid="uid://cpbg1kwjn2eog"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/level_master.gd" id="1_1ikkc"]
 [ext_resource type="Texture2D" uid="uid://bsjnhcqdvtg56" path="res://Assets/Tilemaps/tilemap_level_tower.png" id="1_yetwe"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://c4fngqm5ux3v8" path="res://Scenes/Levels/Props/gate.tscn" id="4_b0h67"]
 [ext_resource type="PackedScene" uid="uid://dr7xijju4bwbs" path="res://Scenes/UI/UI.tscn" id="5_wsowf"]
 [ext_resource type="PackedScene" uid="uid://bvrutpkp757ku" path="res://Scenes/UI/OptionsMenu.tscn" id="6_irqii"]
+[ext_resource type="PackedScene" uid="uid://bpvjismwg7w5h" path="res://Scenes/UI/FullScreen.tscn" id="7_gfr1m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dbo1k"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -263,3 +264,5 @@ autoplay = true
 [node name="UI" parent="." instance=ExtResource("5_wsowf")]
 
 [node name="OptionsMenu" parent="." instance=ExtResource("6_irqii")]
+
+[node name="CanvasLayer" parent="." instance=ExtResource("7_gfr1m")]

@@ -1,25 +1,11 @@
-[gd_scene load_steps=13 format=3 uid="uid://7ulsuav87te5"]
+[gd_scene load_steps=14 format=3 uid="uid://7ulsuav87te5"]
 
 [ext_resource type="Script" path="res://TitleScreen.gd" id="1_w00j5"]
 [ext_resource type="AudioStream" uid="uid://yost36aolync" path="res://Assets/Audio/tower_seashore.wav" id="3_avwvi"]
 [ext_resource type="Theme" uid="uid://b8d4p31l2x3qq" path="res://Assets/UI/Default.tres" id="3_ixwce"]
 [ext_resource type="PackedScene" uid="uid://b60hrom7en4kc" path="res://Scenes/UI/CreditsScreen.tscn" id="4_n52p0"]
 [ext_resource type="Texture2D" uid="uid://b7u46qapq8hx7" path="res://Assets/UI/Menu2-Sheet.png" id="6_s1pdt"]
-
-[sub_resource type="InputEventKey" id="InputEventKey_1n2jx"]
-device = -1
-keycode = 32
-unicode = 32
-
-[sub_resource type="Shortcut" id="Shortcut_s6rvr"]
-events = [SubResource("InputEventKey_1n2jx")]
-
-[sub_resource type="InputEventKey" id="InputEventKey_pdebm"]
-device = -1
-keycode = 4194305
-
-[sub_resource type="Shortcut" id="Shortcut_3jw8t"]
-events = [SubResource("InputEventKey_pdebm")]
+[ext_resource type="PackedScene" uid="uid://bpvjismwg7w5h" path="res://Scenes/UI/FullScreen.tscn" id="6_vtsj4"]
 
 [sub_resource type="Animation" id="Animation_y6vi3"]
 resource_name = "AninTitleScreen"
@@ -58,6 +44,21 @@ _data = {
 "AninTitleScreen": SubResource("Animation_y6vi3"),
 "RESET": SubResource("Animation_tkph5")
 }
+
+[sub_resource type="InputEventKey" id="InputEventKey_1n2jx"]
+device = -1
+keycode = 32
+unicode = 32
+
+[sub_resource type="Shortcut" id="Shortcut_s6rvr"]
+events = [SubResource("InputEventKey_1n2jx")]
+
+[sub_resource type="InputEventKey" id="InputEventKey_pdebm"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="Shortcut" id="Shortcut_3jw8t"]
+events = [SubResource("InputEventKey_pdebm")]
 
 [node name="TitleScreen" type="Control"]
 layout_mode = 3
@@ -100,8 +101,15 @@ frame = 1
 stream = ExtResource("3_avwvi")
 volume_db = -12.0
 
-[node name="Panel" type="Panel" parent="."]
-layout_mode = 1
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+speed_scale = 0.5
+libraries = {
+"": SubResource("AnimationLibrary_8r3r0")
+}
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="UI"]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -115,7 +123,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("3_ixwce")
 
-[node name="MarginContainer" type="MarginContainer" parent="Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="UI/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -129,39 +137,35 @@ offset_bottom = 49.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="UI/Panel/MarginContainer"]
 custom_minimum_size = Vector2(120, 0)
 layout_mode = 2
 
-[node name="Play" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Play" type="Button" parent="UI/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_ixwce")
 action_mode = 0
 shortcut = SubResource("Shortcut_s6rvr")
 text = "Play"
 
-[node name="Credits" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Credits" type="Button" parent="UI/Panel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme = ExtResource("3_ixwce")
 shortcut = SubResource("Shortcut_s6rvr")
 text = "Credits"
 
-[node name="Quit" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+[node name="Quit" type="Button" parent="UI/Panel/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("3_ixwce")
 shortcut = SubResource("Shortcut_3jw8t")
 text = "Quit"
 
-[node name="CreditsScreen" parent="." instance=ExtResource("4_n52p0")]
+[node name="CreditsScreen" parent="UI" instance=ExtResource("4_n52p0")]
 visible = false
-layout_mode = 1
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-speed_scale = 0.5
-libraries = {
-"": SubResource("AnimationLibrary_8r3r0")
-}
+[node name="CanvasLayer" parent="." instance=ExtResource("6_vtsj4")]
 
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Play" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Credits" to="." method="_on_credit_pressed"]
-[connection signal="pressed" from="Panel/MarginContainer/VBoxContainer/Quit" to="." method="_on_exit_pressed"]
+[connection signal="pressed" from="UI/Panel/MarginContainer/VBoxContainer/Play" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="UI/Panel/MarginContainer/VBoxContainer/Credits" to="." method="_on_credit_pressed"]
+[connection signal="pressed" from="UI/Panel/MarginContainer/VBoxContainer/Quit" to="." method="_on_exit_pressed"]

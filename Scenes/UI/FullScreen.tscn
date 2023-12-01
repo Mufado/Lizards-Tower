@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bpvjismwg7w5h"]
+
+[ext_resource type="Script" path="res://Screen.gd" id="1_vmxh8"]
+[ext_resource type="Texture2D" uid="uid://dp6jmlnrinull" path="res://Assets/UI/Button_fullsreen.png" id="2_mvkmu"]
+[ext_resource type="Texture2D" uid="uid://dek164jedo750" path="res://Assets/UI/Button_windowed.png" id="3_bdjs3"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qal0q"]
+texture = ExtResource("2_mvkmu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_nr0xe"]
+texture = ExtResource("2_mvkmu")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_7w70w"]
+texture = ExtResource("3_bdjs3")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_k16j7"]
+
+[node name="CanvasLayer" type="CanvasLayer"]
+process_mode = 3
+script = ExtResource("1_vmxh8")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1077.0
+offset_top = -1.0
+offset_right = 5.0
+offset_bottom = -585.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="FullScreen" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -44.0
+offset_top = 5.0
+offset_right = -9.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_styles/normal = SubResource("StyleBoxTexture_qal0q")
+theme_override_styles/hover = SubResource("StyleBoxTexture_nr0xe")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_7w70w")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_k16j7")
+toggle_mode = true
+
+[connection signal="pressed" from="Control/FullScreen" to="." method="_on_full_screen_pressed"]

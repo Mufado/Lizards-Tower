@@ -97,6 +97,7 @@ text = "Main Menu
 "
 
 [node name="Quit" type="Button" parent="Panel/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 theme = ExtResource("2_gt67f")
 text = "Quit"
