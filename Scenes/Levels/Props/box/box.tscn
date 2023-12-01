@@ -1,0 +1,143 @@
+[gd_scene load_steps=14 format=3 uid="uid://dnkxqctusmhgt"]
+
+[ext_resource type="PackedScene" uid="uid://bn6ccy7ygyhnq" path="res://Scenes/Levels/Props/object_container.tscn" id="1_85fba"]
+[ext_resource type="Texture2D" uid="uid://dahr5i0ibw8mb" path="res://Assets/Props/Box.png" id="2_sx4ui"]
+[ext_resource type="Script" path="res://Scenes/Levels/Props/box/Scripts/HurtBox.gd" id="3_iobc2"]
+[ext_resource type="AudioStream" uid="uid://lwir2sssnrmm" path="res://Assets/Audio/wood_sound.wav" id="3_xbyud"]
+[ext_resource type="AudioStream" uid="uid://rqvviefc240b" path="res://Assets/Audio/explosion.wav" id="4_up5bm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i7lp0"]
+size = Vector2(22, 20)
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_lc4fp"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 5
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_i6fai"]
+emission_shape = 1
+emission_sphere_radius = 0.02
+particle_flag_disable_z = true
+direction = Vector3(1, 0.001, 0)
+spread = 180.0
+gravity = Vector3(0, 150, 0)
+initial_velocity_min = 120.0
+initial_velocity_max = 150.0
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+scale_min = 0.2
+turbulence_enabled = true
+anim_offset_max = 1.0
+
+[sub_resource type="Animation" id="Animation_xe7wr"]
+resource_name = "Explosion"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("GPUParticles2D:emitting")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_oesji"]
+resource_name = "Hit"
+length = 0.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.174533, 0.0, -0.174533, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_3tlgp"]
+length = 0.001
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cdio2"]
+_data = {
+"Explosion": SubResource("Animation_xe7wr"),
+"Hit": SubResource("Animation_oesji"),
+"RESET": SubResource("Animation_3tlgp")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g2il2"]
+size = Vector2(23, 42)
+
+[node name="Box" instance=ExtResource("1_85fba")]
+z_index = 0
+
+[node name="Sprite2D" parent="." index="0"]
+position = Vector2(0, -16.1139)
+scale = Vector2(1, 0.995255)
+texture = ExtResource("2_sx4ui")
+
+[node name="CollisionShape2D" parent="." index="1"]
+y_sort_enabled = true
+position = Vector2(0, -6.11389)
+shape = SubResource("RectangleShape2D_i7lp0")
+
+[node name="GPUParticles2D" parent="." index="2"]
+material = SubResource("CanvasItemMaterial_lc4fp")
+position = Vector2(0, -16)
+emitting = false
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_i6fai")
+texture = ExtResource("2_sx4ui")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_cdio2")
+}
+
+[node name="HurtBox" parent="." index="4"]
+collision_layer = 128
+collision_mask = 64
+script = ExtResource("3_iobc2")
+
+[node name="CollisionShape2D" parent="HurtBox" index="0"]
+position = Vector2(-0.5, -16)
+shape = SubResource("RectangleShape2D_g2il2")
+
+[node name="HitSound" parent="." index="5"]
+stream = ExtResource("3_xbyud")
+
+[node name="DestructionSound" parent="." index="6"]
+stream = ExtResource("4_up5bm")

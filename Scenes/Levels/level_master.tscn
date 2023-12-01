@@ -1,16 +1,46 @@
-[gd_scene load_steps=10 format=3 uid="uid://cpbg1kwjn2eog"]
+[gd_scene load_steps=16 format=3 uid="uid://cpbg1kwjn2eog"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/level_master.gd" id="1_1ikkc"]
 [ext_resource type="Texture2D" uid="uid://bsjnhcqdvtg56" path="res://Assets/Tilemaps/tilemap_level_tower.png" id="1_yetwe"]
 [ext_resource type="AudioStream" uid="uid://ksskwh6e4ckc" path="res://Assets/Audio/first_steps_in_the_tower.wav" id="3_ad8od"]
 [ext_resource type="PackedScene" uid="uid://c4fngqm5ux3v8" path="res://Scenes/Levels/Props/gate.tscn" id="4_b0h67"]
 [ext_resource type="PackedScene" uid="uid://dr7xijju4bwbs" path="res://Scenes/UI/UI.tscn" id="5_wsowf"]
-[ext_resource type="PackedScene" path="res://Scenes/UI/OptionsMenu.tscn" id="6_irqii"]
+[ext_resource type="PackedScene" uid="uid://bvrutpkp757ku" path="res://Scenes/UI/OptionsMenu.tscn" id="6_irqii"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_dbo1k"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
 outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_8qich"]
+vertices = PackedVector2Array(-8, -6.5, 6.6875, -6.625, 6.6875, 8, -8, 8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -6.5, 6.6875, -6.625, 6.6875, 8, -8, 8)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_2c6s7"]
+vertices = PackedVector2Array(-8, -8, 6.8125, -8, 6.6875, 8, -8, 8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 6.8125, -8, 6.6875, 8, -8, 8)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_cym6d"]
+vertices = PackedVector2Array(-8, -8, 6.8125, -8, 6.8125, 6.75, -8, 6.75)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-8, -8, 6.8125, -8, 6.8125, 6.75, -8, 6.75)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_6g35x"]
+vertices = PackedVector2Array(8, 8, -6.9375, 8, -6.9375, -6.875, 8, -6.875)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(8, 8, -6.9375, 8, -6.9375, -6.875, 8, -6.875)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_yy671"]
+vertices = PackedVector2Array(8, 8, -6.9375, 8, -6.9375, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(8, 8, -6.9375, 8, -6.9375, -8, 8, -8)])
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_hsysk"]
+vertices = PackedVector2Array(8, 6.875, -6.9375, 6.875, -6.9375, -8, 8, -8)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(8, -8, -6.9375, -8, -6.9375, 6.875, 8, 6.875)])
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tude0"]
 texture = ExtResource("1_yetwe")
@@ -38,7 +68,7 @@ texture = ExtResource("1_yetwe")
 4:2/0 = 0
 4:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:2/0/physics_layer_0/angular_velocity = 0.0
-4:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dbo1k")
+4:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_8qich")
 5:2/0 = 0
 5:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:2/0/physics_layer_0/angular_velocity = 0.0
@@ -58,7 +88,7 @@ texture = ExtResource("1_yetwe")
 9:2/0 = 0
 9:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:2/0/physics_layer_0/angular_velocity = 0.0
-9:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dbo1k")
+9:2/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_6g35x")
 12:2/0 = 0
 12:2/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 12:2/0/physics_layer_0/angular_velocity = 0.0
@@ -86,7 +116,7 @@ texture = ExtResource("1_yetwe")
 4:3/0 = 0
 4:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:3/0/physics_layer_0/angular_velocity = 0.0
-4:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dbo1k")
+4:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_2c6s7")
 5:3/0 = 0
 5:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 5:3/0/physics_layer_0/angular_velocity = 0.0
@@ -106,7 +136,7 @@ texture = ExtResource("1_yetwe")
 9:3/0 = 0
 9:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:3/0/physics_layer_0/angular_velocity = 0.0
-9:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dbo1k")
+9:3/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_yy671")
 10:3/0 = 0
 10:3/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 10:3/0/physics_layer_0/angular_velocity = 0.0
@@ -138,11 +168,11 @@ texture = ExtResource("1_yetwe")
 4:4/0 = 0
 4:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 4:4/0/physics_layer_0/angular_velocity = 0.0
-4:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dbo1k")
+4:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_cym6d")
 9:4/0 = 0
 9:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 9:4/0/physics_layer_0/angular_velocity = 0.0
-9:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_dbo1k")
+9:4/0/navigation_layer_0/polygon = SubResource("NavigationPolygon_hsysk")
 12:4/0 = 0
 12:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 12:4/0/physics_layer_0/angular_velocity = 0.0
@@ -223,7 +253,7 @@ y_sort_enabled = true
 y_sort_enabled = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.733333, 0.733333, 0.733333, 1)
+color = Color(0.501961, 0.501961, 0.501961, 1)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ad8od")

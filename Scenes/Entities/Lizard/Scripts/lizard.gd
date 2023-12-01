@@ -39,7 +39,6 @@ func take_damage(damage: int):
 	invincible_cd.start(invincible_cd_time)
 	_blink()
 
-
 func _physics_process(_delta):
 	_update_life_bar()
 	if is_chasing:

@@ -1,8 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://b1afffk113l20"]
+[gd_scene load_steps=14 format=3 uid="uid://b1afffk113l20"]
 
 [ext_resource type="PackedScene" uid="uid://bn6ccy7ygyhnq" path="res://Scenes/Levels/Props/object_container.tscn" id="1_7yj2j"]
 [ext_resource type="Texture2D" uid="uid://cmnqj7uhihwyi" path="res://Assets/Props/Barrel.png" id="2_how31"]
 [ext_resource type="Script" path="res://Scenes/Levels/Props/barrel/Scripts/HurtBox.gd" id="3_1mvun"]
+[ext_resource type="AudioStream" uid="uid://lwir2sssnrmm" path="res://Assets/Audio/wood_sound.wav" id="4_7q4ay"]
+[ext_resource type="AudioStream" uid="uid://rqvviefc240b" path="res://Assets/Audio/explosion.wav" id="5_j7fiw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ij66i"]
 height = 22.0
@@ -65,7 +67,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [200]
+"values": [100]
 }
 tracks/3/type = "method"
 tracks/3/imported = false
@@ -96,18 +98,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [0.0, 0.174533, 0.0, -0.174533, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("GPUParticles2D:emitting")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.3),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [false, true, false]
 }
 
 [sub_resource type="Animation" id="Animation_wyu8g"]
@@ -141,7 +131,7 @@ shape = SubResource("CapsuleShape2D_ij66i")
 material = SubResource("CanvasItemMaterial_a52q1")
 position = Vector2(0, -17)
 emitting = false
-amount = 200
+amount = 100
 process_material = SubResource("ParticleProcessMaterial_7tren")
 texture = ExtResource("2_how31")
 
@@ -158,3 +148,10 @@ script = ExtResource("3_1mvun")
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
 position = Vector2(-1, -20)
 shape = SubResource("CapsuleShape2D_jth0h")
+
+[node name="HitSound" parent="." index="5"]
+stream = ExtResource("4_7q4ay")
+
+[node name="DestructionSound" parent="." index="6"]
+stream = ExtResource("5_j7fiw")
+volume_db = -5.0
