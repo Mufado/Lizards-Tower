@@ -5,6 +5,9 @@ extends CanvasLayer
 
 
 func _ready():		
+	if Global.PlataformToExportSelected == Global.PlataformToExport.HTML:
+		full_screen.visible = false
+		
 	if Global.PlataformToExportSelected == Global.PlataformToExport.WINDOWS && Global.is_start_game==true:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
 		Global.is_start_game=false
