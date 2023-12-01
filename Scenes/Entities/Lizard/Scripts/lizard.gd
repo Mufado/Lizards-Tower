@@ -27,11 +27,16 @@ var is_invincible: bool = false
 @onready var invincible_cd_time: float = 0.8
 @onready var hurt_sound = $HurtSound
 
+func _ready():
+	_anim_tree.active = true
+	_state_machine.travel("Idle")
+	_anim_tree.set("parameters/Idle/blend_position", direction)
 
 func take_damage(damage: int):
 	health -= damage
 	hurt_sound.play()
 	if health <= 0:
+		Global.player_health += 15
 		queue_free()
 		return
 
@@ -51,7 +56,7 @@ func _physics_process(_delta):
 
 func _update_pathfind():
 	if _is_viewing_player():
-		_nav_agent.set_target_position(_nav_agent_target.get_node("Target").global_position)
+		_nav_agent.set_target_position(_nav_agent_target.get_node("CollisionShape2D").global_position)
 		direction = (_nav_agent.get_next_path_position() - global_position).normalized()
 	else:
 		velocity = Vector2.ZERO
@@ -69,18 +74,23 @@ func _is_viewing_player():
 
 func _manage_attack():
 	if is_in_range_to_attack:
+		is_chasing = false
+		velocity = direction * 0
 		var attack_direction = _get_attack_direction();
-
-		if abs(attack_direction.x) <= 3.0 || abs(attack_direction.y) <= 4.0:
-			_attack(attack_direction)
-		elif _state_machine.get_current_node() == "Attack":
-			direction = Vector2(attack_direction.x, 0.0) if abs(attack_direction.x) < abs(attack_direction.y) else Vector2(0.0, attack_direction.y)
-			_repositionate()
-
-	elif _state_machine.get_current_node() == "Attack":
-		_state_machine.travel("ChasePlayer")
+		_attack(attack_direction)
+		
+#		if abs(attack_direction.x) <= 3.0 || abs(attack_direction.y) <= 4.0:
+#			_attack(attack_direction)
+#		elif _state_machine.get_current_node() == "Attack":
+#			direction = Vector2(attack_direction.x, 0.0) if abs(attack_direction.x) < abs(attack_direction.y) else Vector2(0.0, attack_direction.y)
+#			_repositionate()
+#
+#	elif _state_machine.get_current_node() == "Attack":
+#		_state_machine.travel("ChasePlayer")
 
 	else:
+		_sweep_raycast()
+		_repositionate()
 		_anim_tree.set("parameters/ChasePlayer/blend_position", direction)
 		velocity = direction * SPEED
 
@@ -89,7 +99,7 @@ func _sweep_raycast():
 	for index in RAYCAST_UPDATE_QUANTITY:
 		var cast_vector := (
 			VIEW_DISTANCE *
-			Vector2.DOWN.rotated (
+			Vector2.UP.rotated (
 				ANGLE_BETWEEN_RAYS *
 				(index - RAYCAST_UPDATE_QUANTITY / 2.0)
 			)
@@ -102,7 +112,6 @@ func _sweep_raycast():
 			_anim_tree.set("parameters/ChasePlayer/blend_position", direction)
 			_state_machine.travel("ChasePlayer")
 			is_chasing = true
-			break
 
 
 func _blink():

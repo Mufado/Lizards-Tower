@@ -1285,6 +1285,7 @@ max_space = Vector2(1, 1.1)
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0tbe1"]
 switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k3t8f"]
 
@@ -1305,9 +1306,8 @@ states/Start/position = Vector2(165, 100)
 transitions = ["ChasePlayer", "Idle", SubResource("AnimationNodeStateMachineTransition_i3fh8"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_0tbe1"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_k3t8f"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2lu6d"), "Idle", "ChasePlayer", SubResource("AnimationNodeStateMachineTransition_5nx4s")]
 graph_offset = Vector2(-164, -57.5236)
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ervg8"]
-radius = 27.4015
-height = 56.1321
+[sub_resource type="CircleShape2D" id="CircleShape2D_8gqmu"]
+radius = 24.1956
 
 [node name="Lizard" type="CharacterBody2D"]
 position = Vector2(0, -19.0703)
@@ -1368,24 +1368,20 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_cmtsf")
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/Attack/blend_position = Vector2(-0.0017361, 0.0131004)
 parameters/ChasePlayer/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(-0.00153375, 0)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 1.0
+path_desired_distance = 10.0
 path_postprocessing = 1
-avoidance_enabled = true
-debug_enabled = true
 
 [node name="AttackRange" type="Area2D" parent="."]
-visible = false
 collision_layer = 32
 collision_mask = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-shape = SubResource("CapsuleShape2D_ervg8")
+shape = SubResource("CircleShape2D_8gqmu")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 100)
