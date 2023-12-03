@@ -1,17 +1,18 @@
 extends CharacterBody2D
 class_name Lizard
 
-const ANGLE_BETWEEN_RAYS = deg_to_rad(20.0)
-const SPEED = 135.0
-const VIEW_ANGLE = deg_to_rad(120.0)
-const VIEW_DISTANCE = 200.0
-const RAYCAST_UPDATE_QUANTITY = int(VIEW_ANGLE / ANGLE_BETWEEN_RAYS) + 1
-
+var angle_betwenn_rays := deg_to_rad(20.0)
+var view_angle := deg_to_rad(120.0)
+var max_view_distance := 200.0
+var SPEED = 125.0
 var direction: Vector2 = Vector2.ZERO
 var is_in_range_to_attack: bool = false
 var is_chasing: bool = false
+var can_attack: bool = false
 var health: int = 60
 var is_invincible: bool = false
+var does_see_player := target
+var player_in_area: bool
 
 @export var _nav_agent_target: Node2D
 
@@ -20,11 +21,13 @@ var is_invincible: bool = false
 @onready var _anim_tree := $AnimationTree
 @onready var _raycast := $RayCast2D
 @onready var _state_machine: AnimationNodeStateMachinePlayback = _anim_tree.get("parameters/playback")
-@onready var _player_hurt_box = _nav_agent_target.get_node("CollisionShape2D")
+@onready var target: Player = null
 @onready var hit_flash = $HitFlash
 @onready var life_bar = $LifeBar/LifeBar
 @onready var invincible_cd = $InvincibleCD
 @onready var invincible_cd_time: float = 0.8
+@onready var attack_cd = $AttackCD
+@onready var attack_cd_timer: float = 0.5
 @onready var hurt_sound = $HurtSound
 
 
@@ -39,36 +42,45 @@ func take_damage(damage: int):
 	invincible_cd.start(invincible_cd_time)
 	_blink()
 
-func _physics_process(_delta):
+func _physics_process(_delta: float) -> void:
+	if player_in_area:
+		var cast_count := int(view_angle / angle_betwenn_rays) + 1
+		for index in cast_count:
+			var cast_vector := (
+				max_view_distance
+				* Vector2.UP.rotated(angle_betwenn_rays * (index - cast_count / 2.0)
+			))
+			_raycast.set_target_position = cast_vector
+			_raycast.force_raycast_update()
+			if _raycast.is_colliding() and _raycast.get_collider() is Player:
+				target = _raycast.get_collider()
+		var _does_see_player := target != null
+		
 	_update_life_bar()
 	if is_chasing:
 		_update_pathfind()
 		_manage_attack()
-	else:
-		_sweep_raycast()
 	move_and_slide()
 
 
 func _update_pathfind():
+<<<<<<< Updated upstream
 	if _is_viewing_player():
 		_nav_agent.set_target_position(_nav_agent_target.get_node("Target").global_position)
+=======
+	if does_see_player:
+		_nav_agent.set_target_position(_nav_agent_target.get_node("CollisionShape2D").global_position)
+>>>>>>> Stashed changes
 		direction = (_nav_agent.get_next_path_position() - global_position).normalized()
-	else:
-		velocity = Vector2.ZERO
 
-func _is_viewing_player():
-	if _player_hurt_box != null:
-		_raycast.set_target_position(to_local(_player_hurt_box.global_position))
-
-	_raycast.force_raycast_update()
-	
-	if(!_raycast.is_colliding() || !_raycast.get_collider() is Player):
-		return false
-
-	return true
 
 func _manage_attack():
+<<<<<<< Updated upstream
 	if is_in_range_to_attack:
+=======
+	if is_in_range_to_attack and does_see_player:
+		velocity = direction * 0
+>>>>>>> Stashed changes
 		var attack_direction = _get_attack_direction();
 
 		if abs(attack_direction.x) <= 3.0 || abs(attack_direction.y) <= 4.0:
@@ -81,6 +93,7 @@ func _manage_attack():
 		_state_machine.travel("ChasePlayer")
 
 	else:
+<<<<<<< Updated upstream
 		_anim_tree.set("parameters/ChasePlayer/blend_position", direction)
 		velocity = direction * SPEED
 
@@ -104,6 +117,11 @@ func _sweep_raycast():
 			is_chasing = true
 			break
 
+=======
+		_chase_player()
+
+
+>>>>>>> Stashed changes
 
 func _blink():
 	hit_flash.play("flash")
@@ -111,23 +129,23 @@ func _blink():
 func _attack(attack_direction: Vector2):
 	_state_machine.travel("Attack")
 	_anim_tree.set("parameters/Attack/blend_position", attack_direction)
-	velocity = Vector2.ZERO
+	velocity = Vector2.ZERO * 0
 
-func _repositionate():
-	_state_machine.travel("ChasePlayer")
-	_anim_tree.set("parameters/ChasePlayer/blend_position", direction)
-	velocity = direction * SPEED
+func _chase_player():
+	if is_chasing and not is_in_range_to_attack:
+		_state_machine.travel("ChasePlayer")
+		_anim_tree.set("parameters/ChasePlayer/blend_position", direction)
+		velocity = direction * SPEED
 
 func _get_attack_direction():
-	return _player_hurt_box.global_position - global_position
-
+	return target.global_position
 
 func _on_attack_range_body_entered(_body):
-	is_in_range_to_attack = true
-
+#	is_in_range_to_attack = true
+	pass
 func _on_attack_range_body_exited(_body):
-	is_in_range_to_attack = false
-
+#	is_in_range_to_attack = false
+	pass
 
 func _on_invincible_cd_timeout():
 	is_invincible = false
@@ -138,3 +156,18 @@ func _update_life_bar():
 		life_bar.visible = false
 	else:
 		life_bar.visible = true
+
+
+func _on_attack_cd_timeout():
+	pass # Replace with function body.
+
+
+func _on_notice_area_body_entered(_body):
+	player_in_area = true
+
+func _on_notice_area_body_exited(_body):
+	player_in_area = false
+	
+
+
+

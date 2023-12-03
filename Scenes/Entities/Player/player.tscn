@@ -1243,5 +1243,8 @@ stream = ExtResource("16_44bo7")
 [node name="Hurtsound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("19_rtei3")
 
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, -21)
+
 [connection signal="timeout" from="InvincibleCoolDown" to="." method="_on_invincible_cool_down_timeout"]
 [connection signal="timeout" from="AttackDelay" to="." method="_on_attack_delay_timeout"]

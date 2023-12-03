@@ -155,3 +155,7 @@ stream = ExtResource("4_7q4ay")
 [node name="DestructionSound" parent="." index="6"]
 stream = ExtResource("5_j7fiw")
 volume_db = -5.0
+
+[node name="NavigationObstacle2D" parent="." index="7"]
+radius = 23.77
+vertices = PackedVector2Array(8, -8, 8, -24, 0, -32, -8, -24, -8, -8, 0, 0)
