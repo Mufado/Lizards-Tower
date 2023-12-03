@@ -1,11 +1,12 @@
 extends Control
 
 @onready var title_song = $TitleSong
-@onready var credits_screen = $CreditsScreen
+@onready var credits_screen = $UI/CreditsScreen
 @onready var anim = $AnimationPlayer
 
-@onready var play = $Panel/MarginContainer/VBoxContainer/Play
-@onready var credits = $Panel/MarginContainer/VBoxContainer/Credits
+@onready var play = $UI/Panel/MarginContainer/VBoxContainer/Play
+@onready var credits = $UI/Panel/MarginContainer/VBoxContainer/Credits
+@onready var quit = $UI/Panel/MarginContainer/VBoxContainer/Quit
 
 
 func _ready():
@@ -13,7 +14,12 @@ func _ready():
 	play.grab_focus()
 	title_song.playing = true
 	anim.play("AninTitleScreen")
-	DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_EXCLUSIVE_FULLSCREEN)
+	
+	if Global.PlataformToExportSelected == Global.PlataformToExport.WINDOWS:
+		quit.visible=true		
+	else:
+		quit.visible=false
+		
 
 
 func _on_start_pressed():

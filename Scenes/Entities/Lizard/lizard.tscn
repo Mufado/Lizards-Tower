@@ -1,4 +1,4 @@
-[gd_scene load_steps=137 format=3 uid="uid://ds8qordwm2ijl"]
+[gd_scene load_steps=136 format=3 uid="uid://ds8qordwm2ijl"]
 
 [ext_resource type="Texture2D" uid="uid://jrxx5k3myc2n" path="res://Assets/Enemy/Lizard_atack_down-Sheet.png" id="1_54dho"]
 [ext_resource type="Script" path="res://Scenes/Entities/Lizard/Scripts/lizard.gd" id="1_gl8w2"]
@@ -556,12 +556,6 @@ radius = 11.0
 height = 38.0
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_sllxg"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_8gqmu"]
-radius = 24.1956
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_vail2"]
-radius = 120.51
 
 [sub_resource type="Animation" id="Animation_ul17o"]
 length = 0.001
@@ -1291,6 +1285,7 @@ max_space = Vector2(1, 1.1)
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0tbe1"]
 switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_k3t8f"]
 
@@ -1311,13 +1306,9 @@ states/Start/position = Vector2(165, 100)
 transitions = ["ChasePlayer", "Idle", SubResource("AnimationNodeStateMachineTransition_i3fh8"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_0tbe1"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_k3t8f"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2lu6d"), "Idle", "ChasePlayer", SubResource("AnimationNodeStateMachineTransition_5nx4s")]
 graph_offset = Vector2(-164, -57.5236)
 
-<<<<<<< Updated upstream
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ervg8"]
-radius = 27.4015
-height = 56.1321
+[sub_resource type="CircleShape2D" id="CircleShape2D_8gqmu"]
+radius = 24.1956
 
-=======
->>>>>>> Stashed changes
 [node name="Lizard" type="CharacterBody2D"]
 position = Vector2(0, -19.0703)
 collision_layer = 2
@@ -1331,7 +1322,7 @@ metadata/_edit_vertical_guides_ = []
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_qcltc")
 sprite_frames = SubResource("SpriteFrames_1huaq")
-animation = &"Attack"
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
@@ -1364,20 +1355,6 @@ scale = Vector2(2.08133, 0.811315)
 shape = SubResource("SegmentShape2D_sllxg")
 disabled = true
 
-[node name="AttackRange" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 129
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-shape = SubResource("CircleShape2D_8gqmu")
-
-[node name="NoticeArea" type="Area2D" parent="."]
-collision_layer = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NoticeArea"]
-shape = SubResource("CircleShape2D_vail2")
-debug_color = Color(0.588235, 0.545098, 0.156863, 0.419608)
-
 [node name="HitFlash" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_vcaj1")
@@ -1391,35 +1368,25 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_cmtsf")
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/Attack/blend_position = Vector2(-0.0017361, 0.0131004)
 parameters/ChasePlayer/blend_position = Vector2(0, 0)
-parameters/Idle/blend_position = Vector2(-0.230519, -0.941916)
+parameters/Idle/blend_position = Vector2(-0.00153375, 0)
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
-path_desired_distance = 1.0
+path_desired_distance = 10.0
 path_postprocessing = 1
-avoidance_enabled = true
-<<<<<<< Updated upstream
-debug_enabled = true
 
 [node name="AttackRange" type="Area2D" parent="."]
-visible = false
 collision_layer = 32
 collision_mask = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-shape = SubResource("CapsuleShape2D_ervg8")
-=======
-avoidance_layers = 0
->>>>>>> Stashed changes
+shape = SubResource("CircleShape2D_8gqmu")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, 124)
+target_position = Vector2(0, 100)
 
 [node name="InvincibleCD" type="Timer" parent="."]
-
-[node name="AttackCD" type="Timer" parent="."]
 
 [node name="LifeBar" type="Control" parent="."]
 layout_mode = 3
@@ -1449,7 +1416,4 @@ stream = ExtResource("15_wm47t")
 [connection signal="body_entered" from="HitBox" to="HitBox" method="_on_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
-[connection signal="body_entered" from="NoticeArea" to="." method="_on_notice_area_body_entered"]
-[connection signal="body_exited" from="NoticeArea" to="." method="_on_notice_area_body_exited"]
 [connection signal="timeout" from="InvincibleCD" to="." method="_on_invincible_cd_timeout"]
-[connection signal="timeout" from="AttackCD" to="." method="_on_attack_cd_timeout"]

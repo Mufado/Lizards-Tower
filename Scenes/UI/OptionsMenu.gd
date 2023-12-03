@@ -8,6 +8,7 @@ enum OptionsMenuTypes{
 
 @onready var label_title = $Control/LabelTitle
 @onready var principal_action = $Control/Panel/MarginContainer/VBoxContainer/PrincipalAction
+@onready var quit = $Control/Panel/MarginContainer/VBoxContainer/Quit
 
 
 var OptionsTypeSelected = OptionsMenuTypes.PAUSE
@@ -15,6 +16,10 @@ var OptionsTypeSelected = OptionsMenuTypes.PAUSE
 		
 func _ready():
 	visible = false
+	if Global.PlataformToExportSelected == Global.PlataformToExport.WINDOWS:
+		quit.visible=true
+	else:
+		quit.visible=false
 
 func _show_options(type):
 	OptionsTypeSelected = type

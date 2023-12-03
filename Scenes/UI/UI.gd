@@ -8,3 +8,5 @@ func _process(_delta):
 
 func _update_player_health():
 	Player_Health.value = Global.player_health
+
+
