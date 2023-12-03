@@ -89,29 +89,31 @@ func _manage_attack():
 #		_state_machine.travel("ChasePlayer")
 
 	else:
-		_sweep_raycast()
 		_repositionate()
 		_anim_tree.set("parameters/ChasePlayer/blend_position", direction)
 		velocity = direction * SPEED
 
 
 func _sweep_raycast():
-	for index in RAYCAST_UPDATE_QUANTITY:
-		var cast_vector := (
-			VIEW_DISTANCE *
-			Vector2.UP.rotated (
-				ANGLE_BETWEEN_RAYS *
-				(index - RAYCAST_UPDATE_QUANTITY / 2.0)
-			)
-		)
-
-		_raycast.set_target_position(cast_vector)
-		_raycast.force_raycast_update()
+#	for index in RAYCAST_UPDATE_QUANTITY:
+#		var cast_vector := (
+#			VIEW_DISTANCE *
+#			Vector2.UP.rotated (
+#				ANGLE_BETWEEN_RAYS *
+#				(index - RAYCAST_UPDATE_QUANTITY / 2.0)
+#			)
+#		)
+#
+#		_raycast.set_target_position(cast_vector)
+#		_raycast.force_raycast_update()
 
 		if _raycast.is_colliding() && _raycast.get_collider() is Player:
+			_raycast.set_target_position(_nav_agent_target.get_node("Marker2D").position)
 			_anim_tree.set("parameters/ChasePlayer/blend_position", direction)
 			_state_machine.travel("ChasePlayer")
 			is_chasing = true
+		else:
+			_raycast.rotation += 1
 
 
 func _blink():
