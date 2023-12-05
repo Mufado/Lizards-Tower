@@ -556,6 +556,7 @@ radius = 11.0
 height = 38.0
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_sllxg"]
+b = Vector2(0, 7.978)
 
 [sub_resource type="Animation" id="Animation_ul17o"]
 length = 0.001
@@ -668,7 +669,19 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(2.31337, 2.72042), Vector2(2.31337, 1.44042), Vector2(2.31337, 1.04042)]
+"values": [Vector2(3, 3.528), Vector2(3, 1.868), Vector2(3, 1.349)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitBox/CollisionShape2D:shape")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("SegmentShape2D_sllxg")]
 }
 
 [sub_resource type="Animation" id="Animation_1wmp5"]
@@ -732,7 +745,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(2.31337, 1.60195), Vector2(2.37138, 1.247), Vector2(2.08133, 0.811315)]
+"values": [Vector2(3, 2.078), Vector2(2.37138, 1.247), Vector2(2.08133, 0.811315)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -809,7 +822,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(2.31337, 1.60195), Vector2(2.31337, 1.20093), Vector2(2.31337, 0.960418)]
+"values": [Vector2(3, 2.078), Vector2(2.31337, 1.20093), Vector2(2.31337, 0.960418)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -898,7 +911,7 @@ tracks/5/keys = {
 "times": PackedFloat32Array(0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
-"values": [Vector2(2.31337, 2.24042), Vector2(2.31337, 1.08042), Vector2(2.31337, 0.68042)]
+"values": [Vector2(3, 2.905), Vector2(2.31337, 1.08042), Vector2(2.31337, 0.68042)]
 }
 
 [sub_resource type="Animation" id="Animation_b375i"]
@@ -1078,6 +1091,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [3.14159]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitBox/CollisionShape2D:shape")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("SegmentShape2D_sllxg")]
 }
 
 [sub_resource type="Animation" id="Animation_vj1ad"]
@@ -1309,7 +1334,7 @@ transitions = ["ChasePlayer", "Idle", SubResource("AnimationNodeStateMachineTran
 graph_offset = Vector2(-164, -57.5236)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8gqmu"]
-radius = 24.1956
+radius = 11.0
 
 [node name="Lizard" type="CharacterBody2D"]
 position = Vector2(0, -19.0703)
@@ -1383,6 +1408,7 @@ collision_layer = 32
 collision_mask = 129
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(0, 14.0703)
 shape = SubResource("CircleShape2D_8gqmu")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
