@@ -14,8 +14,6 @@ y_sort_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
-[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="HurtBox" type="Area2D" parent="."]
@@ -27,7 +25,5 @@ collision_mask = 512
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="DestructionSound" type="AudioStreamPlayer2D" parent="."]
-
-[node name="NavigationObstacle2D" type="NavigationObstacle2D" parent="."]
 
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]

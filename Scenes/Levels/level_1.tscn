@@ -297,29 +297,13 @@ position = Vector2(283, -201)
 script = null
 
 [node name="Lizard" parent="Entities" index="0" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
-position = Vector2(568, 252.93)
+position = Vector2(584, 332.93)
 _nav_agent_target = NodePath("../Player")
 
-[node name="Lizard2" parent="Entities" index="1" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
-position = Vector2(336, 76.9297)
-_nav_agent_target = NodePath("../Player")
-
-[node name="Lizard3" parent="Entities" index="2" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
-position = Vector2(640, -51.0703)
-_nav_agent_target = NodePath("../Player")
-
-[node name="Lizard4" parent="Entities" index="3" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
-position = Vector2(864, 276.93)
-_nav_agent_target = NodePath("../Player")
-
-[node name="Lizard5" parent="Entities" index="4" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
-position = Vector2(336, -107.07)
-_nav_agent_target = NodePath("../Player")
-
-[node name="Player" parent="Entities" index="5" instance=ExtResource("2_gsjd7")]
+[node name="Player" parent="Entities" index="1" instance=ExtResource("2_gsjd7")]
 position = Vector2(584, 596)
 
-[node name="Sprite2D" parent="Entities/Player" index="4"]
+[node name="Sprite2D" parent="Entities/Player" index="3"]
 texture = ExtResource("8_jrihc")
 hframes = 8
 
