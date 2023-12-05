@@ -1,8 +1,11 @@
+
+
+
 extends CharacterBody2D
 class_name Lizard
 
 const ANGLE_BETWEEN_RAYS = deg_to_rad(20.0)
-const SPEED = 135.0
+const SPEED = 100.0
 const VIEW_ANGLE = deg_to_rad(120.0)
 const VIEW_DISTANCE = 200.0
 const RAYCAST_UPDATE_QUANTITY = int(VIEW_ANGLE / ANGLE_BETWEEN_RAYS) + 1
@@ -14,13 +17,18 @@ var health: int = 60
 var is_invincible: bool = false
 
 @export var _nav_agent_target: Node2D
+@onready var collision_shape_2d = $CollisionShape2D
 
 @onready var sprite = $AnimatedSprite2D
-@onready var _nav_agent := $NavigationAgent2D
+@onready var color_rect = $CollisionShape2D/ColorRect
+
+
+@onready var _nav_agent := $CollisionShape2D/NavigationAgent2D
 @onready var _anim_tree := $AnimationTree
 @onready var _raycast := $RayCast2D
 @onready var _state_machine: AnimationNodeStateMachinePlayback = _anim_tree.get("parameters/playback")
 @onready var _player_hurt_box = _nav_agent_target.get_node("CollisionShape2D")
+@onready var _player_CollisionShape2D = _nav_agent_target.get_node("CollisionShape2D")
 @onready var hit_flash = $HitFlash
 @onready var life_bar = $LifeBar/LifeBar
 @onready var invincible_cd = $InvincibleCD
@@ -46,20 +54,21 @@ func take_damage(damage: int):
 
 func _physics_process(_delta):
 	_update_life_bar()
-	if is_chasing:
-		_update_pathfind()
-		_manage_attack()
+	if is_in_range_to_attack:
+		_state_machine.travel("Attack")
+		_anim_tree.set("parameters/Attack/blend_position", _get_attack_direction())
+		velocity = Vector2.ZERO
 	else:
-		_sweep_raycast()
+		if is_chasing:				
+			_nav_agent.set_target_position(_player_CollisionShape2D.global_position)
+			direction = collision_shape_2d.global_position.direction_to(_nav_agent.get_next_path_position())			
+			direction = direction.normalized()			
+			_repositionate()
+		else:
+			velocity = Vector2.ZERO
+			_sweep_raycast()
 	move_and_slide()
 
-
-func _update_pathfind():
-	if _is_viewing_player():
-		_nav_agent.set_target_position(_nav_agent_target.get_node("CollisionShape2D").global_position)
-		direction = (_nav_agent.get_next_path_position() - global_position).normalized()
-	else:
-		velocity = Vector2.ZERO
 
 func _is_viewing_player():
 	if _player_hurt_box != null:
@@ -90,8 +99,6 @@ func _manage_attack():
 
 	else:
 		_repositionate()
-		_anim_tree.set("parameters/ChasePlayer/blend_position", direction)
-		velocity = direction * SPEED
 
 
 func _sweep_raycast():

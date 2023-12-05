@@ -319,7 +319,7 @@ _nav_agent_target = NodePath("../Player")
 [node name="Player" parent="Entities" index="5" instance=ExtResource("2_gsjd7")]
 position = Vector2(584, 596)
 
-[node name="Sprite2D" parent="Entities/Player" index="4"]
+[node name="Sprite2D" parent="Entities/Player" index="3"]
 texture = ExtResource("8_jrihc")
 hframes = 8
 
