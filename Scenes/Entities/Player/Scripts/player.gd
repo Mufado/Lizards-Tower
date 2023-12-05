@@ -58,9 +58,7 @@ func take_damage(damage: int):
 
 	Global.player_health -= damage
 	
-	if Global.player_health <= 0:
-		queue_free()
-	else:
+	if Global.player_health > 0:		
 		hurtsound.play()
 		blink()
 		_is_invincible = true
