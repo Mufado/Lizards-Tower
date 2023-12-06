@@ -20,7 +20,6 @@ var is_invincible: bool = false
 @onready var collision_shape_2d = $CollisionShape2D
 
 @onready var sprite = $AnimatedSprite2D
-@onready var color_rect = $CollisionShape2D/ColorRect
 
 
 @onready var _nav_agent := $CollisionShape2D/NavigationAgent2D
