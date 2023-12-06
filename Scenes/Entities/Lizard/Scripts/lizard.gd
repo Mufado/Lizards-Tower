@@ -1,6 +1,3 @@
-
-
-
 extends CharacterBody2D
 class_name Lizard
 
@@ -12,6 +9,7 @@ const RAYCAST_UPDATE_QUANTITY = int(VIEW_ANGLE / ANGLE_BETWEEN_RAYS) + 1
 
 var direction: Vector2 = Vector2.ZERO
 var is_in_range_to_attack: bool = false
+var can_attack: bool = true
 var is_chasing: bool = false
 var health: int = 60
 var is_invincible: bool = false
@@ -20,9 +18,6 @@ var is_invincible: bool = false
 @onready var collision_shape_2d = $CollisionShape2D
 
 @onready var sprite = $AnimatedSprite2D
-@onready var color_rect = $CollisionShape2D/ColorRect
-
-
 @onready var _nav_agent := $CollisionShape2D/NavigationAgent2D
 @onready var _anim_tree := $AnimationTree
 @onready var _raycast := $RayCast2D
@@ -34,6 +29,7 @@ var is_invincible: bool = false
 @onready var invincible_cd = $InvincibleCD
 @onready var invincible_cd_time: float = 0.8
 @onready var hurt_sound = $HurtSound
+
 
 func _ready():
 	_anim_tree.active = true
@@ -59,10 +55,10 @@ func _physics_process(_delta):
 		_anim_tree.set("parameters/Attack/blend_position", _get_attack_direction())
 		velocity = Vector2.ZERO
 	else:
-		if is_chasing:				
+		if is_chasing:
 			_nav_agent.set_target_position(_player_CollisionShape2D.global_position)
-			direction = collision_shape_2d.global_position.direction_to(_nav_agent.get_next_path_position())			
-			direction = direction.normalized()			
+			direction = collision_shape_2d.global_position.direction_to(_nav_agent.get_next_path_position())
+			direction = direction.normalized()
 			_repositionate()
 		else:
 			velocity = Vector2.ZERO

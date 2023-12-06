@@ -86,7 +86,7 @@ _data = {
 
 [sub_resource type="Animation" id="Animation_dhans"]
 resource_name = "Attack_Down"
-length = 0.6
+length = 0.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -118,10 +118,10 @@ tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5]
+"values": [0, 1, 3, 4, 5]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -130,7 +130,7 @@ tracks/3/path = NodePath("HitBox/CollisionShape2D:disabled")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.5),
+"times": PackedFloat32Array(0, 0.2, 0.4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [true, false, true]
@@ -177,7 +177,7 @@ tracks/7/path = NodePath("Sword:playing")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(0.1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [true]
@@ -1183,7 +1183,7 @@ color_ramp = SubResource("Gradient_dctps")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2o4mr")
 position = Vector2(0, -24)
-texture = ExtResource("6_lnf50")
+texture = ExtResource("4_0itno")
 hframes = 6
 
 [node name="HitFlash" type="AnimationPlayer" parent="."]
@@ -1214,17 +1214,18 @@ one_shot = true
 
 [node name="HitBox" type="Area2D" parent="."]
 position = Vector2(0, -21)
-collision_layer = 64
-collision_mask = 128
+collision_layer = 65
+collision_mask = 136
 script = ExtResource("16_o8aa1")
+damage = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
-position = Vector2(21, 0)
+position = Vector2(0, 21)
+rotation = 1.5708
 shape = SubResource("CapsuleShape2D_ehuvl")
 disabled = true
 
 [node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 128
 collision_mask = 64
 script = ExtResource("17_u2mlu")
 
@@ -1235,9 +1236,11 @@ debug_color = Color(0.811765, 0.4, 0.258824, 0.419608)
 
 [node name="Sword" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("16_44bo7")
+volume_db = -5.0
 
 [node name="Hurtsound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("19_rtei3")
+volume_db = -8.0
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -21)
