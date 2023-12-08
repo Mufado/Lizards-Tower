@@ -5,7 +5,7 @@ extends CharacterBody2D
 class_name Lizard
 
 const ANGLE_BETWEEN_RAYS = deg_to_rad(20.0)
-const SPEED = 80.0
+const SPEED = 100.0
 const VIEW_ANGLE = deg_to_rad(120.0)
 const VIEW_DISTANCE = 200.0
 const RAYCAST_UPDATE_QUANTITY = int(VIEW_ANGLE / ANGLE_BETWEEN_RAYS) + 1
@@ -16,7 +16,6 @@ var is_chasing: bool = false
 var health: int = 60
 var is_invincible: bool = false
 
-var _body_to_atack=null
 @export var _nav_agent_target: Node2D
 @onready var collision_shape_2d = $CollisionShape2D
 
@@ -137,15 +136,13 @@ func _repositionate():
 	velocity = direction * SPEED
 
 func _get_attack_direction():
-	return _body_to_atack.get_node("HurtBox/CollisionShape2D").global_position - global_position
+	return _player_hurt_box.global_position - global_position
 
 
 func _on_attack_range_body_entered(_body):
-	_body_to_atack = _body
 	is_in_range_to_attack = true
 
 func _on_attack_range_body_exited(_body):
-	_body_to_atack = null
 	is_in_range_to_attack = false
 
 

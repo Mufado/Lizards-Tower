@@ -6,8 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://lwir2sssnrmm" path="res://Assets/Audio/wood_sound.wav" id="4_7q4ay"]
 [ext_resource type="AudioStream" uid="uid://rqvviefc240b" path="res://Assets/Audio/explosion.wav" id="5_j7fiw"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ij66i"]
-height = 22.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_cn1dx"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_a52q1"]
 particles_animation = true
@@ -111,11 +110,12 @@ _data = {
 }
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jth0h"]
-radius = 12.0
-height = 36.0
+radius = 15.0
+height = 40.0
 
 [node name="Barrel" instance=ExtResource("1_7yj2j")]
 z_index = 0
+collision_mask = 99
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -20)
@@ -124,8 +124,9 @@ texture = ExtResource("2_how31")
 [node name="CollisionShape2D" parent="." index="1"]
 z_index = 1
 y_sort_enabled = true
-position = Vector2(-1, -16)
-shape = SubResource("CapsuleShape2D_ij66i")
+position = Vector2(-1, -12)
+shape = SubResource("CircleShape2D_cn1dx")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
 [node name="GPUParticles2D" parent="." index="2"]
 material = SubResource("CanvasItemMaterial_a52q1")
@@ -142,11 +143,11 @@ libraries = {
 
 [node name="HurtBox" parent="." index="4"]
 collision_layer = 8
-collision_mask = 1
+collision_mask = 99
 script = ExtResource("3_1mvun")
 
 [node name="CollisionShape2D" parent="HurtBox" index="0"]
-position = Vector2(-1, -20)
+position = Vector2(0, -20)
 shape = SubResource("CapsuleShape2D_jth0h")
 
 [node name="HitSound" parent="." index="5"]
@@ -155,7 +156,3 @@ stream = ExtResource("4_7q4ay")
 [node name="DestructionSound" parent="." index="6"]
 stream = ExtResource("5_j7fiw")
 volume_db = -5.0
-
-[node name="NavigationObstacle2D" parent="." index="7"]
-radius = 23.77
-vertices = PackedVector2Array(8, -8, 8, -24, 0, -32, -8, -24, -8, -8, 0, 0)
