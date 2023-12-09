@@ -83,6 +83,7 @@ pause={
 2d_physics/layer_6="Areas & Zones"
 2d_physics/layer_7="Hitboxes"
 2d_physics/layer_8="Hurtboxes"
+2d_physics/layer_9="Items"
 avoidance/layer_1="props"
 
 [rendering]
