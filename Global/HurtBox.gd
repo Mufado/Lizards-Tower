@@ -9,6 +9,7 @@ func _ready():
 	connect("area_entered", _on_area_entered)
 
 func _on_area_entered(hitbox: HitBox) -> void:
+	print(hitbox)
 	if hitbox == null || hitbox.owner == owner:
 		return
 
