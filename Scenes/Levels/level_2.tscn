@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://dtbmxb0wkbyqb"]
+[gd_scene load_steps=8 format=3 uid="uid://dtbmxb0wkbyqb"]
 
 [ext_resource type="PackedScene" uid="uid://cpbg1kwjn2eog" path="res://Scenes/Levels/level_master.tscn" id="1_n77jk"]
 [ext_resource type="PackedScene" uid="uid://c8ilpte26p04s" path="res://Scenes/Entities/Player/player.tscn" id="2_f14uw"]
 [ext_resource type="PackedScene" uid="uid://m71vs3wxi7cr" path="res://Scenes/Levels/Props/torch.tscn" id="2_in60i"]
 [ext_resource type="Texture2D" uid="uid://c5doihluckauv" path="res://Assets/Props/Window.png" id="3_aavwp"]
-[ext_resource type="Texture2D" uid="uid://tb3mkx20wovx" path="res://Assets/Props/Gate.png" id="4_32w81"]
 [ext_resource type="PackedScene" uid="uid://b1afffk113l20" path="res://Scenes/Levels/Props/barrel/barrel.tscn" id="4_xkw73"]
 [ext_resource type="PackedScene" uid="uid://dnkxqctusmhgt" path="res://Scenes/Levels/Props/box/box.tscn" id="5_g1vrg"]
 [ext_resource type="PackedScene" uid="uid://ds8qordwm2ijl" path="res://Scenes/Entities/Lizard/lizard.tscn" id="6_6wrfi"]
@@ -174,11 +173,8 @@ texture = ExtResource("3_aavwp")
 position = Vector2(192, -231)
 texture = ExtResource("3_aavwp")
 
-[node name="Gate2" type="Sprite2D" parent="Props/Structures" index="23"]
-z_index = 2
-y_sort_enabled = true
-position = Vector2(449, 490)
-texture = ExtResource("4_32w81")
+[node name="GateStart" parent="Props/Structures" index="23"]
+position = Vector2(448, 490)
 
 [node name="Barrel" parent="Props/Decoration" index="0" instance=ExtResource("4_xkw73")]
 position = Vector2(156, 323)
@@ -261,44 +257,44 @@ position = Vector2(551, -239)
 [node name="Box10" parent="Props/Decoration" index="26" instance=ExtResource("5_g1vrg")]
 position = Vector2(756, -183)
 
-[node name="Lizard" parent="Entities" index="0" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
-position = Vector2(184, 340.93)
-_nav_agent_target = NodePath("../Player")
-
-[node name="Lizard2" parent="Entities" index="1" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
-position = Vector2(776, 104)
-_nav_agent_target = NodePath("../Player")
-
-[node name="Lizard3" parent="Entities" index="2" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
-position = Vector2(816, 80)
-_nav_agent_target = NodePath("../Player")
-
-[node name="Lizard4" parent="Entities" index="3" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
-position = Vector2(453, 88)
-_nav_agent_target = NodePath("../Player")
-
-[node name="Lizard5" parent="Entities" index="4" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
-position = Vector2(105, 16)
-_nav_agent_target = NodePath("../Player")
-
-[node name="Lizard6" parent="Entities" index="5" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
-position = Vector2(260, -150)
-_nav_agent_target = NodePath("../Player")
-
-[node name="Lizard7" parent="Entities" index="6" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
-position = Vector2(671, -154)
-_nav_agent_target = NodePath("../Player")
-
-[node name="Lizard8" parent="Entities" index="7" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
-position = Vector2(368, -221)
-_nav_agent_target = NodePath("../Player")
-
-[node name="Lizard9" parent="Entities" index="8" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
-position = Vector2(496, -207)
-_nav_agent_target = NodePath("../Player")
-
-[node name="Player" parent="Entities" index="9" instance=ExtResource("2_f14uw")]
+[node name="Player" parent="Entities" index="0" instance=ExtResource("2_f14uw")]
 position = Vector2(448, 448)
+
+[node name="Lizard" parent="Entities/Enemies" index="0" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
+position = Vector2(184, 340.93)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard2" parent="Entities/Enemies" index="1" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
+position = Vector2(776, 104)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard3" parent="Entities/Enemies" index="2" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
+position = Vector2(816, 80)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard4" parent="Entities/Enemies" index="3" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
+position = Vector2(453, 88)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard5" parent="Entities/Enemies" index="4" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
+position = Vector2(105, 16)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard6" parent="Entities/Enemies" index="5" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
+position = Vector2(260, -150)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard7" parent="Entities/Enemies" index="6" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
+position = Vector2(671, -154)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard8" parent="Entities/Enemies" index="7" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
+position = Vector2(368, -221)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard9" parent="Entities/Enemies" index="8" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("6_6wrfi")]
+position = Vector2(496, -207)
+_nav_agent_target = NodePath("../../Player")
 
 [node name="OptionsMenu" parent="." index="6"]
 visible = false

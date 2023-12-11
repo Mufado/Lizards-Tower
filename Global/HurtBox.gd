@@ -8,9 +8,11 @@ extends Area2D
 func _ready():
 	connect("area_entered", _on_area_entered)
 
-func _on_area_entered(hitbox: HitBox) -> void:
+func _on_area_entered(hitbox) -> void:
+	
 	if hitbox == null || hitbox.owner == owner:
-		return
-
-	if owner.has_method("take_damage"):
-		owner.take_damage(hitbox.damage)
+			return
+			
+	if hitbox is HitBox:			
+		if owner.has_method("take_damage"):
+			owner.take_damage(hitbox.damage)
