@@ -1,6 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://b1afffk113l20"]
+[gd_scene load_steps=15 format=3 uid="uid://b1afffk113l20"]
 
 [ext_resource type="PackedScene" uid="uid://bn6ccy7ygyhnq" path="res://Scenes/Levels/Props/object_container.tscn" id="1_7yj2j"]
+[ext_resource type="Texture2D" uid="uid://bbm4qbrk0unxb" path="res://Assets/Props/Barrel_Destrutction-Sheet.png" id="2_13ivi"]
 [ext_resource type="Texture2D" uid="uid://cmnqj7uhihwyi" path="res://Assets/Props/Barrel.png" id="2_how31"]
 [ext_resource type="Script" path="res://Scenes/Levels/Props/barrel/Scripts/HurtBox.gd" id="3_1mvun"]
 [ext_resource type="AudioStream" uid="uid://lwir2sssnrmm" path="res://Assets/Audio/wood_sound.wav" id="4_7q4ay"]
@@ -31,7 +32,7 @@ anim_offset_max = 1.0
 
 [sub_resource type="Animation" id="Animation_vl255"]
 resource_name = "Explosion"
-length = 0.4
+length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -39,48 +40,48 @@ tracks/0/path = NodePath("Sprite2D:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(4.14106, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
-tracks/1/type = "value"
+tracks/1/type = "method"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("GPUParticles2D:emitting")
+tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.3),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, false]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("GPUParticles2D:amount")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [100]
-}
-tracks/3/type = "method"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath(".")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0.4),
+"times": PackedFloat32Array(0.6),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
 "method": &"queue_free"
 }]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_77v4c"]
@@ -101,6 +102,18 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_wyu8g"]
 length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_5q5xj"]
 _data = {
@@ -119,7 +132,8 @@ collision_mask = 99
 
 [node name="Sprite2D" parent="." index="0"]
 position = Vector2(0, -20)
-texture = ExtResource("2_how31")
+texture = ExtResource("2_13ivi")
+hframes = 6
 
 [node name="CollisionShape2D" parent="." index="1"]
 z_index = 1
@@ -137,6 +151,7 @@ process_material = SubResource("ParticleProcessMaterial_7tren")
 texture = ExtResource("2_how31")
 
 [node name="AnimationPlayer" parent="." index="3"]
+autoplay = "RESET"
 libraries = {
 "": SubResource("AnimationLibrary_5q5xj")
 }

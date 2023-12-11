@@ -2,7 +2,6 @@ extends Node2D
 
 @onready var options_menu = $OptionsMenu
 
-
 func _process(_delta):
 	reset()
 

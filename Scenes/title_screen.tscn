@@ -5,7 +5,7 @@
 [ext_resource type="Theme" uid="uid://b8d4p31l2x3qq" path="res://Assets/UI/Default.tres" id="3_ixwce"]
 [ext_resource type="PackedScene" uid="uid://b60hrom7en4kc" path="res://Scenes/UI/CreditsScreen.tscn" id="4_n52p0"]
 [ext_resource type="Texture2D" uid="uid://b7u46qapq8hx7" path="res://Assets/UI/Menu2-Sheet.png" id="6_s1pdt"]
-[ext_resource type="PackedScene" uid="uid://bpvjismwg7w5h" path="res://Scenes/UI/FullScreen.tscn" id="6_vtsj4"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/FullScreen.tscn" id="6_vtsj4"]
 
 [sub_resource type="Animation" id="Animation_y6vi3"]
 resource_name = "AninTitleScreen"

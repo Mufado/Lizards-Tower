@@ -1,6 +1,6 @@
 extends StaticBody2D
 
-var hit_counter: int = 30
+var hit_counter: int = 20
 
 @onready var animation = $AnimationPlayer
 @onready var hit_sound = $HitSound
@@ -14,7 +14,7 @@ func take_damage(damage: int):
 		hit_counter -= damage
 		animation.play("Hit")
 	else:
-		_change_tiles(0)		
+		_change_tiles(0)
 		destruction_sound.play()
 		animation.play("Explosion")
 
@@ -49,7 +49,7 @@ func _change_tiles(to_alternative):
 func _change_tile_to_alternate(tile_position : Vector2i, to_alternative):
 	var source = TileMapLevel.get_cell_source_id(1, tile_position)
 	var atlas = TileMapLevel.get_cell_atlas_coords(1, tile_position)
-	var alternative = TileMapLevel.get_cell_source_id(1, tile_position)
+	var _alternative = TileMapLevel.get_cell_source_id(1, tile_position)
 
 	TileMapLevel.erase_cell(1, tile_position)
 

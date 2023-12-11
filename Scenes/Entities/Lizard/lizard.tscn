@@ -1514,7 +1514,7 @@ position = Vector2(0, 15.0703)
 shape = SubResource("CircleShape2D_8gqmu")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
-target_position = Vector2(0, 100)
+target_position = Vector2(0, 150)
 
 [node name="InvincibleCD" type="Timer" parent="."]
 

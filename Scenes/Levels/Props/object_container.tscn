@@ -28,5 +28,3 @@ debug_color = Color(0.866667, 0.356863, 0, 0.419608)
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="DestructionSound" type="AudioStreamPlayer2D" parent="."]
-
-[connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_body_entered"]
