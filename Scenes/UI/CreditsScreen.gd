@@ -1,6 +1,6 @@
 extends Control
 
-@onready var credits_screen = $CreditsScreen
+#@onready var credits_screen = $CreditsScreen
 @onready var close = $Panel/Close
 
 var credits

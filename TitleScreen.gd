@@ -16,12 +16,10 @@ func _ready():
 	anim.play("AninTitleScreen")
 	
 	if Global.PlataformToExportSelected == Global.PlataformToExport.WINDOWS:
-		quit.visible=true		
+		quit.visible=true
 	else:
 		quit.visible=false
 		
-
-
 func _on_start_pressed():
 	get_tree().change_scene_to_file("res://Scenes/Levels/level_1.tscn")
 

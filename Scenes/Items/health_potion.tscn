@@ -57,7 +57,7 @@ animations = [{
 }]
 
 [node name="HealthPotion" type="Area2D"]
-scale = Vector2(0.45, 0.45)
+scale = Vector2(0.75, 0.75)
 collision_layer = 256
 script = ExtResource("1_tkeru")
 
