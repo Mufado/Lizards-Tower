@@ -22,7 +22,7 @@
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvr65"]
 radius = 6.0
-height = 16.0
+height = 12.0
 
 [sub_resource type="Curve" id="Curve_gsjoo"]
 max_value = 100.0
@@ -1139,7 +1139,7 @@ graph_offset = Vector2(-151, -7)
 height = 62.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_q21kb"]
-radius = 8.0
+radius = 21.0
 height = 42.0
 
 [node name="Player" type="CharacterBody2D"]
@@ -1154,7 +1154,7 @@ position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -9)
+position = Vector2(0, -8)
 shape = SubResource("CapsuleShape2D_uvr65")
 
 [node name="Moving_Particles" type="CPUParticles2D" parent="."]
@@ -1229,7 +1229,7 @@ collision_mask = 64
 script = ExtResource("17_u2mlu")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
-position = Vector2(0, -24)
+position = Vector2(0, -32)
 shape = SubResource("CapsuleShape2D_q21kb")
 debug_color = Color(0.811765, 0.4, 0.258824, 0.419608)
 
