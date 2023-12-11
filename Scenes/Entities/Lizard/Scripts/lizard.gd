@@ -1,27 +1,22 @@
-
-
-
 extends CharacterBody2D
 class_name Lizard
 
 const ANGLE_BETWEEN_RAYS = deg_to_rad(20.0)
-const SPEED = 100.0
+const SPEED = 120.0
 const VIEW_ANGLE = deg_to_rad(120.0)
-const VIEW_DISTANCE = 200.0
+const VIEW_DISTANCE = 300.0
 const RAYCAST_UPDATE_QUANTITY = int(VIEW_ANGLE / ANGLE_BETWEEN_RAYS) + 1
 
 var direction: Vector2 = Vector2.ZERO
 var is_in_range_to_attack: bool = false
 var is_chasing: bool = false
-var health: int = 60
+var health: float = 60.0
 var is_invincible: bool = false
 
 @export var _nav_agent_target: Node2D
 @onready var collision_shape_2d = $CollisionShape2D
 
 @onready var sprite = $AnimatedSprite2D
-
-
 @onready var _nav_agent := $CollisionShape2D/NavigationAgent2D
 @onready var _anim_tree := $AnimationTree
 @onready var _raycast := $RayCast2D
@@ -40,16 +35,15 @@ func _ready():
 	_anim_tree.set("parameters/Idle/blend_position", direction)
 
 func take_damage(damage: int):
-	health -= damage
+	health -= damage * randf_range(0.75,2.0)
 	hurt_sound.play()
 	if health <= 0:
-		Global.player_health += 15
 		queue_free()
 		return
 
 	is_invincible = true
 	invincible_cd.start(invincible_cd_time)
-	_blink()
+	hit_flash.play("flash")
 
 func _physics_process(_delta):
 	_update_life_bar()
@@ -58,10 +52,10 @@ func _physics_process(_delta):
 		_anim_tree.set("parameters/Attack/blend_position", _get_attack_direction())
 		velocity = Vector2.ZERO
 	else:
-		if is_chasing:				
+		if is_chasing:
 			_nav_agent.set_target_position(_player_CollisionShape2D.global_position)
-			direction = collision_shape_2d.global_position.direction_to(_nav_agent.get_next_path_position())			
-			direction = direction.normalized()			
+			direction = collision_shape_2d.global_position.direction_to(_nav_agent.get_next_path_position())
+			direction = direction.normalized()
 			_repositionate()
 		else:
 			velocity = Vector2.ZERO
@@ -120,10 +114,6 @@ func _sweep_raycast():
 			is_chasing = true
 		else:
 			_raycast.rotation += 1
-
-
-func _blink():
-	hit_flash.play("flash")
 	
 func _attack(attack_direction: Vector2):
 	_state_machine.travel("Attack")

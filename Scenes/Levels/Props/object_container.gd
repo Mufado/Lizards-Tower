@@ -1,6 +1,7 @@
 extends StaticBody2D
+class_name Props
 
-var hit_counter: int = 30
+var hit_counter: int = 20
 
 @onready var animation = $AnimationPlayer
 @onready var hit_sound = $HitSound
@@ -15,4 +16,3 @@ func take_damage(damage: int):
 		destruction_sound.play()
 		animation.play("Explosion")
 
-	
