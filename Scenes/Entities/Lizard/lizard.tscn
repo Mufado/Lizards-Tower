@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://blnjdqbayvn74" path="res://Assets/Audio/hurt_player.wav" id="15_wm47t"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qcltc"]
+resource_local_to_scene = true
 shader = ExtResource("2_iyas5")
 shader_parameter/color = Color(1, 1, 1, 1)
 shader_parameter/progress = 0.0
@@ -1352,7 +1353,6 @@ sprite_frames = SubResource("SpriteFrames_1huaq")
 animation = &"Attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(0, 11.0703)
 scale = Vector2(0.655338, 0.575336)
 shape = SubResource("CapsuleShape2D_06ps0")
@@ -1362,8 +1362,7 @@ path_desired_distance = 10.0
 path_postprocessing = 1
 
 [node name="HurtBox" type="Area2D" parent="."]
-collision_layer = 128
-collision_mask = 0
+collision_layer = 2
 script = ExtResource("11_3ysds")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HurtBox"]
@@ -1374,9 +1373,7 @@ debug_color = Color(0.87451, 0.321569, 0.309804, 0.419608)
 
 [node name="HitBox" type="Area2D" parent="."]
 collision_layer = 64
-collision_mask = 128
 script = ExtResource("12_3jv1x")
-damage = 15
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox"]
 visible = false
