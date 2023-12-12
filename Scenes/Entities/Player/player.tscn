@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://c8ilpte26p04s"]
+[gd_scene load_steps=69 format=3 uid="uid://c8ilpte26p04s"]
 
 [ext_resource type="Script" path="res://Scenes/Entities/Player/Scripts/player.gd" id="1_phr2d"]
 [ext_resource type="Texture2D" uid="uid://dagcs3ioava0i" path="res://Assets/Props/Torch_fire_light.png" id="2_5fv3c"]
@@ -20,6 +20,7 @@
 [ext_resource type="Script" path="res://Scenes/Entities/Player/Scripts/HitBox.gd" id="16_o8aa1"]
 [ext_resource type="Script" path="res://Scenes/Entities/Player/Scripts/HurtBox.gd" id="17_u2mlu"]
 [ext_resource type="AudioStream" uid="uid://blnjdqbayvn74" path="res://Assets/Audio/hurt_player.wav" id="19_rtei3"]
+[ext_resource type="AudioStream" uid="uid://yqaakdpf8ynh" path="res://Assets/Audio/SFX/Walking.wav" id="21_8mwej"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvr65"]
 radius = 6.0
@@ -805,6 +806,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(0, -1)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Walking:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_j7ma6"]
 resource_name = "Move_Left"
@@ -869,6 +882,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Walking:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_01mcw"]
@@ -935,6 +960,18 @@ tracks/4/keys = {
 "update": 0,
 "values": [Vector2(-1, 0)]
 }
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Walking:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_sbkm6"]
 resource_name = "Move_Up"
@@ -999,6 +1036,18 @@ tracks/4/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0, 1)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Walking:playing")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_nmn08"]
@@ -1173,7 +1222,7 @@ lifetime_randomness = 1.0
 texture = ExtResource("2_5fv3c")
 emission_shape = 1
 emission_sphere_radius = 3.0
-direction = Vector2(0, -1)
+direction = Vector2(0, 1)
 spread = 80.0
 gravity = Vector2(0, -979)
 initial_velocity_min = 6.0
@@ -1188,8 +1237,8 @@ color_ramp = SubResource("Gradient_dctps")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2o4mr")
 position = Vector2(0, -24)
-texture = ExtResource("4_0itno")
-hframes = 6
+texture = ExtResource("9_7aotp")
+hframes = 8
 
 [node name="HitFlash" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1255,6 +1304,9 @@ volume_db = -5.0
 [node name="Hurtsound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("19_rtei3")
 volume_db = -5.0
+
+[node name="Walking" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("21_8mwej")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -21)

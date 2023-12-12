@@ -15,6 +15,7 @@ var _is_invincible: bool = false
 @onready var _attack_delay: Timer = $AttackDelay
 @onready var hurtsound = $Hurtsound
 @onready var camera = $Camera2D
+@onready var walking = $Walking
 
 func _ready():
 	anim_tree.active = true
@@ -41,7 +42,6 @@ func _process(_delta):
 		update_blend_position()
 	else:
 		set_movement(false)
-
 
 func set_movement(value):
 	anim_tree["parameters/conditions/is_moving"] = value

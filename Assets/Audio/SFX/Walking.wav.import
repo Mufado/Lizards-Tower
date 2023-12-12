@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://yqaakdpf8ynh"
-path="res://.godot/imported/Walking.wav-1bcf172e76f939722ad6e0d1f5298b73.sample"
+path="res://.godot/imported/Walking.wav-762ff98acea4ce474b63eed0e55753a4.sample"
 
 [deps]
 
-source_file="res://Assets/Audio/Walking.wav"
-dest_files=["res://.godot/imported/Walking.wav-1bcf172e76f939722ad6e0d1f5298b73.sample"]
+source_file="res://Assets/Audio/SFX/Walking.wav"
+dest_files=["res://.godot/imported/Walking.wav-762ff98acea4ce474b63eed0e55753a4.sample"]
 
 [params]
 
@@ -18,7 +18,7 @@ force/max_rate=false
 force/max_rate_hz=44100
 edit/trim=false
 edit/normalize=false
-edit/loop_mode=2
+edit/loop_mode=0
 edit/loop_begin=0
 edit/loop_end=-1
 compress/mode=0
