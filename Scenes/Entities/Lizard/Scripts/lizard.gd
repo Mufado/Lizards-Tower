@@ -12,6 +12,7 @@ var is_in_range_to_attack: bool = false
 var is_chasing: bool = false
 var health: int = 60
 var is_invincible: bool = false
+var Knockback_force: Vector2 = Vector2.ZERO
 
 var _body_to_atack=null
 @export var _nav_agent_target: Node2D
@@ -38,6 +39,9 @@ func _ready():
 	_anim_tree.set("parameters/Idle/blend_position", direction)
 
 func take_damage(damage: int):
+	Knockback_force = Vector2(100,100) * direction * Vector2(-1,-1)
+	var kt := get_tree().create_tween()
+	kt.tween_property(self, "Knockback_force", Vector2.ZERO, 0.25)
 	health -= damage
 	hurt_sound.play()
 	if health <= 0:
@@ -64,6 +68,11 @@ func _physics_process(_delta):
 		else:
 			velocity = Vector2.ZERO
 			_sweep_raycast()
+			
+	if Knockback_force != Vector2.ZERO:		
+		velocity = Knockback_force		
+		#Knockback_force = Vector2.ZERO
+		
 	move_and_slide()
 
 
