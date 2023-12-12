@@ -13,14 +13,12 @@ var is_chasing: bool = false
 var health: int = 60
 var is_invincible: bool = false
 var Knockback_force: Vector2 = Vector2.ZERO
-
 var _body_to_atack=null
+
 @export var _nav_agent_target: Node2D
+
 @onready var collision_shape_2d = $CollisionShape2D
-
 @onready var sprite = $AnimatedSprite2D
-
-
 @onready var _nav_agent := $CollisionShape2D/NavigationAgent2D
 @onready var _anim_tree := $AnimationTree
 @onready var _raycast := $RayCast2D
@@ -60,17 +58,17 @@ func _physics_process(_delta):
 		_anim_tree.set("parameters/Attack/blend_position", _get_attack_direction())
 		velocity = Vector2.ZERO
 	else:
-		if is_chasing:				
+		if is_chasing:
 			_nav_agent.set_target_position(_player_CollisionShape2D.global_position)
-			direction = collision_shape_2d.global_position.direction_to(_nav_agent.get_next_path_position())			
-			direction = direction.normalized()			
+			direction = collision_shape_2d.global_position.direction_to(_nav_agent.get_next_path_position())
+			direction = direction.normalized()
 			_repositionate()
 		else:
 			velocity = Vector2.ZERO
 			_sweep_raycast()
 			
-	if Knockback_force != Vector2.ZERO:		
-		velocity = Knockback_force		
+	if Knockback_force != Vector2.ZERO:
+		velocity = Knockback_force
 		#Knockback_force = Vector2.ZERO
 		
 	move_and_slide()

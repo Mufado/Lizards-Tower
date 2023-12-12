@@ -4,7 +4,6 @@ var hit_counter: int = 20
 
 @onready var animation = $AnimationPlayer
 @onready var hit_sound = $HitSound
-@onready var destruction_sound = $DestructionSound
 
 @onready var TileMapLevel : TileMap = get_node("%TileMap")
 
@@ -15,7 +14,6 @@ func take_damage(damage: int):
 		animation.play("Hit")
 	else:
 		_change_tiles(0)
-		destruction_sound.play()
 		animation.play("Explosion")
 
 	
