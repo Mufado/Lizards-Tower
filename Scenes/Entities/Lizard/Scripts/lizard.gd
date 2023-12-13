@@ -1,5 +1,4 @@
-extends CharacterBody2D
-class_name Lizard
+class_name Lizard extends CharacterBody2D
 
 const ANGLE_BETWEEN_RAYS = deg_to_rad(20.0)
 const SPEED = 80.0
