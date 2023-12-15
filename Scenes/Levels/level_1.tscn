@@ -10,7 +10,9 @@
 [ext_resource type="PackedScene" uid="uid://ds8qordwm2ijl" path="res://Scenes/Entities/Lizard/lizard.tscn" id="8_56v0r"]
 [ext_resource type="Texture2D" uid="uid://omopqx4gckbv" path="res://Assets/Player/viking_sword_idle_up-Sheet.png" id="8_jrihc"]
 
-[node name="Level1" instance=ExtResource("1_n4pdp")]
+[node name="Level1" node_paths=PackedStringArray("player") instance=ExtResource("1_n4pdp")]
+player = NodePath("Entities/Player")
+enemies_blocks_gate = true
 metadata/_edit_vertical_guides_ = []
 metadata/_edit_horizontal_guides_ = []
 
@@ -119,6 +121,7 @@ texture = ExtResource("4_x4vui")
 [node name="Gate" parent="Props/Structures" index="10"]
 position = Vector2(576, -408)
 dest_scene = "res://Scenes/Levels/level_2.tscn"
+auto_destiny = true
 
 [node name="GateStart" parent="Props/Structures" index="11"]
 position = Vector2(584, 634)
@@ -310,7 +313,6 @@ position = Vector2(584, 596)
 
 [node name="Sprite2D" parent="Entities/Player" index="3"]
 texture = ExtResource("8_jrihc")
-hframes = 8
 
 [node name="Lizard" parent="Entities/Enemies" index="0" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
 position = Vector2(568, 252.93)

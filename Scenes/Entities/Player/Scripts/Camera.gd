@@ -27,3 +27,14 @@ func _process(delta):
 
 func _on_camerashake():
 	camera_shake = true
+
+func _show_object(object):
+	print("entrou")
+	var original_position:Vector2 = global_position
+	global_position = object.global_position
+	var kt := get_tree().create_tween()
+	kt.tween_property(self, "global_position", original_position, 2)
+	
+	
+	
+	

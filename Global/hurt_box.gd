@@ -8,7 +8,7 @@ extends Area2D
 func _ready():
 	connect("area_entered", _on_area_entered)
 
-func _on_area_entered(hitbox) -> void:
+func _on_area_entered(hitbox) -> void:	
 	
 	if hitbox == null || hitbox.owner == owner:
 			return

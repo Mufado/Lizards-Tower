@@ -21,7 +21,7 @@ func _ready():
 		quit.visible=false
 		
 func _on_start_pressed():
-	get_tree().change_scene_to_file("res://Scenes/Levels/level_1.tscn")
+	Global._goto_fist_level()
 
 func _on_credit_pressed():
 	credits_screen.visible = true

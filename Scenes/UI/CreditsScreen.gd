@@ -12,4 +12,7 @@ func _ready():
  
 func _on_close_pressed():
 	visible = false 
-	credits.grab_focus()
+	if credits != null:
+		credits.grab_focus()
+	else:
+		Global._goto_splash_screen()

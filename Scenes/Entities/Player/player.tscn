@@ -20,7 +20,7 @@
 [ext_resource type="Script" path="res://Scenes/Entities/Player/Scripts/HitBox.gd" id="16_o8aa1"]
 [ext_resource type="Script" path="res://Scenes/Entities/Player/Scripts/HurtBox.gd" id="17_u2mlu"]
 [ext_resource type="AudioStream" uid="uid://blnjdqbayvn74" path="res://Assets/Audio/hurt_player.wav" id="19_rtei3"]
-[ext_resource type="AudioStream" uid="uid://yqaakdpf8ynh" path="res://Assets/Audio/SFX/Walking.wav" id="21_8mwej"]
+[ext_resource type="AudioStream" uid="uid://yqaakdpf8ynh" path="res://Assets/Audio/SFX/Walking.wav" id="21_ilc6w"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_uvr65"]
 radius = 6.0
@@ -1237,8 +1237,8 @@ color_ramp = SubResource("Gradient_dctps")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_2o4mr")
 position = Vector2(0, -24)
-texture = ExtResource("9_7aotp")
-hframes = 8
+texture = ExtResource("4_0itno")
+hframes = 6
 
 [node name="HitFlash" type="AnimationPlayer" parent="."]
 libraries = {
@@ -1306,7 +1306,7 @@ stream = ExtResource("19_rtei3")
 volume_db = -5.0
 
 [node name="Walking" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("21_8mwej")
+stream = ExtResource("21_ilc6w")
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, -21)

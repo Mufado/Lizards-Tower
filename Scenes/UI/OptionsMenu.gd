@@ -49,15 +49,15 @@ func _unhandled_input(event):
 
 
 func _on_main_menu_pressed():
-	get_tree().change_scene_to_file("res://Scenes/title_screen.tscn")
+	Global._goto_splash_screen()
 
 
 func _on_principal_action_pressed():
 	get_tree().paused = false
-	visible = false				
-			
+	visible = false					
+	
 	if OptionsTypeSelected == OptionsMenuTypes.WIN || OptionsTypeSelected == OptionsMenuTypes.LOSE:
-		get_tree().change_scene_to_file("res://Scenes/Levels/level_1.tscn")
+		Global._goto_fist_level() # get_tree().change_scene_to_file("res://Scenes/Levels/level_1.tscn")
 
 func _on_quit_pressed():
 	get_tree().quit()

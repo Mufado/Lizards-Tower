@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://dymj4viymrfpc"]
+
+[ext_resource type="PackedScene" uid="uid://cpbg1kwjn2eog" path="res://Scenes/Levels/level_master.tscn" id="1_4itbg"]
+[ext_resource type="PackedScene" uid="uid://ds8qordwm2ijl" path="res://Scenes/Entities/Lizard/lizard.tscn" id="2_7cqvx"]
+[ext_resource type="PackedScene" uid="uid://c8ilpte26p04s" path="res://Scenes/Entities/Player/player.tscn" id="3_jgbrr"]
+
+[node name="Level0" node_paths=PackedStringArray("player") instance=ExtResource("1_4itbg")]
+player = NodePath("Entities/Player")
+enemies_blocks_gate = true
+
+[node name="Gate" parent="Props/Structures" index="0"]
+auto_destiny = true
+
+[node name="Lizard" parent="Entities/Enemies" index="0" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("2_7cqvx")]
+position = Vector2(8, 102.93)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Player" parent="Entities" index="1" instance=ExtResource("3_jgbrr")]
+position = Vector2(5, 336)
