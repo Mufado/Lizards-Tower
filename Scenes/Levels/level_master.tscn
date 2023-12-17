@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://c4fngqm5ux3v8" path="res://Scenes/Levels/Props/gate.tscn" id="4_b0h67"]
 [ext_resource type="PackedScene" uid="uid://dr7xijju4bwbs" path="res://Scenes/UI/UI.tscn" id="5_wsowf"]
 [ext_resource type="PackedScene" uid="uid://bvrutpkp757ku" path="res://Scenes/UI/OptionsMenu.tscn" id="6_irqii"]
-[ext_resource type="PackedScene" uid="uid://bpvjismwg7w5h" path="res://Scenes/UI/FullScreen.tscn" id="7_gfr1m"]
+[ext_resource type="PackedScene" path="res://Scenes/UI/FullScreen.tscn" id="7_gfr1m"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_b1spm"]
 vertices = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
@@ -370,6 +370,8 @@ y_sort_enabled = true
 
 [node name="Enemies" type="Node2D" parent="Entities"]
 y_sort_enabled = true
+
+[node name="Items" type="Node2D" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.501961, 0.501961, 0.501961, 1)

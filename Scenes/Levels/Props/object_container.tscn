@@ -28,3 +28,5 @@ debug_color = Color(0.866667, 0.356863, 0, 0.419608)
 [node name="HitSound" type="AudioStreamPlayer2D" parent="."]
 
 [node name="DestructionSound" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Marker" type="Marker2D" parent="."]

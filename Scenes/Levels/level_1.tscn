@@ -310,7 +310,6 @@ position = Vector2(584, 596)
 
 [node name="Sprite2D" parent="Entities/Player" index="3"]
 texture = ExtResource("8_jrihc")
-hframes = 8
 
 [node name="Lizard" parent="Entities/Enemies" index="0" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
 position = Vector2(568, 252.93)
@@ -332,7 +331,7 @@ _nav_agent_target = NodePath("../../Player")
 position = Vector2(336, -107.07)
 _nav_agent_target = NodePath("../../Player")
 
-[node name="OptionsMenu" parent="." index="6"]
+[node name="OptionsMenu" parent="." index="7"]
 visible = false
 
 [editable path="Entities/Player"]

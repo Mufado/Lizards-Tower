@@ -10,4 +10,3 @@ func reset():
 		options_menu._show_options(options_menu.OptionsMenuTypes.LOSE)
 		Global.player_health = 100
 	
-

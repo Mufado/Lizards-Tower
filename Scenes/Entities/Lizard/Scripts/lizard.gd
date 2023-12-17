@@ -37,13 +37,12 @@ func _ready():
 	_anim_tree.set("parameters/Idle/blend_position", direction)
 
 func take_damage(damage: int):
-	Knockback_force = Vector2(100,100) * direction * Vector2(-1,-1)
+	Knockback_force = Vector2(80,80) * direction * Vector2(-1,-1)
 	var kt := get_tree().create_tween()
 	kt.tween_property(self, "Knockback_force", Vector2.ZERO, 0.25)
 	health -= damage
 	hurt_sound.play()
 	if health <= 0:
-		Global.player_health += 15
 		queue_free()
 		return
 

@@ -157,3 +157,6 @@ stream = ExtResource("3_xbyud")
 
 [node name="DestructionSound" parent="." index="6"]
 stream = ExtResource("5_886q0")
+
+[node name="Marker" parent="." index="7"]
+position = Vector2(0, -18)

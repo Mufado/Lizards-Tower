@@ -183,3 +183,6 @@ stream = ExtResource("4_7q4ay")
 [node name="DestructionSound" parent="." index="6"]
 stream = ExtResource("6_ocy64")
 volume_db = -5.0
+
+[node name="Marker" parent="." index="7"]
+position = Vector2(0, -24)

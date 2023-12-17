@@ -55,6 +55,7 @@ func update_blend_position():
 func take_damage(damage: int):
 	if _is_invincible:
 		return
+
 	Global.player_health -= damage * randf_range(0.75,2.0)
 	
 	if Global.player_health > 0:
