@@ -315,20 +315,68 @@ texture = ExtResource("8_jrihc")
 position = Vector2(568, 252.93)
 _nav_agent_target = NodePath("../../Player")
 
-[node name="Lizard2" parent="Entities/Enemies" index="1" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+[node name="Lizard6" parent="Entities/Enemies" index="1" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+position = Vector2(594, 226)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard2" parent="Entities/Enemies" index="2" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
 position = Vector2(336, 76.9297)
 _nav_agent_target = NodePath("../../Player")
 
-[node name="Lizard3" parent="Entities/Enemies" index="2" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+[node name="Lizard12" parent="Entities/Enemies" index="3" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+position = Vector2(270, 104)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard13" parent="Entities/Enemies" index="4" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+position = Vector2(211, 79)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard3" parent="Entities/Enemies" index="5" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
 position = Vector2(640, -51.0703)
 _nav_agent_target = NodePath("../../Player")
 
-[node name="Lizard4" parent="Entities/Enemies" index="3" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+[node name="Lizard14" parent="Entities/Enemies" index="6" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+position = Vector2(916, -40)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard15" parent="Entities/Enemies" index="7" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+position = Vector2(1008, 8)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard16" parent="Entities/Enemies" index="8" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+position = Vector2(969, -36)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard17" parent="Entities/Enemies" index="9" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+position = Vector2(939, 30)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard8" parent="Entities/Enemies" index="10" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+position = Vector2(608, -60)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard9" parent="Entities/Enemies" index="11" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+position = Vector2(562, -30)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard4" parent="Entities/Enemies" index="12" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
 position = Vector2(864, 276.93)
 _nav_agent_target = NodePath("../../Player")
 
-[node name="Lizard5" parent="Entities/Enemies" index="4" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+[node name="Lizard7" parent="Entities/Enemies" index="13" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+position = Vector2(896, 255)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard5" parent="Entities/Enemies" index="14" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
 position = Vector2(336, -107.07)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard10" parent="Entities/Enemies" index="15" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+position = Vector2(368, -132)
+_nav_agent_target = NodePath("../../Player")
+
+[node name="Lizard11" parent="Entities/Enemies" index="16" node_paths=PackedStringArray("_nav_agent_target") instance=ExtResource("8_56v0r")]
+position = Vector2(323, -148)
 _nav_agent_target = NodePath("../../Player")
 
 [node name="OptionsMenu" parent="." index="7"]

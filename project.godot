@@ -84,7 +84,12 @@ pause={
 2d_physics/layer_7="Hitboxes"
 2d_physics/layer_8="Hurtboxes"
 2d_physics/layer_9="Items"
+2d_physics/layer_10="Pickups"
 avoidance/layer_1="props"
+
+[physics]
+
+2d/default_gravity=0.0
 
 [rendering]
 
