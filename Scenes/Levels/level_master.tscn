@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cpbg1kwjn2eog"]
+[gd_scene load_steps=15 format=3 uid="uid://cpbg1kwjn2eog"]
 
 [ext_resource type="Script" path="res://Scenes/Levels/level_master.gd" id="1_1ikkc"]
 [ext_resource type="Texture2D" uid="uid://bsjnhcqdvtg56" path="res://Assets/Tilemaps/tilemap_level_tower.png" id="1_yetwe"]
@@ -281,6 +281,11 @@ physics_layer_0/collision_mask = 3
 navigation_layer_0/layers = 1
 sources/0 = SubResource("TileSetAtlasSource_tude0")
 
+[sub_resource type="Environment" id="Environment_q4tad"]
+background_mode = 3
+glow_enabled = true
+glow_hdr_scale = 4.0
+
 [node name="LevelMaster" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_1ikkc")
@@ -374,6 +379,7 @@ y_sort_enabled = true
 [node name="Items" type="Node2D" parent="."]
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+color = Color(0.231373, 0.231373, 0.231373, 1)
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_ad8od")
@@ -385,3 +391,6 @@ autoplay = true
 [node name="OptionsMenu" parent="." instance=ExtResource("6_irqii")]
 
 [node name="CanvasLayer" parent="." instance=ExtResource("7_gfr1m")]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_q4tad")

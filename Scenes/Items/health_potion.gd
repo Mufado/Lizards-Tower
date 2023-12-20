@@ -1,6 +1,7 @@
 extends RigidBody2D
 class_name HealthPotion
 
+
 func _on_timer_timeout():
 	pass
 

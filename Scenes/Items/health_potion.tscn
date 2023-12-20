@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7o73hbur4vxk"]
+[gd_scene load_steps=13 format=3 uid="uid://b7o73hbur4vxk"]
 
 [ext_resource type="Script" path="res://Scenes/Items/health_potion.gd" id="1_tkeru"]
 [ext_resource type="Texture2D" uid="uid://bve6syhnpy5hp" path="res://Assets/Props/healthpotion-Sheet.png" id="2_e2bqi"]
+[ext_resource type="Texture2D" uid="uid://dagcs3ioava0i" path="res://Assets/Props/Torch_fire_light.png" id="3_pgkg0"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tsqbc"]
 atlas = ExtResource("2_e2bqi")
@@ -68,11 +69,13 @@ linear_damp = 10.0
 script = ExtResource("1_tkeru")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+modulate = Color(2, 2, 2, 1)
 position = Vector2(0, -1.33333)
 sprite_frames = SubResource("SpriteFrames_i0nr8")
 animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.751211
+frame = 5
+frame_progress = 0.55966
 
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 256
@@ -81,11 +84,19 @@ collision_layer = 256
 shape = SubResource("CircleShape2D_red4j")
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
 one_shot = true
 autostart = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_y4kdr")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+modulate = Color(4, 4, 4, 1)
+scale = Vector2(0.666667, 0.666667)
+color = Color(0.890196, 0.482353, 0.505882, 0.733333)
+energy = 2.0
+texture = ExtResource("3_pgkg0")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

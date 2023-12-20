@@ -1,4 +1,4 @@
-[gd_scene load_steps=172 format=3 uid="uid://ds8qordwm2ijl"]
+[gd_scene load_steps=173 format=3 uid="uid://ds8qordwm2ijl"]
 
 [ext_resource type="Texture2D" uid="uid://jrxx5k3myc2n" path="res://Assets/Enemy/Lizard_atack_down-Sheet.png" id="1_54dho"]
 [ext_resource type="Script" path="res://Scenes/Entities/Lizard/Scripts/lizard.gd" id="1_gl8w2"]
@@ -23,6 +23,7 @@
 [ext_resource type="Texture2D" uid="uid://dyebf6c5evr75" path="res://Assets/Enemy/Lizard_run_down_right-Sheet.png" id="16_kjgcs"]
 [ext_resource type="Texture2D" uid="uid://ceeebofr85723" path="res://Assets/Enemy/Lizard_run_up_left-Sheet.png" id="17_3ehg6"]
 [ext_resource type="Texture2D" uid="uid://cg7ehttcsp6wa" path="res://Assets/Enemy/Lizard_run_up_right-Sheet.png" id="18_ujq0o"]
+[ext_resource type="AudioStream" uid="uid://l6dklwtihhf5" path="res://Assets/Audio/SFX/lizard_atack.wav" id="24_5g3kp"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_qcltc"]
 resource_local_to_scene = true
@@ -730,6 +731,9 @@ height = 38.0
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_sllxg"]
 b = Vector2(0, 7.978)
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_8gqmu"]
+radius = 11.0
+
 [sub_resource type="Animation" id="Animation_ul17o"]
 length = 0.001
 tracks/0/type = "value"
@@ -855,6 +859,18 @@ tracks/6/keys = {
 "update": 1,
 "values": [SubResource("SegmentShape2D_sllxg")]
 }
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("AttackSound:playing")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_1wmp5"]
 length = 0.6
@@ -930,6 +946,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [1.5708, 1.5708, 1.5708]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AttackSound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_oll2p"]
@@ -1008,6 +1036,18 @@ tracks/5/keys = {
 "update": 1,
 "values": [4.71239, 4.71239, 4.71239]
 }
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AttackSound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_jb1li"]
 resource_name = "up attack"
@@ -1084,6 +1124,18 @@ tracks/5/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": [Vector2(3, 2.905), Vector2(2.31337, 1.08042), Vector2(2.31337, 0.68042)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("AttackSound:playing")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
 }
 
 [sub_resource type="Animation" id="Animation_b375i"]
@@ -1795,9 +1847,6 @@ states/Start/position = Vector2(165, 100)
 transitions = ["ChasePlayer", "Idle", SubResource("AnimationNodeStateMachineTransition_i3fh8"), "Attack", "Idle", SubResource("AnimationNodeStateMachineTransition_0tbe1"), "Idle", "Attack", SubResource("AnimationNodeStateMachineTransition_k3t8f"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_2lu6d"), "Idle", "ChasePlayer", SubResource("AnimationNodeStateMachineTransition_5nx4s")]
 graph_offset = Vector2(-164, -57.5236)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8gqmu"]
-radius = 11.0
-
 [node name="Lizard" type="CharacterBody2D"]
 position = Vector2(0, -19.0703)
 collision_layer = 2
@@ -1811,7 +1860,7 @@ metadata/_edit_vertical_guides_ = []
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 material = SubResource("ShaderMaterial_qcltc")
 sprite_frames = SubResource("SpriteFrames_1huaq")
-animation = &"Run"
+animation = &"Attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 15.0703)
@@ -1845,6 +1894,14 @@ scale = Vector2(2.08133, 0.811315)
 shape = SubResource("SegmentShape2D_sllxg")
 disabled = true
 
+[node name="AttackRange" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 393
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(0, 15.0703)
+shape = SubResource("CircleShape2D_8gqmu")
+
 [node name="HitFlash" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_vcaj1")
@@ -1864,14 +1921,6 @@ parameters/conditions/move = false
 parameters/Attack/blend_position = Vector2(-0.0017361, 0.0131004)
 parameters/ChasePlayer/blend_position = Vector2(0, 0)
 parameters/Idle/blend_position = Vector2(-0.00153375, 0)
-
-[node name="AttackRange" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 393
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
-position = Vector2(0, 15.0703)
-shape = SubResource("CircleShape2D_8gqmu")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 target_position = Vector2(0, 150)
@@ -1902,6 +1951,9 @@ texture_progress_offset = Vector2(1, 1)
 
 [node name="HurtSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("15_wm47t")
+
+[node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("24_5g3kp")
 
 [connection signal="body_entered" from="HitBox" to="HitBox" method="_on_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]

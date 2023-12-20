@@ -135,6 +135,7 @@ texture = ExtResource("4_gfhua")
 offset = Vector2(0, -38)
 
 [node name="Flame" type="AnimatedSprite2D" parent="."]
+modulate = Color(2, 2, 2, 1)
 position = Vector2(0, 13)
 sprite_frames = SubResource("SpriteFrames_ncjac")
 animation = &"Fire"
@@ -143,6 +144,7 @@ frame_progress = 0.41631
 offset = Vector2(0, -28)
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
+modulate = Color(2, 2, 2, 1)
 position = Vector2(0, -13)
 color = Color(0.996078, 0.713726, 0.415686, 1)
 energy = 2.0
