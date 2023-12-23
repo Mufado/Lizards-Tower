@@ -7,6 +7,7 @@ const VIEW_ANGLE = deg_to_rad(120.0)
 const VIEW_DISTANCE = 200.0
 const RAYCAST_UPDATE_QUANTITY = int(VIEW_ANGLE / ANGLE_BETWEEN_RAYS) + 1
 
+var lscale = preload("res://Scenes/Items/scale.tscn")
 var direction: Vector2 = Vector2.ZERO
 var is_in_range_to_attack: bool = false
 var is_chasing: bool = false
@@ -43,9 +44,11 @@ func take_damage(damage: int):
 	health -= damage
 	hurt_sound.play()
 	if health <= 0:
+		var drop = lscale.instantiate()
+		drop.position = $Marker2D.global_position
+		get_parent().add_child(drop)
 		queue_free()
 		return
-
 	is_invincible = true
 	invincible_cd.start(invincible_cd_time)
 	_blink()

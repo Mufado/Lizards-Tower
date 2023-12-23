@@ -1955,6 +1955,8 @@ stream = ExtResource("15_wm47t")
 [node name="AttackSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("24_5g3kp")
 
+[node name="Marker2D" type="Marker2D" parent="."]
+
 [connection signal="body_entered" from="HitBox" to="HitBox" method="_on_body_entered"]
 [connection signal="body_entered" from="AttackRange" to="." method="_on_attack_range_body_entered"]
 [connection signal="body_exited" from="AttackRange" to="." method="_on_attack_range_body_exited"]
